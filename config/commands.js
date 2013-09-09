@@ -952,6 +952,10 @@ var commands = exports.commands = {
 		this.sendReply("It's not funny anymore.");
 	},
 
+	testcmd: function(target, room, user) {
+		this.sendReply("Pokemaster is awesome!");
+	},
+
 	potd: function(target, room, user) {
 		if (!this.can('potd')) return false;
 
@@ -1302,14 +1306,5 @@ var commands = exports.commands = {
 	/*********************************************************
 	 * PokemonDb custom commands
 	 *********************************************************/
-
-	 info: function(target, room, user) {
-		if (!this.canBroadcast()) return;
-		this.sendReply('Pokemaster is awesome!');
-
-		// this.sendReplyBox('This is the Pokemon Database server.<br>' +
-			// '<a href="http://pokemondb.net">Pokemon Database</a><br>' +
-			// '<a href="http://pokemondb.net/pokebase/">PokeBase</a>');
-	 },
 
 };
