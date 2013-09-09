@@ -1305,9 +1305,11 @@ var commands = exports.commands = {
 
 	 info: function(target, room, user) {
 		if (!this.canBroadcast()) return;
-		this.sendReplyBox('This is the Pokemon Database server.<br>' +
-			'<a href="http://pokemondb.net">Pokemon Database</a><br>' +
-			'<a href="http://pokemondb.net/pokebase/">PokeBase</a>');
+		this.sendReply('Pokemaster is awesome!');
+
+		// this.sendReplyBox('This is the Pokemon Database server.<br>' +
+			// '<a href="http://pokemondb.net">Pokemon Database</a><br>' +
+			// '<a href="http://pokemondb.net/pokebase/">PokeBase</a>');
 	 },
 
 };
