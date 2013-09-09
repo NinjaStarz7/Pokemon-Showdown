@@ -815,25 +815,6 @@ var commands = exports.commands = {
 
 		return '/announce '+target;
 	},
-	
-		case 'tourcmds':
-	case '!tourcmds':
-		showOrBroadcastStart(user, cmd, room, socket, message);
-		showOrBroadcast(user, cmd, room, socket,
-			'<div class="infobox">' +
-			'<b>Start Tournament</b> - Use /tour [tier], [size] without the brackets<br />' +
-			'<b>End Tournament</b> - Use /endtour<br />' +
-			'<b>View Tournament status</b> - Use /vr<br />' +
-			'<b>Reminder</b> - Use /remind<br />'+
-			'<b>To join</b> - Use /jt or /j<br />'+
-			'<b>To leave</b> - Use /l<br />'+
-			'<b>Forcejoin</b> - Use /fj [user] without brackets<br />'+
-			'<b>Disaqualify</b> - Use /dq [user] without brackets<br />'+
-			'<b>Switching</b> - Use /switch [current user], [new user] without brackets<br />'+
-			'</div>');
-		return false;
-		break;
-         },
 
 	fr: 'forcerename',
 	forcerename: function(target, room, user) {
