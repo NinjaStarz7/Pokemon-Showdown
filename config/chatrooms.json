@@ -1,0 +1,11 @@
+[
+{"title":"Lobby","autojoin":true,"desc":"The Official PokemonDB server Lobby!"},
+{"title":"Staff","isPrivate":true,"staffRoom":true,"staffAutojoin":true},
+{"title":"Roleplaying","desc":"Roleplay here with other people!"},
+{"title":"Debate","desc":"Politicians are corrupt. Gay marriage should be legal. Religion.","auth":{"catnipz":"#"}},
+{"title":"Trivia","desc":"This is SPARTA","auth":{"valet":"#"}},
+{"title":"Mew's room","auth":{"testingalt123":"#","mewderator":"#","pokenubz":"%","sentbyravens":"+","lenub":"+"},"desc":"What happens in Mew's room, stays in Mew's room ;)"},
+{"title":"Complain about Ninja","auth":{"nindzya":"#"},"desc":"Yep, there's a room for this too."},
+{"title":"DB League","desc":"Lobby of the Official DB League!","auth":{"blobyolo":"#"}},
+{"title":"Help and FAQ","desc":"Ask away! Unless it's your homework.."}
+]

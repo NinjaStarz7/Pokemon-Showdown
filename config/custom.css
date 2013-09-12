@@ -1,0 +1,212 @@
+/**
+ * Custom CSS declarations
+ *
+ * If your server is registered, you can create a file named `custom.css`
+ * in the `config` directory and populate it with CSS rules to override the
+ * normal client styles, when the client is connected to your server. In
+ * other words, you can use this facility to introduce a custom theme for
+ * your server.
+ */
+
+.mainmenuwrapper {
+	color: rgb(113, 27, 121);
+	font-size: 11pt;
+	font-family: Verdana,Helvetica,Arial,sans-serif;
+	background: url("http://i110.photobucket.com/albums/n108/BlooginShadow/scizornician_zps1fdf66c5.png") no-repeat scroll right top rgb(63, 38, 70);
+}
+.chat-log {
+	font-size: 10pt;
+	background: url("http://i.imgur.com/DAFi2NF.png") no-repeat scroll right bottom;
+	color: rgb(0, 0, 0);
+	overflow: auto;
+}
+.menugroup .button:hover {
+	background: none repeat scroll 0% 0% rgb(168,0,0);
+	opacity: 0.8;
+}
+.menugroup .button:hover {
+	background: -moz-linear-gradient(center top , rgb(119, 158, 196), rgb(64, 107, 149)) repeat scroll 0% 0% transparent;
+	border-color: rgb(32, 53, 74);
+}
+
+.ps-room.ps-room-light {
+	color: black;
+}
+
+.chat-log-add {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	min-height: 36px;
+	padding: 3px 4px 0px;
+	border-top: 1px solid rgb(72, 61, 139);
+}
+
+.mainmenufooter small:after {
+	content: "PokemonDB.net server by PokemasterDb";
+	text-shadow: 0 1px black;
+	position: absolute;
+	left: 0px;
+	top: -40px;
+	width: 200px;
+}
+
+.battle-log {
+	position: absolute;
+	text-align: left;
+	border: 1px solid #C0C0C0;
+	background: #686868 ;
+	color: black;
+	top: 9px;
+	left: 640px;
+	right: -1px;
+	height: 360px;
+	font-family: Verdana,sans-serif;
+	font-size: 10pt;
+	overflow: auto;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+}
+
+.message-pm {
+	color: #383838;
+}
+
+.setchart input:focus, .setchart-nickname input:focus, .statform input.inputform:focus, .textbox:focus {
+	outline: 0px none;
+	border: 1px solid rgb(0, 68, 136);
+	box-shadow: 0px 1px 2px rgb(210, 210, 210) inset, 0px 0px 5px rgb(34, 102, 170);
+	background: none repeat scroll 0% 0% rgb(255, 255, 255);
+}
+
+.tabbar {
+	bottom: 0;
+}
+
+.userbar {
+	top: 18px;
+}
+
+.userbar .username {
+	text-shadow: none;
+	text-shadow: 1px 1px black;
+}
+
+.userbar:before {
+	display: block;
+	content:"";
+	width:80px;
+	height: 32px;
+	float: right;
+	position: relative;
+	top: -9px;
+}
+
+.icon-user {
+	display:none;
+}
+
+.siderooms{
+	background: #707070;
+	height: 56px;
+}
+
+.maintabbarbottom {
+	background: linear-gradient(to bottom, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 100%);
+	border: none;
+	box-shadow: none;
+	z-index:2;
+}
+
+.header {
+	height: 56px;
+	background: #161616;
+}
+
+.header .logo {
+	float: left;
+	margin: 7px 0px 0 2px;
+}
+
+.menugroup .button {
+	opacity: 0.4;
+	font-size: 12pt;
+	font-family: Verdana,Helvetica,Arial,sans-serif;
+	display: inline-block;
+	padding: 1px;
+	width: 200px;
+	text-align: center;
+	text-decoration: none;
+	color: rgb(255, 255, 255);
+	border: 1px solid rgb(170, 170, 170);
+	background: none repeat scroll 0% 0% rgb(152, 46, 221);
+
+.userlist,
+.userlist li
+{
+	display: block;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+.userlist
+{
+	border-left: 1px solid #B0B0B0;
+	min-height: 100%;
+	background: #C0C0C0;
+}
+.userlist li
+{
+	border-bottom: 1px solid #B0B0B0;
+	height: 19px;
+	font: 10pt Verdana, sans-serif;
+	white-space: nowrap;
+}
+.userlist li em.group
+{
+	font-style: normal;
+	font-size: 8pt;
+	color: #a066aa;
+	display: block;
+	float: left;
+	text-align: center;
+	padding: 1px 0 0 1px;
+	width: 14px;
+}
+.userlist li button
+{
+	box-sizing: border-box;
+	display: block;
+	height: auto;
+	background: transparent;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	height: 19px;
+	width: 100%;
+	white-space: nowrap;
+	font: 10pt Verdana, sans-serif;
+	text-align: left;
+	cursor: pointer;
+}
+.userlist li button:hover
+{
+	background: #CC3366;
+}
+.userlist li button:active
+{
+	background: #CC3366;
+}
+.userlist li.cur
+{
+	background: #CC3366;
+}
+.userlist li.cur button,
+.userlist li.cur button:hover
+{
+	background: #CC3366;
+	margin: 0 0 0 -1px;
+}
