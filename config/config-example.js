@@ -185,23 +185,9 @@ exports.groupsranking = [' ', '+', '%', '@', '#', '&', '~'];
 exports.groups = {
 	'~': {
 		id: "admin",
-		name: "Administrator",
+		name: "President",
 		root: true,
 		rank: 6
-	},
-	'&': {
-		id: "leader",
-		name: "Leader",
-		inherit: '@',
-		jurisdiction: '@u',
-		promote: 'u',
-		forcewin: true,
-		declare: true,
-		modchatall: true,
-		rangeban: true,
-		potd: true,
-		disableladder: true,
-		rank: 5
 	},
 	'#': {
 		id: "owner",
@@ -212,42 +198,55 @@ exports.groups = {
 		roomonly: true,
 		declare: true,
 		modchatall: true,
+		rank: 5
+	},
+	'&': {
+		id: "smod",
+		name: "Gamekeeper",
+		inherit: '@',
+		jurisdiction: '@u',
+		promote: 'u',
+		forcewin: true,
+		declare: true,
+		modchatall: true,
+		potd: true,
+		namelock: true,
+		forcerenameto: true,
+		disableladder: true,
 		rank: 4
 	},
 	'@': {
 		id: "mod",
-		name: "Moderator",
+		name: "Head Peacekeeper",
 		inherit: '%',
 		jurisdiction: 'u',
 		ban: true,
 		modchat: true,
+		redirect: true,
 		forcerename: true,
+		modlog: true,
 		ip: true,
 		alts: '@u',
 		rank: 3
 	},
 	'%': {
-		id: "driver",
-		name: "Driver",
+		id: "tmod",
+		name: "Peacekeeper",
 		inherit: '+',
 		jurisdiction: 'u',
 		announce: true,
 		warn: true,
-		kick: true,
 		mute: true,
-		lock: true,
 		forcerename: true,
 		timer: true,
-		modlog: true,
 		alts: '%u',
 		bypassblocks: 'u%@&~',
 		receiveauthmessages: true,
-		roomvoice: true,
 		rank: 2
 	},
 	'+': {
 		id: "voice",
-		name: "Voice",
+		name: "Career",
 		inherit: ' ',
 		broadcast: true,
 		rank: 1
