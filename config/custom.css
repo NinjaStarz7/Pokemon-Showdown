@@ -8,17 +8,35 @@
  * your server.
  */
 
+ body {
+ 	background: #546bac none;
+ }
+
 .mainmenuwrapper {
-	color: rgb(113, 27, 121);
+	color: #711b79;
 	font-size: 11pt;
 	font-family: Verdana,Helvetica,Arial,sans-serif;
-	background: url("http://i110.photobucket.com/albums/n108/BlooginShadow/scizornician_zps1fdf66c5.png") no-repeat scroll right top rgb(63, 38, 70);
+	background: #3f2646 url("http://77.68.104.131/showdown/bg-scizor.jpg") no-repeat scroll right top;
 }
 .chat-log {
-	font-size: 10pt;
-	background: url("http://i.imgur.com/DAFi2NF.png") no-repeat scroll right bottom;
-	color: rgb(0, 0, 0);
+	font-size: 12px;
+	background: #bdbdbd url("http://77.68.104.131/showdown/bg-drapion.png") no-repeat scroll right bottom;
+	color: #000;
 	overflow: auto;
+}
+
+/*.menugroup .button {
+	opacity: 0.4;
+	font-size: 12pt;
+	font-family: Verdana,Helvetica,Arial,sans-serif;
+	display: inline-block;
+	padding: 1px;
+	width: 200px;
+	text-align: center;
+	text-decoration: none;
+	color: rgb(255, 255, 255);
+	border: 1px solid rgb(170, 170, 170);
+	background: none repeat scroll 0% 0% rgb(152, 46, 221);
 }
 .menugroup .button:hover {
 	background: none repeat scroll 0% 0% rgb(168,0,0);
@@ -27,7 +45,7 @@
 .menugroup .button:hover {
 	background: -moz-linear-gradient(center top , rgb(119, 158, 196), rgb(64, 107, 149)) repeat scroll 0% 0% transparent;
 	border-color: rgb(32, 53, 74);
-}
+}*/
 
 .ps-room.ps-room-light {
 	color: black;
@@ -130,43 +148,27 @@
 	margin: 7px 0px 0 2px;
 }
 
-.menugroup .button {
-	opacity: 0.4;
-	font-size: 12pt;
-	font-family: Verdana,Helvetica,Arial,sans-serif;
-	display: inline-block;
-	padding: 1px;
-	width: 200px;
-	text-align: center;
-	text-decoration: none;
-	color: rgb(255, 255, 255);
-	border: 1px solid rgb(170, 170, 170);
-	background: none repeat scroll 0% 0% rgb(152, 46, 221);
 
 .userlist,
-.userlist li
-{
+.userlist li {
 	display: block;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	text-align: left;
 }
-.userlist
-{
+.userlist {
 	border-left: 1px solid #B0B0B0;
 	min-height: 100%;
 	background: #C0C0C0;
 }
-.userlist li
-{
+.userlist li {
 	border-bottom: 1px solid #B0B0B0;
 	height: 19px;
 	font: 10pt Verdana, sans-serif;
 	white-space: nowrap;
 }
-.userlist li em.group
-{
+.userlist li em.group {
 	font-style: normal;
 	font-size: 8pt;
 	color: #a066aa;
@@ -176,8 +178,7 @@
 	padding: 1px 0 0 1px;
 	width: 14px;
 }
-.userlist li button
-{
+.userlist li button {
 	box-sizing: border-box;
 	display: block;
 	height: auto;
@@ -192,21 +193,17 @@
 	text-align: left;
 	cursor: pointer;
 }
-.userlist li button:hover
-{
+.userlist li button:hover {
 	background: #CC3366;
 }
-.userlist li button:active
-{
+.userlist li button:active {
 	background: #CC3366;
 }
-.userlist li.cur
-{
+.userlist li.cur {
 	background: #CC3366;
 }
 .userlist li.cur button,
-.userlist li.cur button:hover
-{
+.userlist li.cur button:hover {
 	background: #CC3366;
 	margin: 0 0 0 -1px;
 }
