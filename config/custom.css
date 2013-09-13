@@ -9,11 +9,11 @@
  */
 
  body {
- 	background: #546bac none;
+ 	background: #C0C0C0 none;
  }
 
 .mainmenuwrapper {
-	color: #711b79;
+	color: #C0C0C0;
 	font-size: 11pt;
 	font-family: Verdana,Helvetica,Arial,sans-serif;
 	background: #3f2646 url("http://77.68.104.131/showdown/bg-scizor.jpg") no-repeat scroll right top;
@@ -74,7 +74,7 @@
 	position: absolute;
 	text-align: left;
 	border: 1px solid #C0C0C0;
-	background: #686868 ;
+	background: #686868;
 	color: black;
 	top: 9px;
 	left: 640px;
@@ -158,7 +158,7 @@
 	text-align: left;
 }
 .userlist {
-	border-left: 1px solid #B0B0B0;
+	border-left: 1px solid #909090;
 	min-height: 100%;
 	background: #C0C0C0;
 }
@@ -194,16 +194,16 @@
 	cursor: pointer;
 }
 .userlist li button:hover {
-	background: #CC3366;
+	background: #C0C0C0;
 }
 .userlist li button:active {
-	background: #CC3366;
+	background: #C0C0C0;
 }
 .userlist li.cur {
-	background: #CC3366;
+	background: #C0C0C0;
 }
 .userlist li.cur button,
 .userlist li.cur button:hover {
-	background: #CC3366;
+	background: #C0C0C0;
 	margin: 0 0 0 -1px;
 }
