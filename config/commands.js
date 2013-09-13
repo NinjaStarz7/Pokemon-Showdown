@@ -1306,5 +1306,25 @@ var commands = exports.commands = {
 	dbinfo: function(target, room, user) {
 		this.sendReplyBox('<a href="http://pokemondb.net">Pokemon Database homepage</a><br><a href="http://pokemondb.net/pokebase/">Pokebase Q&amp;A</a><br>');
 	},
+	
+	permaban: function(target, room, user) {
+		if (!target) return this.parse('/help permaban');
+
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		if (!this.can('permaban', targetUser)) return false;
+		if (Users.checkBanned(targetUser.latestIp) && !target && !targetUser.connected) {
+			var problem = ' but was already banned';
+			return this.privateModCommand('('+targetUser.name+' would be banned by '+user.name+problem+'.)');
+		}
+
+		targetUser.popup(user.name+" has permanently banned you.");
+		this.addModCommand(targetUser.name+" was permanently banned by "+user.name+".");
+		targetUser.ban();
+		ipbans.write('\n'+targetUser.latestIp);
+	},
 
 };
