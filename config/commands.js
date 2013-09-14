@@ -1306,5 +1306,24 @@ var commands = exports.commands = {
 	dbinfo: function(target, room, user) {
 		this.sendReplyBox('<a href="http://pokemondb.net">Pokemon Database homepage</a><br><a href="http://pokemondb.net/pokebase/">Pokebase Q&amp;A</a><br>');
 	},
+	
+	pickrandom: function (target, room, user) {
+		if (!target) return this.sendReply('/pickrandom [option 1], [option 2], ... - Randomly chooses one of the given options.');
+		if (!this.canBroadcast()) return;
+		var targets;
+		if (target.indexOf(',') === -1) {
+			targets = target.split(' ');
+		} else {
+			targets = target.split(',');
+		};
+		var result = Math.floor(Math.random() * targets.length);
+		return this.sendReplyBox(targets[result].trim());
+	},
+	
+	bgo: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox('<div class="infobox">Play Board Games Online!:<br />&nbsp;&nbsp;- <a href="http://www.boardgame-online.com/" target="_blank">Play Poker</a><img src="http://www.picgifs.com/sport-graphics/sport-graphics/playing-cards/sport-graphics-playing-cards-590406.gif" style="float: left;" height="30px" /></div>');
+	},
+
 
 };
