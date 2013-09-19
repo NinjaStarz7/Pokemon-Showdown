@@ -1354,10 +1354,10 @@ var commands = exports.commands = {
 
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
-		if (!targetUser) {
+		if (!targetUser)
 			return this.sendReply('User '+this.targetUsername+' not found.');
-		}
-		if (!this.can('permaban', targetUser)) return false;
+		if (!this.can('permaban', targetUser))
+			return false;
 		if (Users.checkBanned(targetUser.latestIp) && !target && !targetUser.connected) {
 			var problem = ' but was already banned';
 			return this.privateModCommand('('+targetUser.name+' would be banned by '+user.name+problem+'.)');
@@ -1374,12 +1374,13 @@ var commands = exports.commands = {
 			return this.sendReply('/pickrandom [option 1], [option 2], ... - Randomly chooses one of the given options.');
 		if (!this.canBroadcast())
 			return;
+
 		var targets;
-		if (target.indexOf(',') === -1) {
+		if (target.indexOf(',') === -1)
 			targets = target.split(' ');
-		} else {
+		else
 			targets = target.split(',');
-		};
+
 		var result = Math.floor(Math.random() * targets.length);
 		return this.sendReplyBox(targets[result].trim());
 	},
@@ -1388,6 +1389,21 @@ var commands = exports.commands = {
 		if (!this.canBroadcast())
 			return;
 		this.sendReplyBox('<div class="infobox">Play Board Games Online!:<br />&nbsp;&nbsp;- <a href="http://www.boardgame-online.com/" target="_blank">Play Poker</a><img src="http://www.picgifs.com/sport-graphics/sport-graphics/playing-cards/sport-graphics-playing-cards-590406.gif" style="float: left;" height="30px" /></div>');
+	},
+
+	customavatar: function(target, room, user, connection) {
+		if (!this.can('customavatars'))
+			return false;
+		if (!target)
+			return connection.sendTo(room, 'Usage: /customavatar URL, filename');
+		var http = require('http-get');
+		target = target.split(", ");
+		http.get(target[0], 'config/avatars/' + target[1], function (error, result) {
+			if (error)
+				connection.sendTo(room, '/customavatar - You supplied an invalid URL or file name!');
+			else
+				connection.sendTo(room, 'File saved to: ' + result.file);
+		});
 	},
 
 };
