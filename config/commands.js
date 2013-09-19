@@ -1349,7 +1349,7 @@ var commands = exports.commands = {
 	dbinfo: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox(
-			' Welcome to the Pokemon Database Showdown server! Pokemon Database is one of the most popular Pokemon fansites online today. ' +
+			' Welcome to the Pokemon Database Showdown server! Pokemon Database is a popular Pokemon fansite. ' +
 			' Most of the users on this Showdown server are from our Q&amp;A community PokeBase, but all are welcome here!<br><br>' +
 			' <a href="http://pokemondb.net">Pokemon Database homepage</a><br>' +
 			' <a href="http://pokemondb.net/pokebase/">Pokebase Q&amp;A</a><br>' +
