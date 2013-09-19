@@ -185,13 +185,13 @@ exports.groupsranking = [' ', '+', '%', '@', '#', '&', '~'];
 exports.groups = {
 	'~': {
 		id: "admin",
-		name: "Administrator",
+		name: "President",
 		root: true,
 		rank: 6
 	},
 	'&': {
 		id: "leader",
-		name: "Leader",
+		name: "Gamekeeper",
 		inherit: '@',
 		jurisdiction: '@u',
 		promote: 'u',
@@ -216,7 +216,7 @@ exports.groups = {
 	},
 	'@': {
 		id: "mod",
-		name: "Moderator",
+		name: "Head Peacekeeper",
 		inherit: '%',
 		jurisdiction: 'u',
 		ban: true,
@@ -228,7 +228,7 @@ exports.groups = {
 	},
 	'%': {
 		id: "driver",
-		name: "Driver",
+		name: "Peacekeeper",
 		inherit: '+',
 		jurisdiction: 'u',
 		announce: true,
@@ -247,7 +247,7 @@ exports.groups = {
 	},
 	'+': {
 		id: "voice",
-		name: "Voice",
+		name: "Career",
 		inherit: ' ',
 		broadcast: true,
 		rank: 1
