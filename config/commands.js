@@ -1410,4 +1410,27 @@ var commands = exports.commands = {
 		});
 	},
 
+	smited: function (target, room, user) {
+		if (user.userid != 'scizornician')
+			return false;
+
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser)
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		if (!this.can('smite', targetUser))
+			return false;
+
+		if (Users.checkBanned(targetUser.latestIp) && !target && !targetUser.connected) {
+			var problem = ' but was already smited';
+			return this.privateModCommand('('+targetUser.name+' would be smited by '+user.name+problem+'.)');
+		}
+
+		targetUser.popup(user.name+" has permanently banned you.");
+		this.addModCommand(I smite thee "+targetUser.name+");
+		this.addModCommand(targetUser.name+" was smited by "+user.name+".");
+		targetUser.ban();
+		ipbans.write('\n'+targetUser.latestIp);
+	},
+
 };
