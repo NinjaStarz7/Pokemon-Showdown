@@ -1345,7 +1345,15 @@ var commands = exports.commands = {
 	 *********************************************************/
 
 	dbinfo: function(target, room, user) {
-		this.sendReplyBox('<a href="http://pokemondb.net">Pokemon Database homepage</a><br><a href="http://pokemondb.net/pokebase/">Pokebase Q&amp;A</a><br>');
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox(
+			'<div style="line-height:1.4">' +
+			' <a href="http://pokemondb.net">Pokemon Database homepage</a><br>' +
+			' <a href="http://pokemondb.net/pokebase/">Pokebase Q&amp;A</a><br>' +
+			' Twitter: <a href="https://twitter.com/pokemondb">@pokemon</a><br>' +
+            ' Facebook: <a href="https://www.facebook.com/PokemonDb">PokemonDb</a><br>' +
+            '</div>'
+		);
 	},
 	
 	permaban: function(target, room, user) {
@@ -1385,12 +1393,6 @@ var commands = exports.commands = {
 		return this.sendReplyBox(targets[result].trim());
 	},
 	
-	bgo: function(target, room, user) {
-		if (!this.canBroadcast())
-			return;
-		this.sendReplyBox('<div class="infobox">Play Board Games Online!:<br />&nbsp;&nbsp;- <a href="http://www.boardgame-online.com/" target="_blank">Play Poker</a><img src="http://www.picgifs.com/sport-graphics/sport-graphics/playing-cards/sport-graphics-playing-cards-590406.gif" style="float: left;" height="30px" /></div>');
-	},
-
 	customavatar: function(target, room, user, connection) {
 		if (!this.can('customavatars'))
 			return false;
