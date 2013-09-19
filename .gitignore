@@ -1,4 +1,6 @@
 start.sh
+/config/avatars/*
+
 #/config/*
 /logs/*
 /node_modules
