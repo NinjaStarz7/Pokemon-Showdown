@@ -351,6 +351,10 @@ var commands = exports.commands = {
 		if (!user.joinRoom(targetRoom || room, connection)) {
 			return connection.sendTo(target, "|noinit|joinfailed|The room '"+target+"' could not be joined.");
 		}
+		if (target.toLowerCase() == "lobby") 
+		        return connection.sendTo('lobby','|html|<div class="infobox">Welcome to Pokemon Database! Most of the users here on this server are from our community which you can visit here <a href="http://pokemondb.net/pokebase/">!</a><br />' +
+			'Alongside our community we have an entire database which can be visited here <a href="http://pokemondb.net/">!</a></div>');
+		
 	},
 
 	roomban: function(target, room, user, connection) {
