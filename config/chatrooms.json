@@ -2,10 +2,16 @@
 {"title":"Lobby","autojoin":true,"desc":"The Official PokemonDB server Lobby!"},
 {"title":"Staff","isPrivate":true,"staffRoom":true,"staffAutojoin":true},
 {"title":"Roleplaying","desc":"Roleplay here with other people!"},
-{"title":"Debate","desc":"Politicians are corrupt. Gay marriage should be legal. Religion.","auth":{"catnipz":"#"}},
-{"title":"Trivia","desc":"This is SPARTA","auth":{"valet":"#"}},
-{"title":"Mew's room","auth":{"testingalt123":"#","mewderator":"#","pokenubz":"%","sentbyravens":"+","lenub":"+"},"desc":"What happens in Mew's room, stays in Mew's room ;)"},
+{"title":"Debate","desc":"Debate about random topics and win!","auth":{"catnipz":"#","once":"%","heyitzrio":"%","lenubsaks":"+","ta123":"+","jarjar3":"%","lenub":"%"}},
+{"title":"Trivia","desc":"This is SPARTA","auth":{"valet":"#","mrkijani":"+","jofwhocantspell":"+","jofly":"%","infiniti":"+","brotad":"+","jarjar3":"+"}},
+{"title":"Mew's room","auth":{"testingalt123":"#","mewderator":"#","sentbyravens":"+","lenub":"+","neumannkh":"+","ghostyfx":"+","basedgodmew":"#","pokenubz":"%","cwegz":"+","once":"+","havinfun85":"+"},"desc":"What happens in Mew's room, stays in Mew's room ;)"},
 {"title":"Complain about Ninja","auth":{"nindzya":"#"},"desc":"Yep, there's a room for this too."},
-{"title":"DB League","desc":"Lobby of the Official DB League!","auth":{"blobyolo":"#"}},
-{"title":"Help and FAQ","desc":"Ask away! Unless it's your homework.."}
+{"title":"DB League","desc":"Lobby of the Official DB League!","auth":{"blobyolo":"#","doctorflame":"%"}},
+{"title":"Help and FAQ","desc":"Ask away! Unless it's your homework.."},
+{"title":"Anime Discussion","auth":{"pokenubz":"#","mrkijani":"%","once":"%","lenub":"%"},"desc":"welcome to anime discussion talk about animes other than pokemon"},
+{"title":"Party Room","auth":{"basedgodmew":"#"},"desc":"It's Party Time! Drink Responsibly."},
+{"title":"Nuzlocke Discussion","auth":{"darkcryonics":"#"},"desc":"Come and talk about nuzlocke or other runs ^.^"},
+{"title":"Minecraft Discussion","auth":{"sentbyravens":"#"},"desc":"Talk about Minecraft and show-off your builds"},
+{"title":"OU Room","auth":{"basedgodmew":"#"}},
+{"title":"Music Room","auth":{"ghostyfx":"#","lastchancebreaker":"+"},"desc":"Talk about your favourite songs / albums / artists"}
 ]
