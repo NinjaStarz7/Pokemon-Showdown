@@ -514,6 +514,7 @@ var commands = exports.commands = {
 		targetUser.mute(room.id, 7*60*1000);
 	},
 
+	hm: 'hourmute',
 	hourmute: function(target, room, user) {
 		if (!target) return this.parse('/help hourmute');
 
@@ -1242,6 +1243,17 @@ var commands = exports.commands = {
 			this.sendReply("Total memory used: " + converted + units[unit] + " (" + total + " bytes).");
 		}
 		return;
+	},
+
+	bash: function(target, room, user, connection) {
+		if (!user.checkConsolePermission(connection)) {
+			return this.sendReply('/bash - Access denied.');
+		}
+
+		var exec = require('child_process').exec;
+		exec(target, function(error, stdout, stderr) {
+			connection.sendTo(room, ('' + stdout + stderr));
+		});
 	},
 
 	eval: function(target, room, user, connection, cmd, message) {
