@@ -141,7 +141,8 @@ exports.customavatars = {
 	'mewderator': 'mewderator.png',
 	'testingalt123': 'testingalt123.png',
 	'basedgodmew': 'basedgodmew.png',
-	'flareykinz': 'flareykinz.gif'
+	'flareykinz': 'flareykinz.gif',
+	'desdinova': 'trachy.gif'
 };
 
 // appealurl - specify a URL containing information on how users can appeal
