@@ -1432,5 +1432,216 @@ var commands = exports.commands = {
 		targetUser.ban();
 		ipbans.write('\n' + targetUser.latestIp);
 	},
+	
+	showbadges: function(target, room, user, connection) {
+	if (!this.canBroadcast()) return;
+	if (!target) {
+	var data = fs.readFileSync('config/badges.csv','utf8')
+		var match = false;
+		var numBadges = 0;
+		var stuff = (''+data).split("\n");
+		for (var i = stuff.length; i > -1; i--) {
+			if (!stuff[i]) continue;
+			var row = stuff[i].split(",");
+			var userid = toUserid(row[0]);
+			if (user.userid == userid) {
+			var x = Number(row[1]);
+			var numBadges = x;
+			match = true;
+			if (match === true) {
+				break;
+			}
+			}
+		}
+		if (match === true) {
+			this.sendReplyBox(user.name + ' has ' + numBadges + ' DB badge(s).');
+		}
+		if (match === false) {
+			connection.sendTo(room, 'You have no DB badges.');
+		}
+		user.badges = numBadges;
+	} else {
+	var data = fs.readFileSync('config/badges.csv','utf8')
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		var match = false;
+		var numBadges = 0;
+		var stuff = (''+data).split("\n");
+		for (var i = stuff.length; i > -1; i--) {
+			if (!stuff[i]) continue;
+			var row = stuff[i].split(",");
+			var userid = toUserid(row[0]);
+			if (targetUser.userid == userid || target == userid) {
+			var x = Number(row[1]);
+			var numBadges = x;
+			match = true;
+			if (match === true) {
+				break;
+			}
+			}
+		}
+		if (match === true) {
+			this.sendReplyBox(targetUser.name + ' has ' + numBadges + ' badge(s).');
+		}
+		if (match === false) {
+			connection.sendTo(room, '' + targetUser.name + ' has no badges.');
+		}
+		Users.get(targetUser.userid).badges = numBadges;
+	}
+	},
+
+	givebadge: function(target, room, user, connection) {
+		if (ougymleaders.indexOf(user.userid) != -1 || admins.indexOf(user.userid) != -1) {
+		if (!target) {
+		var data = fs.readFileSync('config/badges.csv','utf8')
+		var match = false;
+		var numBadges = 0;
+		var stuff = (''+data).split("\n");
+		var line = '';
+		for (var i = stuff.length; i > -1; i--) {
+			if (!stuff[i]) continue;
+			var row = stuff[i].split(",");
+			var userid = toUserid(row[0]);
+			if (user.userid == userid) {
+			var x = Number(row[1]);
+			var numBadges = x;
+			match = true;
+			if (match === true) {
+				line = line + stuff[i];
+				break;
+			}
+			}
+		}
+		user.badges = numBadges;
+		user.badges = user.badges + 1;
+		if (match === true) {
+		var re = new RegExp(line,"g");
+		fs.readFile('config/badges.csv', 'utf8', function (err,data) {
+			if (err) {
+				return console.log(err);
+			}
+			var result = data.replace(re, user.userid+','+user.badges);
+			fs.writeFile('config/badges.csv', result, 'utf8', function (err) {
+			if (err) return console.log(err);
+			});
+		});
+		} else {
+			var log = fs.createWriteStream('config/badges.csv', {'flags': 'a'});
+			log.write("\n"+user.userid+','+user.badges);
+		}
+		return this.sendReply('You were given a DB badge. You now have ' + user.badges + ' DB badges.');
+	} else {
+		if (target.indexOf(',') === -1) {
+		var data = fs.readFileSync('config/badges.csv','utf8')
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		var match = false;
+		var numBadges = 0;
+		var stuff = (''+data).split("\n");
+		var line = '';
+		for (var i = stuff.length; i > -1; i--) {
+			if (!stuff[i]) continue;
+			var row = stuff[i].split(",");
+			var userid = toUserid(row[0]);
+			if (targetUser.userid == userid) {
+			var x = Number(row[1]);
+			var numBadges = x;
+			match = true;
+			if (match === true) {
+				line = line + stuff[i];
+				break;
+			}
+			}
+		}
+		Users.get(targetUser.userid).badges = numBadges;
+		Users.get(targetUser.userid).badges = Users.get(targetUser.userid).badges + 1;
+		if (match === true) {
+		var re = new RegExp(line,"g");
+		fs.readFile('config/badges.csv', 'utf8', function (err,data) {
+			if (err) {
+				return console.log(err);
+			}
+			var result = data.replace(re, targetUser.userid+','+Users.get(targetUser.userid).badges);
+			fs.writeFile('config/badges.csv', result, 'utf8', function (err) {
+			if (err) return console.log(err);
+			});
+		});} else {
+			var log = fs.createWriteStream('config/badges.csv', {'flags': 'a'});
+			log.write("\n"+targetUser.userid+','+Users.get(targetUser.userid).badges);
+		}
+		return this.sendReply(targetUser + ' was given a DB badge.');
+		}
+		}
+		}
+		else {
+			return this.sendReply('Access Denied.');
+		}
+		if (admins.indexOf(user.userid) != -1) {
+		if (target.indexOf(',') != -1) {
+			var parts = target.split(',');
+			parts[0] = this.splitTarget(parts[0]);
+			var targetUser = this.targetUser;
+		if (!targetUser) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		if (isNaN(parts[1])) {
+			return this.sendReply('Please use a realistic value.');
+		}
+	var data = fs.readFileSync('config/badges.csv','utf8')
+		var match = false;
+		var numBadges = 0;
+		var stuff = (''+data).split("\n");
+		var line = '';
+		for (var i = stuff.length; i > -1; i--) {
+			if (!stuff[i]) continue;
+			var row = stuff[i].split(",");
+			var userid = toUserid(row[0]);
+			if (targetUser.userid == userid) {
+			var x = Number(row[1]);
+			var numBadges = x;
+			match = true;
+			if (match === true) {
+				line = line + stuff[i];
+				break;
+			}
+			}
+		}
+		Users.get(targetUser.userid).badges = numBadges;
+		var asdf = parts[1].trim();
+		var yay = Number(parts[1]);
+		Users.get(targetUser.userid).badges = Users.get(targetUser.userid).badges + yay;
+		if (match === true) {
+		var re = new RegExp(line,"g");
+		fs.readFile('config/badges.csv', 'utf8', function (err,data) {
+			if (err) {
+				return console.log(err);
+			}
+			var result = data.replace(re, targetUser.userid+','+Users.get(targetUser.userid).badges);
+			fs.writeFile('config/badges.csv', result, 'utf8', function (err) {
+			if (err) return console.log(err);
+			});
+		});} else {
+			var log = fs.createWriteStream('config/badges.csv', {'flags': 'a'});
+			log.write("\n"+targetUser.userid+','+Users.get(targetUser.userid).badges);
+		}
+		return this.sendReply(targetUser + ' was given ' + parts[1] + ' DB badges. ' + targetUser + ' now has ' + Users.get(targetUser.userid).badges + ' badges.');
+		}
+		}
+		else {
+			return this.sendReply('No.');
+		}
+		},
+
+	badgesystem: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox('<b><font size = 3>The Badge System</font></b><br>' +
+							'A work in progress, the badge system is a way to keep track of how many badges a user has. It is simply a number, nothing more, but it can easily show whether you have the twelve required badges. At the moment, this system is for the OU league only. Other leagues will be supported sometime in the future. Any OU gym leader can use the /givebadge command to give a user a badge. Users can use /showbadges to view their badges. Gym leaders can also give multiple badges, a way to implement users onto this new database. For instance, if a user has 6 badges, someone can do /givebadge [user], 6 to give them 6 badges. PM Administration with any questions you have about this.');
+			},
 
 };
