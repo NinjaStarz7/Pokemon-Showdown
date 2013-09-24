@@ -267,6 +267,7 @@ exports.groups = {
 		name: "Gym Leader",
 		inherit: '%',
 		rank: 1
+	},
 	' ': {
 		ip: 's',
 		alts: 's',
