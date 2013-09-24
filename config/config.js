@@ -196,7 +196,7 @@ exports.groups = {
 		id: "admin",
 		name: "President",
 		root: true,
-		rank: 6
+		rank: 7
 	},
 	'&': {
 		id: "leader",
@@ -211,7 +211,7 @@ exports.groups = {
 		rangeban: true,
 		potd: true,
 		disableladder: true,
-		rank: 5
+		rank: 6
 	},
 	'#': {
 		id: "owner",
@@ -222,7 +222,7 @@ exports.groups = {
 		roomonly: true,
 		declare: true,
 		modchatall: true,
-		rank: 4
+		rank: 5
 	},
 	'@': {
 		id: "mod",
@@ -234,7 +234,7 @@ exports.groups = {
 		forcerename: true,
 		ip: true,
 		alts: '@u',
-		rank: 3
+		rank: 4
 	},
 	'%': {
 		id: "driver",
@@ -253,15 +253,20 @@ exports.groups = {
 		bypassblocks: 'u%@&~',
 		receiveauthmessages: true,
 		roomvoice: true,
-		rank: 2
+		rank: 3
 	},
 	'+': {
 		id: "voice",
 		name: "Career",
 		inherit: ' ',
 		broadcast: true,
-		rank: 1
+		rank: 2
 	},
+	'◈': {
+		id: "gymleader",
+		name: "Gym Leader",
+		inherit: '%',
+		rank: 1
 	' ': {
 		ip: 's',
 		alts: 's',
