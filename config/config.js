@@ -206,6 +206,7 @@ exports.groups = {
 		forcewin: true,
 		declare: true,
 		modchatall: true,
+                hideauth: true,
 		rangeban: true,
 		potd: true,
 		disableladder: true,
