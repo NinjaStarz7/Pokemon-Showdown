@@ -13,6 +13,10 @@
 
 var crypto = require('crypto');
 
+//gym leaders
+var ougymleaders = ['gymleaderonce','gymleaderflaf','gmyleaderflare','gymleaderfizz','gymleaderlenub','gymleaderalpha','gymleaderenoch','gymleaderflame'];
+var admins = ['pokemasterdb','scizornician','ninjastarz7'];
+
 var commands = exports.commands = {
 
 	version: function(target, room, user) {
