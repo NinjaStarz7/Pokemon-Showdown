@@ -356,7 +356,8 @@ var commands = exports.commands = {
 			return connection.sendTo(target, "|noinit|joinfailed|The room '"+target+"' could not be joined.");
 		}
 		if (target.toLowerCase() == "lobby") {
-			return this.parse('/dbinfo');
+			return this.sendReply('Welcome to the Pokemon Database Showdown server!');
+			//return this.parse('/dbinfo');
 		}
 	},
 
