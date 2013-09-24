@@ -141,6 +141,7 @@ exports.customavatars = {
 	'mewderator': 'mewderator.png',
 	'testingalt123': 'testingalt123.png',
 	'basedgodmew': 'basedgodmew.png',
+	'pokenubz': 'kyron.png',
 	'flareykinz': 'flareykinz.gif',
 	'desdinova': 'trachy.gif'
 };
