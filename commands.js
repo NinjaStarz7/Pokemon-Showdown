@@ -14,7 +14,7 @@
 var crypto = require('crypto');
 
 //gym leaders
-var ougymleaders = ['gymleaderonce','gymleaderflaf','gmyleaderflare','gymleaderfizz','gymleaderlenub','gymleaderalpha','gymleaderenoch','gymleaderflame'];
+var ougymleaders = ['gymleadercakey','gymleaderflafpert','gmyleaderflareykinz','gymleaderfizz','gymleaderlenub','gymleaderdemon','gymleaderenoch','gymleaderfwame'];
 var admins = ['pokemasterdb','scizornician','ninjastarz7'];
 
 var commands = exports.commands = {
