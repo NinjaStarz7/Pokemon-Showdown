@@ -1660,5 +1660,51 @@ var commands = exports.commands = {
 			'PM Administration with any questions you have about this.'
 		);
 	},
+	
+	gymleaders: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox(
+			'<b><font size = 3>Introducing DB Server Gym Leaders!</font></b><br>' +
+			'<img src ="http://pokestadium.com/pokemon/sprites/trainers/5/blackwhite2/010.gif"><br />' +
+		        '<b>Leader Flareykinz</b>Gym Leader for OU Monotype!<br />' +
+			'<img src ="http://sprites.pokecheck.org/t/032.gif"><br />' +
+			'<b>Leader Flafpert</b>Gym Leader for UU!<br />' +
+			'<img src ="http://sprites.pokecheck.org/t/116.gif"><br />' + 
+			'<b>Leader Cakey</b>Gym Leader for OU!<br />' +
+			'<img src ="http://cdn.bulbagarden.net/upload/e/e6/Spr_E_Brendan.png"><br />' +
+			'<b>Leader Fizz</b>Gym Leader for Ubers!<br />' +
+			'<img src ="http://img.pokemondb.net/sprites/trainers/heartgold-soulsilver/will.png"><br />' +
+			'<b>Leader Lenub</b>Gym Leader for OU (2)!<br />' +
+			'<img src ="http://mob1005.photobucket.com/albums/af180/Twilightwolf4/th_cyrus.gif"><br />' +
+			'<b>Leader Demon</b>Gym Leader for Smogon Doubles!<br />' +
+			'<img src ="http://play.pokemonshowdown.com/sprites/trainers/167.png"><br />' +
+			'<b>To be considered</b>This Gym Leader is being considered as we speak!<br />' +
+			'<img src ="http://sprites.pokecheck.org/t/115.gif"><br />' +
+			'<b>Leader Flame</b>Gym Leader for UU (2)!<br />'
+		);
+		
+		elite4: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox(
+			'<b><font size = 3>Introducing the DB Server Elite 4!</font></b><br>' +
+			'<img src ="http://sprites.pokecheck.org/t/127.gif"><br />' +
+		        '<b>Elite 4 Ravens!</b>OU Elite 4 member!<br />' +
+			'<img src ="http://sprites.pokecheck.org/t/137.gif"><br />' +
+			'<b>Elite 4 Pokenubz</b>OU Monotype Elite 4 member!<br />' +
+			'<img src ="http://sprites.pokecheck.org/t/112.gif"><br />' + 
+			'<b>Elite 4 Hex</b>Ubers Elite 4 memeber!<br />' +
+			'<img src ="http://sprites.pokecheck.org/t/079.gif"><br />' +
+			'<b>Elite 4 Blob</b>UU Elite 4 member!<br />'
+		);
+		
+		champion: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox(
+			'<b><font size = 3>Behold, the DB Server Champion!</font></b><br>' +
+			'<img src ="http://sprites.pokecheck.org/t/155.gif"><br />' +
+			'<b>Champion Mew!</b>Skilled in all aspects of comeptitive battling!<br />'
+		);
+		
+	},
 
 };
