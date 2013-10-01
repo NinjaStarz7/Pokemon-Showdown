@@ -7,11 +7,13 @@
  * other words, you can use this facility to introduce a custom theme for
  * your server.
  */
-#header{background:url("http://www.psdgraphics.com/file/metal-diamond-plate.jpg")}
+#header {
+	background: url("http://77.68.104.131/showdown/metal.jpg")
+}
 
- body {
- 	background: #C0C0C0 none;
- }
+body {
+	background: #C0C0C0 none;
+}
 
 .mainmenuwrapper {
 	color: #C0C0C0;
