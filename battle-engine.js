@@ -625,7 +625,7 @@ var BattlePokemon = (function() {
 	};
 	BattlePokemon.prototype.transformInto = function(pokemon, user) {
 		var template = pokemon.template;
-		if (pokemon.fainted || pokemon.illusion || pokemon.volatiles['substitute']) {
+		if (pokemon.fainted || pokemon.illusion || (pokemon.volatiles['substitute'] && this.battle.gen >= 5)) {
 			return false;
 		}
 		if (!template.abilities || (pokemon && pokemon.transformed && this.battle.gen >= 2) || (user && user.transformed && this.battle.gen >= 5)) {
@@ -2265,7 +2265,7 @@ var Battle = (function() {
 		if (!canSwitchIn.length) {
 			return null;
 		}
-		return canSwitchIn[Math.floor(Math.random()*canSwitchIn.length)];
+		return canSwitchIn[this.random(canSwitchIn.length)];
 	};
 	Battle.prototype.dragIn = function(side, pos) {
 		if (pos >= side.active.length) return false;
@@ -2755,7 +2755,8 @@ var Battle = (function() {
 		}
 
 		// Final modifier. Modifiers that modify damage after min damage check, such as Life Orb.
-		baseDamage = this.runEvent('ModifyDamage', pokemon, target, move, baseDamage);
+		var finalMod = 1;
+		baseDamage = this.modify(baseDamage, this.runEvent('ModifyDamage', pokemon, target, move, finalMod));
 
 		return Math.floor(baseDamage);
 	};
