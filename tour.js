@@ -301,8 +301,67 @@ exports.tour = function (t) {
 			tour[rid].winners = new Array();
 			var firstMatch = false;
 			if (w.length == 1) {
+				var tourMoney = 0;
+				var tooSmall = '';
+				var p = 'bucks';
+				if (!Rooms.rooms[rid].auth) {
+					if (tour[rid].size >= 32) {
+						tourMoney = 3;
+					}
+					if (tour[rid].size >= 16 && tour[rid].size < 32) {
+						tourMoney = 2;
+					}
+					if (tour[rid].size < 16 && tour[rid].size >= 8) {
+						tourMoney = 1;
+						p = 'buck';
+					}
+					if (tour[rid].size < 8) {
+						tourMoney = 0;
+						tooSmall = tooSmall + '(the tour was too small)';
+					}
+				} else {
+					tooSmall += '(this is not an official chatroom)';
+				}
 				//end tour
-				Rooms.rooms[rid].addRaw('<h2><font color="green">Congratulations <font color="black">' + Users.users[w[0]].name + '</font>!  You have won the ' + Tools.data.Formats[tour[rid].tier].name + ' Tournament!</font></h2>' + '<br><font color="blue"><b>SECOND PLACE:</b></font> ' + Users.users[l[0]].name + '<hr />');
+				Rooms.rooms[rid].addRaw('<h2><font color="green">Congratulations <font color="black">' + Users.users[w[0]].name + '</font>!  You have won the ' + Tools.data.Formats[tour[rid].tier].name + ' Tournament!<br>You also win ' + tourMoney + ' Points ' + p + '! ' + tooSmall + '</font></h2>' + '<br><font color="blue"><b>SECOND PLACE:</b></font> ' + Users.users[l[0]].name + '<hr />');
+				Rooms.rooms[rid].addRaw('<h2><font color="green">Congratulations <font color="black">' + Users.users[w[0]].name + '</font>!  You have won the ' + Tools.data.Formats[tour[rid].tier].name + ' Tournament!<br>You have also won ' + tourMoney + ' Frost ' + p + '! ' + tooSmall + '</font></h2>' + '<br><font color="blue"><b>SECOND PLACE:</b></font> ' + Users.users[l[0]].name + '<hr />');
+				//all needed so the tournament gives points
+				var data = fs.readFileSync('config/money.csv','utf8')
+				var match = false;
+				var money = 0;
+				var row = (''+data).split("\n");
+				var line = '';
+				for (var i = row.length; i > -1; i--) {
+					if (!row[i]) continue;
+					var parts = row[i].split(",");
+					var userid = toUserid(parts[0]);
+					if (Users.users[w[0]].userid == userid) {
+						var x = Number(parts[1]);
+						var money = x;
+						match = true;
+						if (match === true) {
+							line = line + row[i];
+							break;
+						}
+					}
+				}
+				Users.users[w[0]].money = money;
+				Users.users[w[0]].money = Users.users[w[0]].money + tourMoney;
+				if (match === true) {
+					var re = new RegExp(line,"g");
+					fs.readFile('config/money.csv', 'utf8', function (err,data) {
+					if (err) {
+						return console.log(err);
+					}
+					var result = data.replace(re, Users.users[w[0]].userid+','+Users.users[w[0]].money);
+					fs.writeFile('config/money.csv', result, 'utf8', function (err) {
+						if (err) return console.log(err);
+					});
+					});
+				} else {
+					var log = fs.createWriteStream('config/money.csv', {'flags': 'a'});
+					log.write("\n"+Users.users[w[0]].userid+','+Users.users[w[0]].money);
+				}
 				tour[rid].status = 0;
 			} else {
 				var html = '<hr /><h3><font color="green">Round ' + tour[rid].roundNum + '!</font></h3><font color="blue"><b>TIER:</b></font> ' + Tools.data.Formats[tour[rid].tier].name + "<hr /><center>";
