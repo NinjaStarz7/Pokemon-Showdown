@@ -2440,8 +2440,9 @@ var commands = exports.commands = {
 			'<img src ="http://sprites.pokecheck.org/t/115.gif"><br />' +
 			'<b>Leader Flame</b>Gym Leader for UU (2)!<br />'
 		);
-		
-		elite4: function(target, room, user) {
+	},
+
+	elite4: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox(
 			'<b><font size = 3>Introducing the DB Server Elite 4!</font></b><br>' +
@@ -2454,15 +2455,15 @@ var commands = exports.commands = {
 			'<img src ="http://sprites.pokecheck.org/t/079.gif"><br />' +
 			'<b>Elite 4 Blob</b>UU Elite 4 member!<br />'
 		);
-		
-		champion: function(target, room, user) {
+	},
+	
+	champion: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox(
 			'<b><font size = 3>Behold, the DB Server Champion!</font></b><br>' +
 			'<img src ="http://sprites.pokecheck.org/t/155.gif"><br />' +
 			'<b>Champion Mew!</b>Skilled in all aspects of comeptitive battling!<br />'
 		);
-
 	}
 
 };
