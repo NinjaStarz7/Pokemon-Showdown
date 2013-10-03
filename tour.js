@@ -303,19 +303,19 @@ exports.tour = function (t) {
 			if (w.length == 1) {
 				var tourMoney = 0;
 				var tooSmall = '';
-				var p = 'bucks';
+				var p = 'points';
 				if (!Rooms.rooms[rid].auth) {
 					if (tour[rid].size >= 32) {
-						tourMoney = 3;
+						tourMoney = 10;
 					}
 					if (tour[rid].size >= 16 && tour[rid].size < 32) {
+						tourMoney = 5;
+					}
+					if (tour[rid].size < 16 && tour[rid].size >= 4) {
 						tourMoney = 2;
+						p = 'point';
 					}
-					if (tour[rid].size < 16 && tour[rid].size >= 8) {
-						tourMoney = 1;
-						p = 'buck';
-					}
-					if (tour[rid].size < 8) {
+					if (tour[rid].size < 4) {
 						tourMoney = 0;
 						tooSmall = tooSmall + '(the tour was too small)';
 					}
@@ -324,8 +324,7 @@ exports.tour = function (t) {
 				}
 				//end tour
 				Rooms.rooms[rid].addRaw('<h2><font color="green">Congratulations <font color="black">' + Users.users[w[0]].name + '</font>!  You have won the ' + Tools.data.Formats[tour[rid].tier].name + ' Tournament!<br>You also win ' + tourMoney + ' Points ' + p + '! ' + tooSmall + '</font></h2>' + '<br><font color="blue"><b>SECOND PLACE:</b></font> ' + Users.users[l[0]].name + '<hr />');
-				Rooms.rooms[rid].addRaw('<h2><font color="green">Congratulations <font color="black">' + Users.users[w[0]].name + '</font>!  You have won the ' + Tools.data.Formats[tour[rid].tier].name + ' Tournament!<br>You have also won ' + tourMoney + ' Frost ' + p + '! ' + tooSmall + '</font></h2>' + '<br><font color="blue"><b>SECOND PLACE:</b></font> ' + Users.users[l[0]].name + '<hr />');
-				//all needed so the tournament gives points
+			        //all needed so the tournament gives points
 				var data = fs.readFileSync('config/money.csv','utf8')
 				var match = false;
 				var money = 0;
