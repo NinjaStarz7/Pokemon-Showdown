@@ -22,6 +22,7 @@
  *
  * @license MIT license
  */
+var closeShop = true;
 
 var THROTTLE_DELAY = 500;
 
@@ -1274,6 +1275,7 @@ function unlock(name, unlocked, noRecurse) {
 	}
 	return unlocked;
 }
+exports.closeShop = closeShop;
 exports.unban = unban;
 exports.unlock = unlock;
 
@@ -1339,4 +1341,5 @@ exports.setOfflineGroup = function(name, group, force) {
 	}
 	exportUsergroups();
 	return true;
+	
 };
