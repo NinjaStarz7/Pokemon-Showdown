@@ -177,6 +177,8 @@ var User = (function () {
 		this.connections = [connection];
 		this.ips = {}
 		this.ips[connection.ip] = 1;
+		this.bets = 0;
+		this.money = 0;
 		// Note: Using the user's latest IP for anything will usually be
 		//       wrong. Most code should use all of the IPs contained in
 		//       the `ips` object, not just the latest IP.
