@@ -144,7 +144,7 @@ exports.customavatars = {
 	'pokenubz': 'kyron.png',
 	'flareykinz': 'flareykinz.gif',
 	'desdinova': 'trachy.gif',
-	'catnipz': 'catipz.png'
+	'catnipz': 'catipz.png',
 	'nindzya': 'ninja.png'
 };
 
