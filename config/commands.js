@@ -1743,5 +1743,23 @@ var commands = exports.commands = {
 			'<b>Champion Mew!</b> Skilled in all aspects of comeptitive battling!<br>'
 		);
 	}
+	
+	picktier: 'tierpick',
+	tierpick: function(target, room, user){
+		return this.parse('/poll Vote for the next Tournament Tier,randombattle,ou,ubers,uu,ru,nu,lc,cap,cc1v1,oumonotype,1v1,smogondoubles,vgcdoubles');
+	},
+	
+	 tourcommands: function(target, room, user) {
+        if (!this.canBroadcast()) return;
+        this.sendReplyBox('<b><font size =2>Tournaments can be run by Voice (+) or higher using the commands below:</font></b><br \>' +
+        '/tour [tier], [size] - Starts a tournament with a competitor limitation<br \>' +
+                '/tour [tier], [x minutes] - Starts a tournament with a sign-up phase timer<br \>' +
+		'/endtour - Ends the current tournament<br \>' +
+		'/fj [username] - Forces a user to join a tournament<br \>' +
+		'/fl [username] - Force a user to leave a tournament<br \>' +
+		'/toursize [size] - Changes the size of a currently running tournament<br \>' +
+		'/tourtime [number] - Changes the timer of a current tournaments sign-up phase<br \>' +
+		'/replace [username], [username] - Replaces user in a tournament with the second user');
+    },
 
 };
