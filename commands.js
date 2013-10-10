@@ -173,31 +173,34 @@ var commands = exports.commands = {
 	purse: 'atm',
 	bag: 'atm',
 	atm: function(target, room, user, connection, cmd) {
-	if (!this.canBroadcast()) return;
-	var cMatch = false;
-	var mMatch = false;
-	var money = 0;
-	var coins = 0;
-	var total = '';
-	if (!target) {
-	var data = fs.readFileSync('config/money.csv','utf8')
-		var row = (''+data).split("\n");
-		for (var i = row.length; i > -1; i--) {
-			if (!row[i]) continue;
-			var parts = row[i].split(",");
-			var userid = toUserid(parts[0]);
-			if (user.userid == userid) {
-			var x = Number(parts[1]);
-			var money = x;
-			mMatch = true;
-			if (mMatch === true) {
-				break;
-			}
+		if (!this.canBroadcast()) return;
+		var cMatch = false;
+		var mMatch = false;
+		var money = 0;
+		var coins = 0;
+		var total = '';
+		if (!target) {
+			var data = fs.readFileSync('config/money.csv','utf8')
+			var row = (''+data).split("\n");
+			for (var i = row.length; i > -1; i--) {
+				if (!row[i]) continue;
+				var parts = row[i].split(",");
+				var userid = toUserid(parts[0]);
+				if (user.userid == userid) {
+					var x = Number(parts[1]);
+					var money = x;
+					mMatch = true;
+					if (mMatch === true) {
+						break;
+					}
+				}
 			}
 		}
 		if (mMatch === true) {
 			var p = 'points';
-			if (money < 2) p = 'point';
+			if (money < 2) {
+				p = 'point';
+			}
 			total += user.name + ' has ' + money + ' ' + p + '.<br />';
 		}
 		if (mMatch === false) {
@@ -211,14 +214,15 @@ var commands = exports.commands = {
 			var parts = row[i].split(",");
 			var userid = toUserid(parts[0]);
 			if (user.userid == userid) {
-			var x = Number(parts[1]);
-			var coins = x;
-			cMatch = true;
-			if (cMatch === true) {
-				break;
-			}
+				var x = Number(parts[1]);
+				var coins = x;
+				cMatch = true;
+				if (cMatch === true) {
+					break;
+				}
 			}
 		}
+	},
 		
 	awardpoints: 'givepoints',
 	gp: 'givepoints',
@@ -247,13 +251,13 @@ var commands = exports.commands = {
 			var parts = row[i].split(",");
 			var userid = toUserid(parts[0]);
 			if (targetUser.userid == userid) {
-			var x = Number(parts[1]);
-			var money = x;
-			match = true;
-			if (match === true) {
-				line = line + row[i];
-				break;
-			}
+				var x = Number(parts[1]);
+				var money = x;
+				match = true;
+				if (match === true) {
+					line = line + row[i];
+					break;
+				}
 			}
 		}
 		targetUser.money = money;
@@ -261,15 +265,16 @@ var commands = exports.commands = {
 		if (match === true) {
 			var re = new RegExp(line,"g");
 			fs.readFile('config/money.csv', 'utf8', function (err,data) {
-			if (err) {
-				return console.log(err);
-			}
-			var result = data.replace(re, targetUser.userid+','+targetUser.money);
-			fs.writeFile('config/money.csv', result, 'utf8', function (err) {
-				if (err) return console.log(err);
+				if (err) {
+					return console.log(err);
+				}
+				var result = data.replace(re, targetUser.userid+','+targetUser.money);
+				fs.writeFile('config/money.csv', result, 'utf8', function (err) {
+					if (err) return console.log(err);
+				});
 			});
-			});
-		} else {
+		}
+		else {
 			var log = fs.createWriteStream('config/money.csv', {'flags': 'a'});
 			log.write("\n"+targetUser.userid+','+targetUser.money);
 		}
@@ -277,7 +282,8 @@ var commands = exports.commands = {
 		if (giveMoney < 2) p = 'point';
 		this.sendReply(targetUser.name + ' was given ' + giveMoney + ' ' + p + '. This user now has ' + targetUser.money + ' points.');
 		targetUser.send(user.name + ' has given you ' + giveMoney + ' ' + p + '.');
-		} else {
+		}
+		else {
 			return this.parse('/help givepoints');
 		}
 	},
@@ -308,13 +314,13 @@ var commands = exports.commands = {
 			var parts = row[i].split(",");
 			var userid = toUserid(parts[0]);
 			if (targetUser.userid == userid) {
-			var x = Number(parts[1]);
-			var money = x;
-			match = true;
-			if (match === true) {
-				line = line + row[i];
-				break;
-			}
+				var x = Number(parts[1]);
+				var money = x;
+				match = true;
+				if (match === true) {
+					line = line + row[i];
+					break;
+				}
 			}
 		}
 		targetUser.money = money;
@@ -322,15 +328,16 @@ var commands = exports.commands = {
 		if (match === true) {
 			var re = new RegExp(line,"g");
 			fs.readFile('config/money.csv', 'utf8', function (err,data) {
-			if (err) {
-				return console.log(err);
-			}
-			var result = data.replace(re, targetUser.userid+','+targetUser.money);
-			fs.writeFile('config/money.csv', result, 'utf8', function (err) {
-				if (err) return console.log(err);
+				if (err) {
+					return console.log(err);
+				}
+				var result = data.replace(re, targetUser.userid+','+targetUser.money);
+				fs.writeFile('config/money.csv', result, 'utf8', function (err) {
+					if (err) return console.log(err);
+				});
 			});
-			});
-		} else {
+		}
+		else {
 			var log = fs.createWriteStream('config/money.csv', {'flags': 'a'});
 			log.write("\n"+targetUser.userid+','+targetUser.money);
 		}
@@ -338,7 +345,8 @@ var commands = exports.commands = {
 		if (takeMoney < 2) p = 'point';
 		this.sendReply(targetUser.name + ' has had ' + takeMoney + ' ' + p + ' removed. This user now has ' + targetUser.money + ' points.');
 		targetUser.send(user.name + ' has removed ' + takeMoney + ' points from you.');
-		} else {
+		}
+		else {
 			return this.parse('/help removepoints');
 		}
 	},
@@ -356,13 +364,13 @@ var commands = exports.commands = {
 			var parts = row[i].split(",");
 			var userid = toUserid(parts[0]);
 			if (user.userid == userid) {
-			var x = Number(parts[1]);
-			var money = x;
-			match = true;
-			if (match === true) {
-				line = line + row[i];
-				break;
-			}
+				var x = Number(parts[1]);
+				var money = x;
+				match = true;
+				if (match === true) {
+					line = line + row[i];
+					break;
+				}
 			}
 		}
 		user.money = money;
