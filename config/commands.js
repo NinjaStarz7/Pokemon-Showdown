@@ -1712,7 +1712,7 @@ var commands = exports.commands = {
 			'<img src ="http://img.pokemondb.net/sprites/trainers/heartgold-soulsilver/will.png"><br>' +
 			'<b>Leader Lenub</b> Gym Leader for OU (2)!<br>' +
 			'<img src ="http://mob1005.photobucket.com/albums/af180/Twilightwolf4/th_cyrus.gif"><br>' +
-			'<b>Leader Demon</b> Gym Leader for Smogon Doubles!<br>' +
+			'<b>Leader Demon</b> Gym Leader for VGC Doubles!<br>' +
 			'<img src ="http://play.pokemonshowdown.com/sprites/trainers/167.png"><br>' +
 			'<b>To be considered</b> This Gym Leader is being considered as we speak!<br>' +
 			'<img src ="http://sprites.pokecheck.org/t/115.gif"><br>' +
