@@ -190,7 +190,7 @@ var commands = exports.commands = {
 		if (!targetUser.authenticated) {
 			this.sendReply('(Unregistered)');
 		}
-		if (!this.broadcasting && user.can('ip', targetUser)) {
+		if (!this.broadcasting && (user.can('ip', targetUser) || user === targetUser)) {
 			var ips = Object.keys(targetUser.ips);
 			this.sendReply('IP' + ((ips.length > 1) ? 's' : '') + ': ' + ips.join(', '));
 		}
@@ -793,6 +793,10 @@ var commands = exports.commands = {
 			matched = true;
 			buffer += '<a href="http://www.smogon.com/sim/staff_faq">Staff FAQ</a><br />';
 		}
+		if (target === 'all' || target === 'autoconfirmed') {
+			matched = true;
+			buffer += 'A user is autoconfirmed when they have won at least one rated battle and has been registered for a week or longer.<br />';
+		}	
 		if (!matched) {
 			return this.sendReply('The FAQ entry "'+target+'" was not found. Try /faq for general help.');
 		}
