@@ -1742,7 +1742,7 @@ var commands = exports.commands = {
 			'<img src ="http://sprites.pokecheck.org/t/155.gif"><br>' +
 			'<b>Champion Mew!</b> Skilled in all aspects of comeptitive battling!<br>'
 		);
-	}
+	},
 	
 	picktier: 'tierpick',
 	tierpick: function(target, room, user){
