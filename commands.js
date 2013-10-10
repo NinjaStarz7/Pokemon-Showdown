@@ -151,9 +151,9 @@ var commands = exports.commands = {
 			}
 		}
 		if (winners.length === 1) {
-			room.addRaw('The roulette landed on ' + color + '. The only winner was ' + winners[0] + ', who won the sum of ' + totalwin[0] + ' Battle Points.');
+			room.addRaw('The roulette landed on ' + color + '. The only winner was ' + winners[0] + ', who won the sum of ' + totalwin[0] + ' Points.');
 		} else if (winners.length) {
-			room.addRaw('The roulette landed on ' + color + '. Winners: ' + winners.toString() + '. They won, respectively, ' + totalwin.toString() + ' Battle Points.');
+			room.addRaw('The roulette landed on ' + color + '. Winners: ' + winners.toString() + '. They won, respectively, ' + totalwin.toString() + '  Points.');
 		} else {
 			room.addRaw('The roulette landed on ' + color + '. Nobody won this time.');
 		}
