@@ -271,21 +271,19 @@ exports.groups = {
 		broadcast: true,
 		rank: 3
 	},
-	'◈': {
-		id: "gymleader",
-		name: "Gym Leader",
-		inherit: '+',
-		announce: true,
-		timer: true,
-		rank: 2
-	},
-	'+': {
+		'+': {
 		id: "voice",
 		name: "Career",
 		inherit: ' ',
 		broadcast: true,
-		rank: 1
+		rank: 2
 
+	},
+	'◈': {
+		id: "gymleader",
+		name: "Gym Leader",
+		inherit: ' ',
+		rank: 1
 	},
 	' ': {
 		ip: 's',
