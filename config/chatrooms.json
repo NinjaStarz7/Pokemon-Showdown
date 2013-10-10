@@ -1,17 +1,17 @@
 [
-{"title":"Lobby","autojoin":true,"desc":"The Official PokemonDB server Lobby!"},
+{"title":"Lobby","autojoin":true,"desc":"The Official PokemonDB server Lobby!","isOfficial":true},
 {"title":"Staff","isPrivate":true,"staffRoom":true,"staffAutojoin":true},
 {"title":"Roleplaying","desc":"Roleplay here with other people!"},
-{"title":"Debate","desc":"Debate about random topics and win!","auth":{"catnipz":"#","heyitzrio":"%","lenubsaks":"+","ta123":"+","thedrownedsailor":"%","alphadraconis":"%","watertiger":"%","jarjar3":"+","valet":"%","knightofdragon":"+","rubythedemon":"%"}},
-{"title":"Mew's room","auth":{"testingalt123":"#","mewderator":"#","sentbyravens":"+","lenub":"+","neumannkh":"+","ghostyfx":"+","basedgodmew":"#","pokenubz":"%","cwegz":"+","once":"+","havinfun85":"+"},"desc":"What happens in Mew's room, stays in Mew's room ;)"},
+{"title":"Debate","desc":"Debate about random topics and win!","auth":{"catnipz":"#","heyitzrio":"%","lenubsaks":"+","ta123":"+","thedrownedsailor":"%","alphadraconis":"%","watertiger":"%","jarjar3":"+","valet":"%","knightofdragon":"+","rubythedemon":"%","lenub":"+","jajad":"+"}},
+{"title":"Mew's room","auth":{"testingalt123":"#","mewderator":"#","sentbyravens":"+","lenub":"+","neumannkh":"+","ghostyfx":"+","basedgodmew":"#","pokenubz":"%","cwegz":"+","once":"+","havinfun85":"+","leadercakey":"+"},"desc":"What happens in Mew's room, stays in Mew's room ;)"},
 {"title":"Complain about Ninja","auth":{"nindzya":"#"},"desc":"Yep, there's a room for this too."},
-{"title":"DB League","desc":"Lobby of the Official DB League!","auth":{"blobyolo":"#","doctorflame":"%"}},
+{"title":"DB League","desc":"Lobby of the Official DB League!","auth":{"blobyolo":"#","doctorflame":"%"},"isOfficial":true},
 {"title":"Help and FAQ","desc":"Ask away! Unless it's your homework.."},
 {"title":"Anime Discussion","auth":{"pokenubz":"#","mrkijani":"%","once":"%","lenub":"%"},"desc":"welcome to anime discussion talk about animes other than pokemon"},
 {"title":"Party Room","auth":{"basedgodmew":"#"},"desc":"It's Party Time! Drink Responsibly."},
-{"title":"Nuzlocke Discussion","auth":{"darkcryonics":"#"},"desc":"Come and talk about nuzlocke or other runs ^.^"},
-{"title":"Minecraft Discussion","auth":{"sentbyravens":"#"},"desc":"Talk about Minecraft and show-off your builds"},
 {"title":"OU Room","auth":{"basedgodmew":"#"}},
 {"title":"Music Room","auth":{"ghostyfx":"#","lastchancebreaker":"+"},"desc":"Talk about your favourite songs / albums / artists"},
-{"title":"DB Arcade","auth":{"aeternis":"#","valet":"#"}}
+{"title":"DB Arcade","auth":{"aeternis":"#","valet":"#"},"desc":"The DB Arcade! Trivia will be held here as well."},
+{"title":"X and Y","desc":"Talk about X and Y here!","isOfficial":true,"auth":{"nindzya":"#"}},
+{"title":"Other Games","auth":{"nindzya":"#"},"desc":"Talk about other games than Pokemon."}
 ]
