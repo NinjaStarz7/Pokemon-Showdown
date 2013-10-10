@@ -625,11 +625,14 @@ var commands = exports.commands = {
 
 	groups: function(target, room, user) {
 		if (!this.canBroadcast()) return;
-		this.sendReplyBox('+ <b>Voice</b> - They can use ! commands like !groups, and talk during moderated chat<br />' +
-			'% <b>Driver</b> - The above, and they can also mute and lock users and check for alts<br />' +
-			'@ <b>Moderator</b> - The above, and they can ban users<br />' +
-			'&amp; <b>Leader</b> - The above, and they can promote moderators and force ties<br />'+
-			'~ <b>Administrator</b> - They can do anything, like change what this message says');
+		this.sendReplyBox('+ <b>Career</b> - They can use ! commands like !groups, and talk during moderated chat<br />' +
+			'% <b>PeaceKeeper</b> - The above, and they can also mute and lock users and check for alts<br />' +
+			'@ <b>Head PeaceKeeper</b> - The above, and they can ban users<br />' +
+			'&amp; <b>Game Maker</b> - The above, and they can promote moderators and force ties<br />'+
+			'~ <b>President</b> - They can do anything, like change what this message says</br>'+
+			'◈ <b>Gym Leader</b> - They are Voice but they have access to /announce</br>'+
+			'✸ <b>Elite Four</b> - They are basically Driver</br>'+
+			'✸ <b>Elite Four</b> - They are Driver with the ability to /declare');
 	},
 
 	opensource: function(target, room, user) {
