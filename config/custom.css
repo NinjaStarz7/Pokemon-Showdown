@@ -11,6 +11,81 @@
 	background: url("http://77.68.104.131/showdown/metal.jpg")
 }
 
+.message-pm {
+color: #FFFFFF;
+}
+.pm-log {
+min-height: 100px;
+max-height: 300px;
+background: #000000
+color: #FFFFFF;
+word-wrap: break-word;
+border: 1px solid #FFFFFF;
+border-top: 0;
+border-bottom: 0;
+overflow: auto;
+}
+.pm-window h3 {
+background: #000000;
+color: #FFFFFF;
+margin: 0;
+padding: 2px 5px;
+font-size: 11pt;
+border: 1px solid #FFFFFF;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+cursor: pointer;
+}
+.pm-log-add {
+border: 1px solid #FFFFFF;
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
+background: #000000;
+}
+.pm-window. focused h3 {
+background: #000000;
+color: #FFFFFF;
+cursor: default;
+}
+.pm-window. focused .pm-log-add {
+background: #000000
+}
+.pm-window.focused h3, .pm-window.focused h3:hover {
+.pm-window h3 {
+background: #000000;
+color: #FFFFFF;
+margin: 0;
+padding: 2px 5px;
+font-size: 11pt;
+border: 1px solid #FFFFFF;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+cursor: pointer;
+}
+.pm-window.focused h3, .pm-window.focused .pm-log, .pm-window.focused .pm-log-add {
+border: 1px solid #AAAAAA;
+border-bottom-left-radius: 5px;
+border-bottom-right-radius: 5px;
+background: #000000
+}
+ 
+.tabbar a.button {
+background: #000000;
+color: #FFFFFF;
+}
+ 
+.tabbar a.button.cur,.tabbar a.button.cur:hover {
+color: #FFFFFF;
+background: #000000;
+box-shadow: none;
+border-color: #AAAAAA;
+border-bottom: 0;
+cursor: default;
+padding-top: 3px;
+padding-bottom: 5px;
+top: 0px;
+}
+
 body {
 	background: #C0C0C0 none;
 }
