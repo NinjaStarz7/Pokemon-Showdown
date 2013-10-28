@@ -145,7 +145,8 @@ exports.customavatars = {
 	'flareykinz': 'flareykinz.gif',
 	'desdinova': 'trachy.gif',
 	'catnipz': 'catipz.png',
-	'nindzya': 'ninja.png'
+	'nindzya': 'ninja.png',
+	'mrkijani': 'mrkijani.png'
 };
 
 // appealurl - specify a URL containing information on how users can appeal
