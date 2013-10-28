@@ -181,7 +181,10 @@ module.exports = (function () {
 			if (!template.genderRatio) template.genderRatio = {M:0.5,F:0.5};
 			if (!template.tier) template.tier = 'Illegal';
 			if (!template.gen) {
-				if (template.num >= 650) template.gen = 6;
+				if (template.forme && template.forme in {'Mega':1,'Mega-X':1,'Mega-Y':1}) {
+					template.gen = 6;
+					template.isMega = true;
+				} else if (template.num >= 650) template.gen = 6;
 				else if (template.num >= 494) template.gen = 5;
 				else if (template.num >= 387) template.gen = 4;
 				else if (template.num >= 252) template.gen = 3;
@@ -447,6 +450,8 @@ module.exports = (function () {
 		var limit1 = true;
 		var sketch = false;
 
+		var sometimesPossible = false; // is this move in the learnset at all?
+
 		// This is a pretty complicated algorithm
 
 		// Abstractly, what it does is construct the union of sets of all
@@ -469,9 +474,10 @@ module.exports = (function () {
 		do {
 			alreadyChecked[template.speciesid] = true;
 			// Stabmons hack to avoid copying all of validateSet to formats.
-			if (format.id === 'stabmons' && template.types.indexOf(this.getMove(move).type) > -1) return false;
+			if (format.id === 'gen5stabmons' && template.types.indexOf(this.getMove(move).type) > -1) return false;
 			if (template.learnset) {
 				if (template.learnset[move] || template.learnset['sketch']) {
+					sometimesPossible = true;
 					var lset = template.learnset[move];
 					if (!lset || template.speciesid === 'smeargle') {
 						lset = template.learnset['sketch'];
@@ -481,8 +487,11 @@ module.exports = (function () {
 
 					for (var i=0, len=lset.length; i<len; i++) {
 						var learned = lset[i];
-						if (learned.substr(0,2) in {'4L':1,'5L':1}) {
-							// gen 4 or 5 level-up moves
+						if (format.noPokebank && learned.charAt(0) !== '6') {
+							if (learned.substr(0,2) !== '5L' && (learned.substr(0,2) !== '5M' || move in {allyswitch:1, telekinesis:1,workup:1,pluck:1})) continue;
+						}
+						if (learned.substr(0,2) in {'4L':1,'5L':1,'6L':1}) {
+							// gen 4-6 level-up moves
 							if (level >= parseInt(learned.substr(2),10)) {
 								// Chatter and Struggle cannot be sketched
 								if (sketch && (move === 'chatter' || move === 'struggle')) return true;
@@ -491,14 +500,14 @@ module.exports = (function () {
 							}
 							if (!template.gender || template.gender === 'F') {
 								// available as egg move
-								learned = learned.substr(0,1)+'Eany';
+								learned = learned.charAt(0)+'Eany';
 							} else {
 								// this move is unavailable, skip it
 								continue;
 							}
 						}
-						if (learned.substr(1,1) in {L:1,M:1,T:1}) {
-							if (learned.substr(0,1) === '5') {
+						if (learned.charAt(1) in {L:1,M:1,T:1}) {
+							if (learned.charAt(0) === '6') {
 								// current-gen TM or tutor moves:
 								//   always available
 								return false;
@@ -506,11 +515,11 @@ module.exports = (function () {
 							// past-gen level-up, TM, or tutor moves:
 							//   available as long as the source gen was or was before this gen
 							limit1 = false;
-							sourcesBefore = Math.max(sourcesBefore, parseInt(learned.substr(0,1),10));
-						} else if (learned.substr(1,1) in {E:1,S:1,D:1}) {
+							sourcesBefore = Math.max(sourcesBefore, parseInt(learned.charAt(0),10));
+						} else if (learned.charAt(1) in {E:1,S:1,D:1}) {
 							// egg, event, or DW moves:
 							//   only if that was the source
-							if (learned.substr(1,1) === 'E') {
+							if (learned.charAt(0) === 'E') {
 								// it's an egg move, so we add each pokemon that can be bred with to its sources
 								var eggGroups = template.eggGroups;
 								if (!eggGroups) continue;
@@ -524,7 +533,7 @@ module.exports = (function () {
 										// CAP pokemon can't breed
 										!dexEntry.isNonstandard &&
 										// can't breed mons from future gens
-										dexEntry.gen <= parseInt(learned.substr(0,1),10) &&
+										dexEntry.gen <= parseInt(learned.charAt(0),10) &&
 										// genderless pokemon can't pass egg moves
 										dexEntry.gender !== 'N') {
 										if (
@@ -542,7 +551,7 @@ module.exports = (function () {
 								}
 								// chainbreeding with itself from earlier gen
 								if (!atLeastOne) sources.push(learned+template.id);
-							} else if (learned.substr(1,1) === 'S') {
+							} else if (learned.charAt(1) === 'S') {
 								sources.push(learned+' '+template.id);
 							} else {
 								sources.push(learned);
@@ -594,6 +603,7 @@ module.exports = (function () {
 
 		// Now that we have our list of possible sources, intersect it with the current list
 		if (!sourcesBefore && !sources.length) {
+			if (format.noPokebank && sometimesPossible) return {type:'pokebank'};
 			return true;
 		}
 		if (!sources.length) sources = null;
@@ -634,7 +644,7 @@ module.exports = (function () {
 		}
 
 		if (sourcesBefore) {
-			lsetData.sourcesBefore = Math.min(sourcesBefore, lsetData.sourcesBefore||5);
+			lsetData.sourcesBefore = Math.min(sourcesBefore, lsetData.sourcesBefore||6);
 		}
 
 		return false;
@@ -772,6 +782,7 @@ module.exports = (function () {
 		}
 
 		var template = this.getTemplate(string(set.species));
+		if (template.isMega) template = this.getTemplate(template.baseSpecies);
 		if (!template.exists) {
 			return ["The Pokemon '"+set.species+"' does not exist."];
 		}
@@ -798,11 +809,13 @@ module.exports = (function () {
 			set.level = maxLevel;
 		}
 
-		set.species = set.species || set.name || 'Bulbasaur';
+		var nameTemplate = this.getTemplate(set.name);
+		if (nameTemplate.exists && nameTemplate.name.toLowerCase() === set.name.toLowerCase()) set.name = null;
+		set.species = set.species;
 		set.name = set.name || set.species;
 		var name = set.species;
 		if (set.species !== set.name) name = set.name + " ("+set.species+")";
-		var isDW = false;
+		var isHidden = false;
 		var lsetData = {set:set, format:format};
 
 		var setHas = {};
@@ -836,6 +849,9 @@ module.exports = (function () {
 		if (banlistTable['Unreleased'] && item.isUnreleased) {
 			problems.push(name+"'s item "+set.item+" is unreleased.");
 		}
+		if (banlistTable['Unreleased'] && template.isUnreleased) {
+			problems.push(name+" ("+template.species+") is unreleased.");
+		}
 		setHas[toId(set.ability)] = true;
 		if (banlistTable['illegal']) {
 			var totalEV = 0;
@@ -857,18 +873,18 @@ module.exports = (function () {
 					problems.push(name+" needs to have an ability.");
 				} else if (ability.name !== template.abilities['0'] &&
 					ability.name !== template.abilities['1'] &&
-					ability.name !== template.abilities['DW']) {
+					ability.name !== template.abilities['H']) {
 					problems.push(name+" can't have "+set.ability+".");
 				}
-				if (ability.name === template.abilities['DW']) {
-					isDW = true;
+				if (ability.name === template.abilities['H']) {
+					isHidden = true;
 
-					if (!template.dreamWorldRelease && banlistTable['Unreleased']) {
-						problems.push(name+"'s Dream World ability is unreleased.");
-					} else if (set.level < 10 && (template.maleOnlyDreamWorld || template.gender === 'N')) {
-						problems.push(name+" must be at least level 10 with its DW ability.");
+					if (template.unreleasedHidden && banlistTable['Unreleased']) {
+						problems.push(name+"'s hidden ability is unreleased.");
+					} else if (set.level < 10 && (template.maleOnlyHidden || template.gender === 'N')) {
+						problems.push(name+" must be at least level 10 with its hidden ability.");
 					}
-					if (template.maleOnlyDreamWorld) {
+					if (template.maleOnlyHidden) {
 						set.gender = 'M';
 						lsetData.sources = ['5D'];
 					}
@@ -904,13 +920,15 @@ module.exports = (function () {
 					if (problem) {
 						var problemString = name+" can't learn "+move.name;
 						if (problem.type === 'incompatible') {
-							if (isDW) {
+							if (isHidden) {
 								problemString = problemString.concat(" because it's incompatible with its ability or another move.");
 							} else {
 								problemString = problemString.concat(" because it's incompatible with another move.");
 							}
 						} else if (problem.type === 'oversketched') {
 							problemString = problemString.concat(" because it can only sketch "+problem.maxSketches+" move"+(problem.maxSketches>1?"s":"")+".");
+						} else if (problem.type === 'pokebank') {
+							problemString = problemString.concat(" because it's not possible to transfer pokemon from earlier games to XY yet (Pokébank comes out in December).");
 						} else {
 							problemString = problemString.concat(".");
 						}
@@ -935,9 +953,9 @@ module.exports = (function () {
 						if (eventData.shiny) {
 							set.shiny = true;
 						}
-						if (eventData.generation < 5) eventData.isDW = false;
-						if (eventData.isDW !== undefined && eventData.isDW !== isDW) {
-							problems.push(name+(isDW?" can't have":" must have")+" its DW ability because it comes from a specific event.");
+						if (eventData.generation < 5) eventData.isHidden = false;
+						if (eventData.isHidden !== undefined && eventData.isHidden !== isHidden) {
+							problems.push(name+(isHidden?" can't have":" must have")+" its hidden ability because it comes from a specific event.");
 						}
 						if (eventData.abilities && eventData.abilities.indexOf(ability.id) < 0) {
 							problems.push(name+" must have "+eventData.abilities.join(" or ")+" because it comes from a specific event.");
@@ -949,13 +967,13 @@ module.exports = (function () {
 							problems.push(name+" must be at least level "+eventData.level+" because it comes from a specific event.");
 						}
 					}
-					isDW = false;
+					isHidden = false;
 				}
 			}
-			if (isDW && template.gender) {
-				if (!lsetData.sources && lsetData.sourcesBefore < 5) {
-					problems.push(name+" has a DW ability - it can't have moves only learned before gen 5.");
-				} else if (lsetData.sources) {
+			if (isHidden && template.gender && lsetData.sourcesBefore < 5) {
+				if (!lsetData.sources) {
+					problems.push(name+" has a hidden ability - it can't have moves only learned before gen 5.");
+				} else {
 					var compatibleSource = false;
 					for (var i=0,len=lsetData.sources.length; i<len; i++) {
 						if (lsetData.sources[i].substr(0,2) === '5E' || (lsetData.sources[i].substr(0,2) === '5D' && set.level >= 10)) {
@@ -964,7 +982,7 @@ module.exports = (function () {
 						}
 					}
 					if (!compatibleSource) {
-						problems.push(name+" has moves incompatible with its DW ability.");
+						problems.push(name+" has moves incompatible with its hidden ability.");
 					}
 				}
 			}

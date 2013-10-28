@@ -269,7 +269,7 @@ var commands = exports.commands = {
 		if (!target) return this.parse('/help dexsearch');
 		var targets = target.split(',');
 		var moves = {}, tiers = {}, colours = {}, ability = {}, gens = {}, types = {};
-		var allTiers = {'uber':1,'ou':1,'uu':1,'ru':1,'nu':1,'lc':1,'cap':1,'bl':1,'bl2':1,'nfe':1};
+		var allTiers = {'uber':1,'ou':1,'uu':1,'ru':1,'nu':1,'lc':1,'cap':1,'bl':1,'bl2':1,'nfe':1, 'limbo':1};
 		var allColours = {'green':1,'red':1,'blue':1,'white':1,'brown':1,'yellow':1,'purple':1,'pink':1,'gray':1,'black':1};
 		var count = 0;
 		var showAll = false;
@@ -283,7 +283,7 @@ var commands = exports.commands = {
 					moves.count = 0;
 				}
 				if (moves.count === 4) {
-					return this.sendReplyBox('Specify a maximum of 4 moves.');
+					return this.sendReply('Specify a maximum of 4 moves.');
 				}
 				moves[target] = 1;
 				moves.count++;
@@ -297,7 +297,7 @@ var commands = exports.commands = {
 					ability.count = 0;
 				}
 				if (ability.count === 1) {
-					return this.sendReplyBox('Specify only one ability.');
+					return this.sendReply('Specify only one ability.');
 				}
 				ability[target] = 1;
 				ability.count++;
@@ -335,7 +335,7 @@ var commands = exports.commands = {
 			}
 			if (target === 'all') {
 				if (this.broadcasting) {
-					return this.sendReplyBox('A search with the parameter "all" cannot be broadcast.')
+					return this.sendReply('A search with the parameter "all" cannot be broadcast.')
 				}
 				showAll = true;
 				continue;
@@ -348,18 +348,18 @@ var commands = exports.commands = {
 						types.count = 0;
 					}
 					if (types.count === 2) {
-						return this.sendReplyBox('Specify a maximum of two types.');
+						return this.sendReply('Specify a maximum of two types.');
 					}
 					types[target] = 1;
 					types.count++;
 					continue;
 				}
 			} else {
-				return this.sendReplyBox('"' + targets[i].trim() + '" could not be found in any of the search categories.');
+				return this.sendReply('"' + targets[i].trim() + '" could not be found in any of the search categories.');
 			}
 		}
 
-		if (showAll && count === 0) return this.sendReplyBox('No search parameters other than "all" were found.<br />Try "/help dexsearch" for more information on this command.');
+		if (showAll && count === 0) return this.sendReply('No search parameters other than "all" were found.\nTry "/help dexsearch" for more information on this command.');
 
 		while (count > 0) {
 			count--;
@@ -367,7 +367,7 @@ var commands = exports.commands = {
 			if (!results) {
 				for (var pokemon in Tools.data.Pokedex) {
 					pokemon = Tools.getTemplate(pokemon);
-					if (pokemon.tier !== 'Illegal' && (pokemon.tier.slice(2).toLowerCase() !== 'cap' || 'cap' in tiers)) {
+					if (pokemon.tier !== 'Illegal' && (pokemon.tier !== 'CAP' || 'cap' in tiers)) {
 						tempResults.add(pokemon);
 					}
 				}
@@ -390,9 +390,6 @@ var commands = exports.commands = {
 
 			if (tiers.count > 0) {
 				for (var mon in tempResults) {
-					if ('cap' in tiers) {
-						if (tempResults[mon].tier.slice(2).toLowerCase() === 'cap') results.add(tempResults[mon]);
-					}
 					if (tempResults[mon].tier.toLowerCase() in tiers) results.add(tempResults[mon]);
 				}
 				tiers.count = 0;
@@ -516,7 +513,7 @@ var commands = exports.commands = {
 					prevSourceType = source.substr(0,2);
 					prevSourceCount = source.substr(2)?0:-1;
 					buffer += "<li>gen "+source.substr(0,1)+" "+sourceNames[source.substr(1,1)];
-					if (prevSourceType === '5E' && template.maleOnlyDreamWorld) buffer += " (cannot have DW ability)";
+					if (prevSourceType === '5E' && template.maleOnlyHidden) buffer += " (cannot have hidden ability)";
 					if (source.substr(2)) buffer += ": "+source.substr(2);
 				}
 			}
@@ -1214,6 +1211,11 @@ var commands = exports.commands = {
 			matched = true;
 			this.sendReply('/join [roomname] - Attempts to join the room [roomname].');
 		}
+		if (target === 'all' || target === 'ignore') {
+			matched = true;
+			this.sendReply('/ignore [user] - Ignores all messages from the user [user].');
+			this.sendReply('Note that staff messages cannot be ignored.');
+		}
 		if (target === '%' || target === 'invite') {
 			matched = true;
 			this.sendReply('/invite [username], [roomname] - Invites the player [username] to join the room [roomname].');
@@ -1303,11 +1305,19 @@ var commands = exports.commands = {
 			matched = true;
 			this.sendReply('/forcetie - Forces the current match to tie. Requires: & ~');
 		}
-		if (target === '&' || target === 'declare' ) {
+		if (target === '&' || target === 'declare') {
 			matched = true;
 			this.sendReply('/declare [message] - Anonymously announces a message. Requires: & ~');
 		}
-		if (target === '%' || target === 'announce' || target === 'wall' ) {
+		if (target === '~' || target === 'chatdeclare' || target === 'cdeclare') {
+			matched = true;
+			this.sendReply('/cdeclare [message] - Anonymously announces a message to all chatrooms on the server. Requires: ~');
+		}
+		if (target === '~' || target === 'globaldeclare' || target === 'gdeclare') {
+			matched = true;
+			this.sendReply('/globaldeclare [message] - Anonymously announces a message to every room on the server. Requires: ~');
+		}
+		if (target === '%' || target === 'announce' || target === 'wall') {
 			matched = true;
 			this.sendReply('/announce OR /wall [message] - Makes an announcement. Requires: % @ & ~');
 		}
@@ -1360,7 +1370,7 @@ var commands = exports.commands = {
 			this.sendReply('/help OR /h OR /? - Gives you help.');
 		}
 		if (!target) {
-			this.sendReply('COMMANDS: /msg, /reply, /ip, /rating, /nick, /avatar, /rooms, /whois, /help, /away, /back, /timestamps');
+			this.sendReply('COMMANDS: /msg, /reply, /ignore, /ip, /rating, /nick, /avatar, /rooms, /whois, /help, /away, /back, /timestamps, /highlight');
 			this.sendReply('INFORMATIONAL COMMANDS: /data, /dexsearch, /groups, /opensource, /avatars, /faq, /rules, /intro, /tiers, /othermetas, /learn, /analysis, /calc (replace / with ! to broadcast. (Requires: + % @ & ~))');
 			this.sendReply('For details on all room commands, use /roomhelp');
 			this.sendReply('For details on all commands, use /help all');

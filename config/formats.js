@@ -3,102 +3,151 @@
 
 exports.Formats = [
 
-	// Singles
+	// XY Singles
 	///////////////////////////////////////////////////////////////////
 
 	{
-		name: "Random Battle",
-		section: "Singles",
+		name: "OU (beta)",
+		section: "XY Singles",
 
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
+		noPokebank: true,
+		banlist: ['Uber', 'Soul Dew']
+	},
+	{
+		name: "Ubers (beta)",
+		section: "XY Singles",
+
+		ruleset: ['Pokemon', 'Standard Ubers', 'Team Preview'],
+		noPokebank: true,
+		banlist: ['']
+	},
+	{
+		name: "LC (beta)",
+		section: "XY Singles",
+
+		maxLevel: 5,
+		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Little Cup'],
+		noPokebank: true,
+		banlist: ['Sonicboom', 'Dragon Rage', 'Scyther']
+	},
+	{
+		name: "Pokebank OU (beta)",
+		section: "XY Singles",
+
+		ruleset: ['Pokemon', 'Standard Pokebank', 'Evasion Abilities Clause', 'Team Preview'],
+		banlist: ['Uber', 'Soul Dew']
+	},
+	{
+		name: "Pokebank Ubers (beta)",
+		section: "XY Singles",
+
+		ruleset: ['Pokemon', 'Standard Pokebank', 'Team Preview'],
+		banlist: ['']
+	},
+	{
+		name: "Pokebank LC (beta)",
+		section: "XY Singles",
+
+		maxLevel: 5,
+		ruleset: ['Pokemon', 'Standard Pokebank', 'Team Preview', 'Little Cup'],
+		banlist: ['Sonicboom', 'Dragon Rage', 'Scyther']
+	},
+	{
+		name: "CAP (beta)",
+		section: "XY Singles",
+
+		ruleset: ['CAP Pokemon', 'Standard Pokebank', 'Evasion Abilities Clause', 'Team Preview'],
+		banlist: ['Uber']
+	},
+	{
+		name: "Custom Game",
+		section: "XY Singles",
+
+		searchShow: false,
+		canUseRandomTeam: true,
+		debug: true,
+		maxLevel: 1000,
+		defaultLevel: 100,
+		// no restrictions, for serious (other than team preview)
+		ruleset: ['Team Preview']
+	},
+
+	// BW2 Singles
+	///////////////////////////////////////////////////////////////////
+
+	{
+		name: "[Gen 5] Random Battle",
+		section: "BW2 Singles",
+
+		mod: 'gen5',
 		team: 'random',
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
 	},
 	{
-		name: "Unrated Random Battle",
-		section: "Singles",
+		name: "[Gen 5] Unrated Random Battle",
+		section: "BW2 Singles",
 
+		mod: 'gen5',
 		team: 'random',
 		challengeShow: false,
 		rated: false,
 		ruleset: ['Random Battle']
 	},
 	{
-		name: "OU",
-		section: "Singles",
+		name: "[Gen 5] OU",
+		section: "BW2 Singles",
 
+		mod: 'gen5',
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
 	},
 	{
-		name: "OU (No Stealth Rock)",
-		section: "Singles",
+		name: "[Gen 5] Ubers",
+		section: "BW2 Singles",
 
-		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Stealth Rock']
-	},
-	{
-		name: "Ubers",
-		section: "Singles",
-
+		mod: 'gen5',
 		ruleset: ['Pokemon', 'Team Preview', 'Standard Ubers'],
 		banlist: []
 	},
 	{
-		name: "UU",
-		section: "Singles",
-		
-		searchShow: false,
-		ruleset: ['OU'],
+		name: "[Gen 5] UU",
+		section: "BW2 Singles",
+
+		mod: 'gen5',
+		ruleset: ['[Gen 5] OU'],
 		banlist: ['OU', 'BL', 'Drought', 'Sand Stream']
 	},
 	{
-		name: "UU (current)",
-		section: "Singles",
+		name: "[Gen 5] RU",
+		section: "BW2 Singles",
 
-		ruleset: ['OU'],
-		banlist: ['OU', 'BL', 'Drought', 'Sand Stream']
-	},
-	{
-		name: "RU",
-		section: "Singles",
-
-		ruleset: ['UU'],
+		mod: 'gen5',
+		ruleset: ['[Gen 5] UU'],
 		banlist: ['UU', 'BL2', 'Shell Smash + Baton Pass', 'Snow Warning']
 	},
 	{
-		name: "NU",
-		section: "Singles",
+		name: "[Gen 5] NU",
+		section: "BW2 Singles",
 
-		searchShow: false,
-		ruleset: ['RU'],
-		banlist: ['RU','BL3']
+		mod: 'gen5',
+		ruleset: ['[Gen 5] RU'],
+		banlist: ['RU','BL3', 'Prankster + Assist']
 	},
 	{
-		name: "NU (current)",
-		section: "Singles",
+		name: "[Gen 5] LC",
+		section: "BW2 Singles",
 
-		ruleset: ['RU'],
-		banlist: ['RU','BL3']
-	},
-	{
-		name: "LC",
-		section: "Singles",
-
+		mod: 'gen5',
 		maxLevel: 5,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Little Cup'],
 		banlist: ['Sonicboom', 'Dragon Rage', 'Berry Juice', 'Carvanha', 'Meditite', 'Gligar', 'Scyther', 'Sneasel', 'Tangela', 'Vulpix', 'Yanma', 'Soul Dew']
 	},
 	{
-		name: "CAP",
-		section: "Singles",
+		name: "[Gen 5] GBU Singles",
+		section: "BW2 Singles",
 
-		ruleset: ['CAP Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
-	},
-	{
-		name: "GBU Singles",
-		section: "Singles",
-
+		mod: 'gen5',
 		validateSet: function(set) {
 			if (!set.level || set.level >= 50) set.forcedLevel = 50;
 			return [];
@@ -124,27 +173,10 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "Global Showdown",
-		section: "Singles",
+		name: "[Gen 5] Custom Game",
+		section: "BW2 Singles",
 
-		validateSet: function(set) {
-			if (!set.level || set.level >= 50) set.forcedLevel = 50;
-			return [];
-		},
-		onBegin: function() {
-			this.debug('cutting down to 3');
-			this.p1.pokemon = this.p1.pokemon.slice(0,3);
-			this.p1.pokemonLeft = this.p1.pokemon.length;
-			this.p2.pokemon = this.p2.pokemon.slice(0,3);
-			this.p2.pokemonLeft = this.p2.pokemon.length;
-		},
-		ruleset: ['Pokemon', 'Species Clause', 'Item Clause', 'Team Preview GBU'],
-		banlist: ['Unreleased', 'Illegal', 'Sky Drop', 'Dark Void', 'Soul Dew', 'Chatot']
-	},
-	{
-		name: "Custom Game",
-		section: "Singles",
-
+		mod: 'gen5',
 		searchShow: false,
 		canUseRandomTeam: true,
 		debug: true,
@@ -153,38 +185,82 @@ exports.Formats = [
 		// no restrictions, for serious (other than team preview)
 		ruleset: ['Team Preview']
 	},
-	{
-		name: "Custom Game (no Team Preview)",
-		section: "Singles",
 
-		searchShow: false,
-		canUseRandomTeam: true,
-		debug: true,
-		maxLevel: 1000,
-		defaultLevel: 100,
-		// no restrictions, for serious
-		ruleset: []
-	},
-
-	// Doubles
+	// XY Doubles
 	///////////////////////////////////////////////////////////////////
 
 	{
-		name: "Doubles Random Battle (dev)",
-		section: 'Doubles',
+		name: "Smogon Doubles (beta)",
+		section: "XY Doubles",
+		column: 2,
 
 		gameType: 'doubles',
-		team: 'random',
-		searchShow: false,
-		debug: true,
-		ruleset: ['PotD', 'Pokemon', 'HP Percentage Mod'],
-		
-		column: 2
+		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
+		noPokebank: true,
+		banlist: ['Dark Void', 'Soul Dew',
+			'Mewtwo',
+			'Lugia',
+			'Ho-Oh',
+			'Kyogre',
+			'Groudon',
+			'Rayquaza',
+			'Dialga',
+			'Palkia',
+			'Giratina', 'Giratina-Origin',
+			'Arceus', 'Arceus-Bug', 'Arceus-Dark', 'Arceus-Dragon', 'Arceus-Electric', 'Arceus-Fighting', 'Arceus-Fire', 'Arceus-Flying', 'Arceus-Ghost', 'Arceus-Grass', 'Arceus-Ground', 'Arceus-Ice', 'Arceus-Poison', 'Arceus-Psychic', 'Arceus-Rock', 'Arceus-Steel', 'Arceus-Water',
+			'Reshiram',
+			'Zekrom',
+			'Kyurem-White',
+			'Xerneas',
+			'Yveltal'
+		]
 	},
 	{
-		name: "Smogon Doubles",
-		section: 'Doubles',
+		name: "Pokebank Smogon Doubles (beta)",
+		section: "XY Doubles",
+		column: 2,
 
+		gameType: 'doubles',
+		ruleset: ['Pokemon', 'Standard Pokebank', 'Evasion Abilities Clause', 'Team Preview'],
+		banlist: ['Dark Void', 'Soul Dew',
+			'Mewtwo',
+			'Lugia',
+			'Ho-Oh',
+			'Kyogre',
+			'Groudon',
+			'Rayquaza',
+			'Dialga',
+			'Palkia',
+			'Giratina', 'Giratina-Origin',
+			'Arceus', 'Arceus-Bug', 'Arceus-Dark', 'Arceus-Dragon', 'Arceus-Electric', 'Arceus-Fighting', 'Arceus-Fire', 'Arceus-Flying', 'Arceus-Ghost', 'Arceus-Grass', 'Arceus-Ground', 'Arceus-Ice', 'Arceus-Poison', 'Arceus-Psychic', 'Arceus-Rock', 'Arceus-Steel', 'Arceus-Water',
+			'Reshiram',
+			'Zekrom',
+			'Kyurem-White',
+			'Xerneas',
+			'Yveltal'
+		]
+	},
+	{
+		name: "Doubles Custom Game",
+		section: "XY Doubles",
+		column: 2,
+
+		gameType: 'doubles',
+		searchShow: false,
+		canUseRandomTeam: true,
+		debug: true,
+		ruleset: ['Team Preview']
+	},
+
+	// BW2 Doubles
+	///////////////////////////////////////////////////////////////////
+
+	{
+		name: "[Gen 5] Smogon Doubles",
+		section: 'BW2 Doubles',
+		column: 2,
+
+		mod: 'gen5',
 		gameType: 'doubles',
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Unreleased', 'Illegal', 'Dark Void', 'Soul Dew', 'Sky Drop',
@@ -204,18 +280,10 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "Smogon Doubles Ubers",
-		section: 'Doubles',
+		name: "[Gen 5] Doubles VGC 2013",
+		section: 'BW2 Doubles',
 
-		gameType: 'doubles',
-		searchShow: false,
-		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-		banlist: ['Unreleased', 'Illegal', 'Dark Void', 'Sky Drop']
-	},
-	{
-		name: "Doubles VGC 2013",
-		section: 'Doubles',
-
+		mod: 'gen5',
 		gameType: 'doubles',
 		onBegin: function() {
 			this.debug('cutting down to 4');
@@ -256,9 +324,10 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "Doubles Custom Game",
-		section: 'Doubles',
+		name: "[Gen 5] Doubles Custom Game",
+		section: 'BW2 Doubles',
 
+		mod: 'gen5',
 		gameType: 'doubles',
 		searchShow: false,
 		canUseRandomTeam: true,
@@ -269,9 +338,10 @@ exports.Formats = [
 		ruleset: ['Team Preview']
 	},
 	{
-		name: "Doubles Challenge Cup",
-		section: 'Doubles',
+		name: "[Gen 5] Doubles Challenge Cup",
+		section: 'BW2 Doubles',
 
+		mod: 'gen5',
 		gameType: 'doubles',
 		team: 'randomCC',
 		searchShow: false,
@@ -282,9 +352,10 @@ exports.Formats = [
 	///////////////////////////////////////////////////////////////////
 
 	{
-		name: "Ability Exchange",
+		name: "[Gen 5] Ability Exchange",
 		section: "OM of the Month",
 
+		mod: 'gen5',
 		ruleset: ['Pokemon', 'Ability Exchange Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'HP Percentage Mod', 'Team Preview'],
 		banlist: ['Unreleased', 'Illegal', 'Ignore Illegal Abilities', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Drought ++ Chlorophyll', 'Sand Stream ++ Sand Rush',
 			'Mewtwo', 'Lugia', 'Ho-Oh', 'Blaziken', 'Kyogre', 'Groudon', 'Rayquaza', 'Deoxys', 'Deoxys-Attack', 'Deoxys-Defense', 'Deoxys-Speed', 'Dialga', 'Palkia', 'Giratina', 'Giratina-Origin', 'Manaphy', 'Darkrai', 'Shaymin-Sky',
@@ -293,9 +364,10 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "[Seasonal] Octoberfest",
+		name: "[Gen 5 Seasonal] Octoberfest",
 		section: "OM of the Month",
 
+		mod: 'gen5',
 		team: 'randomSeasonalOF',
 		ruleset: ['HP Percentage Mod', 'Sleep Clause Mod'],
 		onModifyMove: function(move) {
@@ -444,16 +516,18 @@ exports.Formats = [
 		}
 	},
 	{
-		name: "Challenge Cup",
+		name: "[Gen 5] Challenge Cup",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		team: 'randomCC',
 		ruleset: ['Pokemon', 'HP Percentage Mod']
 	},
 	{
-		name: "Challenge Cup 1-vs-1",
+		name: "[Gen 5] Challenge Cup 1-vs-1",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		team: 'randomCC',
 		ruleset: ['Pokemon', 'Team Preview 1v1', 'HP Percentage Mod'],
 		onBegin: function() {
@@ -465,16 +539,18 @@ exports.Formats = [
 		}
 	},
 	{
-		name: "Hackmons",
+		name: "[Gen 5] Hackmons",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		ruleset: ['Pokemon'],
 		banlist: []
 	},
 	{
-		name: "Balanced Hackmons",
+		name: "[Gen 5] Balanced Hackmons",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		ruleset: ['Pokemon', 'OHKO Clause'],
 		banlist: ['Wonder Guard', 'Pure Power', 'Huge Power', 'Shadow Tag', 'Arena Trap']
 	},
@@ -488,59 +564,48 @@ exports.Formats = [
 		banlist: ['Uber']
 	},
 	{
-		name: "OU Monotype",
+		name: "[Gen 5] OU Monotype",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		ruleset: ['Pokemon', 'Standard', 'Same Type Clause', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
 	},
 	{
-		name: "Glitchmons",
+		name: "[Gen 5] Glitchmons",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		searchShow: false,
 		ruleset: ['Pokemon', 'Team Preview', 'HP Percentage Mod'],
 		banlist: ['Illegal', 'Unreleased'],
 		mimicGlitch: true
 	},
 	{
-		name: "LC Ubers",
+		name: "[Gen 5] LC Ubers",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		maxLevel: 5,
 		searchShow: false,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Little Cup'],
 		banlist: ['Sonicboom', 'Dragon Rage', 'Berry Juice', 'Soul Dew']
 	},
 	{
-		name: "LC UU",
+		name: "[Gen 5] LC UU",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		maxLevel: 5,
 		searchShow: false,
 		ruleset: ['LC'],
 		banlist: ['Abra', 'Aipom', 'Archen', 'Axew', 'Bronzor', 'Chinchou', 'Clamperl', 'Cottonee', 'Cranidos', 'Croagunk', 'Diglett', 'Drifloon', 'Drilbur', 'Dwebble', 'Ferroseed', 'Foongus', 'Frillish', 'Gastly', 'Hippopotas', 'Houndour', 'Koffing', 'Larvesta', 'Lileep', 'Machop', 'Magnemite', 'Mienfoo', 'Misdreavus', 'Munchlax', 'Murkrow', 'Pawniard', 'Ponyta', 'Porygon', 'Riolu', 'Sandshrew', 'Scraggy', 'Shellder', 'Shroomish', 'Slowpoke', 'Snover', 'Staryu', 'Tentacool', 'Timburr', 'Tirtouga']
 	},
 	{
-		name: "Dream World",
-		section: "Other Metagames",
-
-		searchShow: false,
-		ruleset: ['Pokemon', 'Standard DW', 'Team Preview'],
-		banlist: []
-	},
-	{
-		name: "Tier Shift",
+		name: "[Gen 5] 1v1",
 		section: 'Other Metagames',
 
-		mod: 'tiershift',
-		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
-		banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew']
-	},
-	{
-		name: "1v1",
-		section: 'Other Metagames',
-
+		mod: 'gen5',
 		onBegin: function() {
 			this.p1.pokemon = this.p1.pokemon.slice(0,1);
 			this.p1.pokemonLeft = this.p1.pokemon.length;
@@ -571,17 +636,19 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "PU",
+		name: "[Gen 5] PU",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		searchShow: false,
 		ruleset: ['NU'],
 		banlist: ["Charizard", "Wartortle", "Kadabra", "Golem", "Haunter", "Exeggutor", "Weezing", "Kangaskhan", "Pinsir", "Lapras", "Ampharos", "Misdreavus", "Piloswine", "Miltank", "Ludicolo", "Swellow", "Gardevoir", "Ninjask", "Torkoal", "Cacturne", "Altaria", "Armaldo", "Gorebyss", "Regirock", "Regice", "Bastiodon", "Floatzel", "Drifblim", "Skuntank", "Lickilicky", "Probopass", "Rotom-Fan", "Samurott", "Musharna", "Gurdurr", "Sawk", "Carracosta", "Garbodor", "Sawsbuck", "Alomomola", "Golurk", "Braviary", "Electabuzz", "Electrode", "Liepard", "Tangela", "Eelektross", "Ditto", "Seismitoad", "Zangoose", "Roselia", "Serperior", "Metang", "Tauros", "Cradily", "Primeape", "Scolipede", "Jynx", "Basculin", "Gigalith", "Camerupt", "Golbat"]
 	},
 	{
-		name: "STABmons",
+		name: "[Gen 5] STABmons",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
 		banlist: ['Drizzle ++ Swift Swim', 'Soul Dew', 'Soul Dew',
 			'Mewtwo', 'Lugia', 'Ho-Oh', 'Blaziken', 'Kyogre', 'Groudon', 'Rayquaza', 'Deoxys', 'Deoxys-Attack', 'Dialga', 'Palkia', 'Giratina', 'Giratina-Origin', 'Manaphy', 'Shaymin-Sky',
@@ -590,9 +657,10 @@ exports.Formats = [
 		]
 	},
 	{
-		name: "Budgetmons",
+		name: "[Gen 5] Budgetmons",
 		section: "Other Metagames",
 
+		mod: 'gen5',
 		searchShow: false,
 		ruleset: ['OU'],
 		banlist: [],

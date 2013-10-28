@@ -1,5 +1,5 @@
 exports.BattleScripts = {
-	gen: 5,
+	gen: 6,
 	runMove: function(move, pokemon, target, sourceEffect) {
 		if (!sourceEffect && toId(move) !== 'struggle') {
 			var changedMove = this.runEvent('OverrideDecision', pokemon, target, move);
@@ -422,6 +422,10 @@ exports.BattleScripts = {
 				hitResult = this.setWeather(moveData.weather, pokemon, move);
 				didSomething = didSomething || hitResult;
 			}
+			if (moveData.terrain) {
+				hitResult = this.setTerrain(moveData.terrain, pokemon, move);
+				didSomething = didSomething || hitResult;
+			}
 			if (moveData.pseudoWeather) {
 				hitResult = this.addPseudoWeather(moveData.pseudoWeather, pokemon, move);
 				didSomething = didSomething || hitResult;
@@ -477,6 +481,28 @@ exports.BattleScripts = {
 		}
 		return damage;
 	},
+
+	runMegaEvo: function(pokemon) {
+		var side = pokemon.side;
+		var item = this.getItem(pokemon.item);
+		if (!item.megaStone) return false;
+		if (side.megaEvo) return false;
+		var template = this.getTemplate(item.megaStone);
+		if (!template.isMega) return false;
+		if (pokemon.baseTemplate.species !== template.baseSpecies) return false;
+
+		// okay, mega evolution is possible
+		this.add('-formechange', pokemon, template.species);
+		this.add('message', template.baseSpecies+" mega-evolved into "+template.species+"!");
+		pokemon.formeChange(template);
+		pokemon.baseTemplate = template; // mega evolution is permanent :o
+		pokemon.setAbility(template.abilities['0']);
+		pokemon.baseAbility = pokemon.ability;
+
+		side.megaEvo = 1;
+		return true;
+	},
+
 	isAdjacent: function(pokemon1, pokemon2) {
 		if (!pokemon1.fainted && !pokemon2.fainted && pokemon2.position !== pokemon1.position && Math.abs(pokemon2.position-pokemon1.position) <= 1) {
 			return true;
@@ -572,13 +598,13 @@ exports.BattleScripts = {
 
 			//random gender--already handled by PS?
 
-			//random ability (unreleased DW are par for the course)
+			//random ability (unreleased hidden are par for the course)
 			var abilities = [template.abilities['0']];
 			if (template.abilities['1']) {
 				abilities.push(template.abilities['1']);
 			}
-			if (template.abilities['DW']) {
-				abilities.push(template.abilities['DW']);
+			if (template.abilities['H']) {
+				abilities.push(template.abilities['H']);
 			}
 			var ability = abilities.sample();
 
@@ -953,11 +979,11 @@ exports.BattleScripts = {
 				case 'bugbite':
 					if (hasMove['uturn']) rejected = true;
 					break;
-				case 'crosschop': case 'hijumpkick':
+				case 'crosschop': case 'highjumpkick':
 					if (hasMove['closecombat']) rejected = true;
 					break;
 				case 'drainpunch':
-					if (hasMove['closecombat'] || hasMove['hijumpkick'] || hasMove['crosschop']) rejected = true;
+					if (hasMove['closecombat'] || hasMove['highjumpkick'] || hasMove['crosschop']) rejected = true;
 					break;
 				case 'thunderbolt':
 					if (hasMove['discharge'] || hasMove['voltswitch'] || hasMove['thunder']) rejected = true;
@@ -1148,8 +1174,8 @@ exports.BattleScripts = {
 			if (template.abilities['1']) {
 				abilities.push(template.abilities['1']);
 			}
-			if (template.abilities['DW']) {
-				abilities.push(template.abilities['DW']);
+			if (template.abilities['H']) {
+				abilities.push(template.abilities['H']);
 			}
 			abilities.sort(function(a,b){
 				return this.getAbility(b).rating - this.getAbility(a).rating;
@@ -1440,8 +1466,6 @@ exports.BattleScripts = {
 			BL: 76,
 			OU: 74,
 			CAP: 74,
-			G4CAP: 74,
-			G5CAP: 74,
 			Unreleased: 74,
 			Uber: 70
 		};
@@ -1488,7 +1512,7 @@ exports.BattleScripts = {
 		var pokemonLeft = 0;
 		var pokemon = [];
 		for (var i in this.data.FormatsData) {
-			if (this.data.FormatsData[i].viableMoves) {
+			if (this.data.FormatsData[i].viableMoves && this.getTemplate(i).gen < 6) {
 				keys.push(i);
 			}
 		}
@@ -1517,7 +1541,7 @@ exports.BattleScripts = {
 			if (tier === 'Uber' && uberCount > 1 && Math.random()*5>1) continue;
 
 			// CAPs have 20% the normal rate
-			if ((tier === 'G4CAP' || tier === 'G5CAP') && Math.random()*5>1) continue;
+			if (tier === 'CAP' && Math.random()*5>1) continue;
 			// Arceus formes have 1/17 the normal rate each (so Arceus as a whole has a normal rate)
 			if (keys[i].substr(0,6) === 'arceus' && Math.random()*17>1) continue;
 			// Basculin formes have 1/2 the normal rate each (so Basculin as a whole has a normal rate)
@@ -1546,7 +1570,7 @@ exports.BattleScripts = {
 						template.viableMoves = {present:1, bestow:1};
 					}
 				} else if (template.species === potd.species) {
-					continue; // No thanks, I've already got one
+					continue; // No, thanks, I've already got one
 				}
 			}
 
@@ -1564,7 +1588,7 @@ exports.BattleScripts = {
 			pokemon.push(set);
 
 			pokemonLeft++;
-			// Now that our Pokemon has passed all checks, we can increment the type counter:
+			// Now that our Pokemon has passed all checks, we can increment the type counter
 			for (var t=0; t<types.length; t++) {
 				if (types[t] in typeCount) {
 					typeCount[types[t]]++;
@@ -1573,7 +1597,7 @@ exports.BattleScripts = {
 				}
 			}
 			typeComboCount[typeCombo] = 1;
-			// Increment Uber/NU counter:
+			// Increment Uber/NU counter
 			if (tier === 'Uber') {
 				uberCount++;
 			} else if (tier === 'NU' || tier === 'NFE' || tier === 'LC') {

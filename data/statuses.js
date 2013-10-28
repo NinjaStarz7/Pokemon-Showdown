@@ -10,9 +10,9 @@ exports.BattleStatuses = {
 		onStart: function(target) {
 			this.add('-status', target, 'brn');
 		},
-		onBasePower: function(bpMod, attacker, defender, move) {
+		onBasePower: function(basePower, attacker, defender, move) {
 			if (move && move.category === 'Physical' && attacker && attacker.ability !== 'guts') {
-				return this.chain(bpMod, 0.5); // This should really take place directly in the damage function but it's here for now
+				return this.chainModify(0.5); // This should really take place directly in the damage function but it's here for now
 			}
 		},
 		onResidualOrder: 9,
@@ -44,9 +44,6 @@ exports.BattleStatuses = {
 			this.add('-status', target, 'slp');
 			// 1-3 turns
 			this.effectData.startTime = this.random(2,5);
-			this.effectData.time = this.effectData.startTime;
-		},
-		onSwitchIn: function(target) {
 			this.effectData.time = this.effectData.startTime;
 		},
 		onBeforeMovePriority: 2,
@@ -175,9 +172,9 @@ exports.BattleStatuses = {
 				return;
 			}
 			if (this.effectData.source.item === 'bindingband') {
-				this.damage(pokemon.maxhp/8);
+				this.damage(pokemon.maxhp/6);
 			} else {
-				this.damage(pokemon.maxhp/16);
+				this.damage(pokemon.maxhp/8);
 			}
 		},
 		onEnd: function(pokemon) {
@@ -314,9 +311,9 @@ exports.BattleStatuses = {
 	},
 	gem: {
 		duration: 1,
-		onBasePower: function(bpMod, user, target, move) {
+		onBasePower: function(basePower, user, target, move) {
 			this.debug('Gem Boost');
-			return this.chain(bpMod, 1.5);
+			return this.chainModify(1.5);
 		}
 	},
 
@@ -333,18 +330,18 @@ exports.BattleStatuses = {
 			}
 			return 5;
 		},
-		onBasePower: function(bpMod, attacker, defender, move) {
+		onBasePower: function(basePower, attacker, defender, move) {
 			if (move.type === 'Water') {
 				this.debug('rain water boost');
-				return this.chain(bpMod, 1.5);
+				return this.chainModify(1.5);
 			}
 			if (move.type === 'Fire') {
 				this.debug('rain fire suppress');
-				return this.chain(bpMod, 0.5);
+				return this.chainModify(0.5);
 			}
 		},
 		onStart: function(battle, source, effect) {
-			if (effect && effect.effectType === 'Ability') {
+			if (effect && effect.effectType === 'Ability' && this.gen <= 5) {
 				this.effectData.duration = 0;
 				this.add('-weather', 'RainDance', '[from] ability: '+effect, '[of] '+source);
 			} else {
@@ -369,18 +366,18 @@ exports.BattleStatuses = {
 			}
 			return 5;
 		},
-		onBasePower: function(bpMod, attacker, defender, move) {
+		onBasePower: function(basePower, attacker, defender, move) {
 			if (move.type === 'Fire') {
 				this.debug('Sunny Day fire boost');
-				return this.chain(bpMod, 1.5);
+				return this.chainModify(1.5);
 			}
 			if (move.type === 'Water') {
 				this.debug('Sunny Day water suppress');
-				return this.chain(bpMod, 0.5);
+				return this.chainModify(0.5);
 			}
 		},
 		onStart: function(battle, source, effect) {
-			if (effect && effect.effectType === 'Ability') {
+			if (effect && effect.effectType === 'Ability' && this.gen <= 5) {
 				this.effectData.duration = 0;
 				this.add('-weather', 'SunnyDay', '[from] ability: '+effect, '[of] '+source);
 			} else {
@@ -408,16 +405,16 @@ exports.BattleStatuses = {
 			}
 			return 5;
 		},
-		// This should be applied directly to the stat before any of these final modifiers are chained
-		// For now we just give it increased priority.
-		onModifySpDPriority: 6, 
-		onModifySpD: function(spdMod, pokemon) {
+		// This should be applied directly to the stat before any of the other modifiers are chained
+		// So we give it increased priority.
+		onModifySpDPriority: 10, 
+		onModifySpD: function(spd, pokemon) {
 			if (pokemon.hasType('Rock') && this.isWeather('sandstorm')) {
-				return this.chain(spdMod, 1.5);
+				return this.modify(spd, 1.5);
 			}
 		},
 		onStart: function(battle, source, effect) {
-			if (effect && effect.effectType === 'Ability') {
+			if (effect && effect.effectType === 'Ability' && this.gen <= 5) {
 				this.effectData.duration = 0;
 				this.add('-weather', 'Sandstorm', '[from] ability: '+effect, '[of] '+source);
 			} else {
@@ -446,7 +443,7 @@ exports.BattleStatuses = {
 			return 5;
 		},
 		onStart: function(battle, source, effect) {
-			if (effect && effect.effectType === 'Ability') {
+			if (effect && effect.effectType === 'Ability' && this.gen <= 5) {
 				this.effectData.duration = 0;
 				this.add('-weather', 'Hail', '[from] ability: '+effect, '[of] '+source);
 			} else {
