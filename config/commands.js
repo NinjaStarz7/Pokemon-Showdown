@@ -629,10 +629,10 @@ var commands = exports.commands = {
 			'% <b>PeaceKeeper</b> - The above, and they can also mute and lock users and check for alts<br />' +
 			'@ <b>Head PeaceKeeper</b> - The above, and they can ban users<br />' +
 			'&amp; <b>Game Maker</b> - The above, and they can promote moderators and force ties<br />'+
-			'~ <b>President</b> - They can do anything, like change what this message says</br>'+
-			'◈ <b>Gym Leader</b> - They are Voice but they have access to /announce</br>'+
-			'✸ <b>Elite Four</b> - They are basically Driver</br>'+
-			'✸ <b>Elite Four</b> - They are Driver with the ability to /declare');
+			'~ <b>President</b> - They can do anything, like change what this message says<br />'+
+			'◈ <b>Gym Leader</b> - They are Voice but they have access to /announce<br />'+
+			'✸ <b>Elite Four</b> - They are basically Driver<br />'+
+			'✯ <b>Champion</b> - They are Driver with the ability to /declare');
 	},
 
 	opensource: function(target, room, user) {
