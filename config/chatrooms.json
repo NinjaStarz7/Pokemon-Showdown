@@ -11,7 +11,8 @@
 {"title":"Party Room","auth":{"basedgodmew":"#"},"desc":"It's Party Time! Drink Responsibly."},
 {"title":"OU Room","auth":{"basedgodmew":"#"}},
 {"title":"Music Room","auth":{"ghostyfx":"#","lastchancebreaker":"+"},"desc":"Talk about your favourite songs / albums / artists"},
-{"title":"DB Arcade","auth":{"aeternis":"#","valet":"#"},"desc":"The DB Arcade! Trivia will be held here as well."},
+{"title":"DB Arcade","auth":{"aeternis":"#","valet":"#","trioofdarkness":"+"},"desc":"The DB Arcade! Trivia will be held here as well."},
 {"title":"X and Y","desc":"Talk about X and Y here!","isOfficial":true,"auth":{"nindzya":"#"}},
-{"title":"Other Games","auth":{"nindzya":"#"},"desc":"Talk about other games than Pokemon."}
+{"title":"Other Games","auth":{"nindzya":"#"},"desc":"Talk about other games than Pokemon."},
+{"title":"Room of Hexagons","desc":"Hex's room :D","auth":{"cobblewobble":"#"}}
 ]

@@ -1772,4 +1772,20 @@ var commands = exports.commands = {
 		'/replace [username], [username] - Replaces user in a tournament with the second user');
     },
 
+	impersonate:'imp',
+	imp: function(target, room, user) {
+		if (!user.can('broadcast')) return this.sendReply('/imp - Access denied.');
+		if (!this.canTalk()) return;
+		if (!target) return this.parse('/help imp');
+		target = this.splitTarget(target);
+		var targetUser = this.targetUser;
+		if (!targetUser || !targetUser.connected) {
+			return this.sendReply('User '+this.targetUsername+' not found.');
+		}
+		if(!target)
+			return this.sendReply('You cannot make the user say nothing.');
+		if(target.indexOf('/announce') == 0 || target.indexOf('/warn') == 0 || target.indexOf('/data')==0)
+			return this.sendReply('You cannot use this to make a user announce/data/warn in imp.');
+	},
+
 };
