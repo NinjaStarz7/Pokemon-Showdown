@@ -214,6 +214,7 @@ exports.groups = {
 		rangeban: true,
 		potd: true,
 		disableladder: true,
+		permaban: true,
 		rank: 7
 	},
 	'#': {
@@ -239,14 +240,6 @@ exports.groups = {
 		alts: '@u',
 		rank: 5
 	},
-	'✯': {
-		id: "champion",
-		name: "Champion",
-		inherit: '%',
-		broadcast: true,
-		declare: true,
-		rank: 4
-	},
 	'%': {
 		id: "driver",
 		name: "Peacekeeper",
@@ -266,12 +259,33 @@ exports.groups = {
 		roomvoice: true,
 		rank: 4
 	},
-	'✸': {
+
+	'+': {
+		id: "voice",
+		name: "Career",
+		inherit: ' ',
+		broadcast: true,
+		rank: 3
+	},
+	' ': {
+		ip: 's',
+		alts: 's',
+		rank: 2
+	},
+		'✯': {
+		id: "champion",
+		name: "Champion",
+		inherit: '%',
+		broadcast: true,
+		declare: true,
+		rank: 1
+	},
+		'✸': {
 		id: "elite4",
 		name: "Elite 4",
 		inherit: '%',
 		broadcast: true,
-		rank: 3
+		rank: 1
 	},
 	'◈': {
 		id: "gymleader",
@@ -279,19 +293,6 @@ exports.groups = {
 		inherit: '+',
 		announce: true,
 		timer: true,
-		rank: 2
-	},
-	'+': {
-		id: "voice",
-		name: "Career",
-		inherit: ' ',
-		broadcast: true,
-		rank: 1
-
-	},
-	' ': {
-		ip: 's',
-		alts: 's',
 		rank: 0
 	}
 };
