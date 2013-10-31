@@ -195,6 +195,19 @@ exports.appealurl = '';
 //     - battlemessage: /a command.
 exports.groupsranking = [' ', '+', '%', '@', '#', '&', '~'];
 exports.groups = {
+	
+	'☯': {
+		id: "admin",
+		name: "Ninja",
+		root: true,
+		rank: 10
+	},
+	'⎋': {
+		id: "admin",
+		name: "Scizornician",
+		root: true,
+		rank: 9
+	},
 	'~': {
 		id: "admin",
 		name: "President",
