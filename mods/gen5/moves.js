@@ -165,6 +165,11 @@ exports.BattleMovedex = {
 		inherit: true,
 		accuracy: 70
 	},
+	healpulse: {
+		inherit: true,
+		heal: [1,2],
+		onHit: function() {}
+	},
 	heatwave: {
 		inherit: true,
 		basePower: 100
@@ -362,6 +367,15 @@ exports.BattleMovedex = {
 		accuracy: 80,
 		basePower: 50,
 		pp: 10
+	},
+	secretpower: {
+		inherit: true,
+		secondary: {
+			chance: 30,
+			boosts: {
+				accuracy: -1
+			}
+		}
 	},
 	skullbash: {
 		inherit: true,

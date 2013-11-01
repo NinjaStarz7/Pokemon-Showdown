@@ -601,6 +601,7 @@ exports.BattleMovedex = {
 		name: "Aura Sphere",
 		pp: 20,
 		priority: 0,
+		isPulseMove: true,
 		secondary: false,
 		target: "any",
 		type: "Fighting"
@@ -1614,8 +1615,8 @@ exports.BattleMovedex = {
 		accuracy: 100,
 		basePower: 65,
 		category: "Special",
-		desc: "Deals damage to one adjacent or non-adjacent target. This move has an X% chance to confuse the target, where X is 0 unless the user is a Chatot that hasn't Transformed. If the user is a Chatot, X is 0 or 10 depending on the volume of Chatot's recorded cry, if any; 0 for a low volume or no recording, 10 for a medium to high volume recording. Pokemon with the Ability Soundproof are immune. (Field: Can be used to record a sound to replace Chatot's cry. The cry is reset if Chatot is deposited in a PC.)",
-		shortDesc: "10% chance to confuse the target.",
+		desc: "Deals damage to one adjacent or non-adjacent target with a 100% chance to confuse it.",
+		shortDesc: "100% chance to confuse the target.",
 		id: "chatter",
 		name: "Chatter",
 		pp: 20,
@@ -1625,7 +1626,7 @@ exports.BattleMovedex = {
 			if (pokemon.template.species !== 'Chatot') delete move.secondaries;
 		},
 		secondary: {
-			chance: 10,
+			chance: 100,
 			volatileStatus: 'confusion'
 		},
 		target: "any",
@@ -3683,7 +3684,7 @@ exports.BattleMovedex = {
 		isContact: true,
 		onTryHit: function(target, pokemon) {
 			if (pokemon.activeTurns > 1) {
-				this.debug('It\'s not your first turn out.');
+				this.add('-message', '(Fake Out only works your first turn out.)');
 				return false;
 			}
 		},
@@ -5677,7 +5678,11 @@ exports.BattleMovedex = {
 		pp: 10,
 		priority: 0,
 		isBounceable: true,
-		heal: [1,2],
+		isPulseMove: true,
+		onHit: function(pokemon) {
+			if (pokemon.ability === 'megalauncher') this.heal(this.modify(pokemon.maxhp, 0.75));
+			else this.heal(this.modify(pokemon.maxhp, 0.5));
+		},
 		secondary: false,
 		target: "normal",
 		type: "Psychic"
@@ -7746,20 +7751,20 @@ exports.BattleMovedex = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		desc: "The user protects itself and its allies from damaging moves. Priority +4.",
-		shortDesc: "Protects the user and allies from damaging moves.",
+		desc: "The user protects itself and its allies from damaging moves. Only works first turn out.",
+		shortDesc: "Protects from damaging moves. First turn out only.",
 		id: "matblock",
 		isViable: true,
 		name: "Mat Block",
 		pp: 15,
-		priority: 4,
+		priority: 0,
 		stallingMove: true, // Note: stallingMove is not used anywhere.
 		volatileStatus: 'matblock',
-		onTryHit: function(target, source, move) {
-			return !!this.willAct() && this.runEvent('StallMove', target);
-		},
-		onHit: function(pokemon) {
-			pokemon.addVolatile('stall');
+		onTryHit: function(target, pokemon) {
+			if (pokemon.activeTurns > 1) {
+				this.add('-message', '(Mat Block only works your first turn out.)');
+				return false;
+			}
 		},
 		effect: {
 			duration: 1,
@@ -10073,7 +10078,7 @@ exports.BattleMovedex = {
 		id: "ragepowder",
 		name: "Rage Powder",
 		pp: 20,
-		priority: 3,
+		priority: 2,
 		isPowder: true,
 		volatileStatus: 'ragepowder',
 		effect: {
@@ -11135,9 +11140,8 @@ exports.BattleMovedex = {
 		priority: 0,
 		secondary: {
 			chance: 30,
-			boosts: {
-				accuracy: -1
-			}
+			// TODO: Look into the effects on different terrain
+			status: 'par'
 		},
 		target: "normal",
 		type: "Normal"
