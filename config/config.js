@@ -223,7 +223,7 @@ exports.groups = {
 		forcewin: true,
 		declare: true,
 		modchatall: true,
-                hideauth: true,
+		hideauth: true,
 		rangeban: true,
 		potd: true,
 		disableladder: true,
@@ -285,7 +285,7 @@ exports.groups = {
 		alts: 's',
 		rank: 2
 	},
-		'✯': {
+	'✯': {
 		id: "champion",
 		name: "Champion",
 		inherit: '%',
@@ -293,7 +293,7 @@ exports.groups = {
 		declare: true,
 		rank: 1
 	},
-		'✸': {
+	'✸': {
 		id: "elite4",
 		name: "Elite 4",
 		inherit: '%',
