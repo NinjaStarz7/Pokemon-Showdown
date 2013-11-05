@@ -354,7 +354,7 @@ exports.BattleItems = {
 	},
 	"blackglasses": {
 		id: "blackglasses",
-		name: "BlackGlasses",
+		name: "Black Glasses",
 		spritenum: 35,
 		fling: {
 			basePower: 30
@@ -1459,6 +1459,7 @@ exports.BattleItems = {
 		spritenum: 172,
 		isGem: true,
 		onSourceTryPrimaryHit: function(target, source, move) {
+			if (target === source || move.category === 'Status') return;
 			if (move.type === 'Grass') {
 				if (source.useItem()) {
 					this.add('-enditem', source, 'Grass Gem', '[from] gem', '[move] '+move.name);
@@ -2632,7 +2633,7 @@ exports.BattleItems = {
 	},
 	"nevermeltice": {
 		id: "nevermeltice",
-		name: "NeverMeltIce",
+		name: "Never-Melt Ice",
 		spritenum: 305,
 		fling: {
 			basePower: 30

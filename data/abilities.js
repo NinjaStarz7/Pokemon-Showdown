@@ -169,6 +169,16 @@ exports.BattleAbilities = {
 		rating: 5,
 		num: 71
 	},
+	"aromaveil": {
+		desc: "Protects allies from attacks that limit their move choices.",
+		shortDesc: "Protects allies from attacks that limit their move choices.",
+		//todo
+		id: "aromaveil",
+		name: "Aroma Veil",
+		rating: 0,
+		num: -6,
+		gen: 6
+	},
 	"aurabreak": {
 		desc: "Reverses the effect of Dark Aura and Fairy Aura.",
 		shortDesc: "Reverses the effect of Aura abilities.",
@@ -245,6 +255,21 @@ exports.BattleAbilities = {
 		rating: 2,
 		num: 66
 	},
+	"bulletproof": {
+		desc: "This Pokemon is protected from some Ball and Bomb moves.",
+		shortDesc: "This Pokemon is protected from ball and bomb moves.",
+		onTryHit: function(pokemon, target, move) {
+			if (move.isBallMove || move.isBombMove) {
+				this.add('-immune', pokemon, '[msg]', '[from] Bulletproof');
+				return null;
+			}
+		},
+		id: "bulletproof",
+		name: "Bulletproof",
+		rating: 3,
+		num: -6,
+		gen: 6
+	},
 	"cheekpouch": {
 		desc: "Increases HP when this Pokemon consumes a berry.",
 		shortDesc: "Increases HP when this Pokemon consumes a berry.",
@@ -255,7 +280,7 @@ exports.BattleAbilities = {
 		},
 		id: "cheekpouch",
 		name: "Cheek Pouch",
-		rating: 3,
+		rating: 2.5,
 		num: -6,
 		gen: 6
 	},
@@ -1729,7 +1754,7 @@ exports.BattleAbilities = {
 		num: 12
 	},
 	"overcoat": {
-		desc: "In battle, the Pokemon does not take damage from weather conditions like Sandstorm or Hail. It is also immune to powder moves.",
+		desc: "In battle, the Pokemon does not take damage from weather conditions like Sandstorm or Hail. It is also immune to Powder moves.",
 		shortDesc: "This Pokemon is immune to residual weather damage, and powder moves.",
 		onImmunity: function(type, pokemon) {
 			if (type === 'sandstorm' || type === 'hail') return false;
@@ -2894,12 +2919,12 @@ exports.BattleAbilities = {
 		num: 137
 	},
 	"toughclaws": {
-		desc: "This Pokemon's contact attacks do 1.2x damage.",
-		shortDesc: "This Pokemon's contact attacks do 1.2x damage.",
+		desc: "This Pokemon's contact attacks do 1.33x damage.",
+		shortDesc: "This Pokemon's contact attacks do 33% more damage.",
 		onBasePowerPriority: 8,
 		onBasePower: function(basePower, attacker, defender, move) {
 			if (move.isContact) {
-				return this.chainModify(1.2);
+				return this.chainModify(1.33);
 			}
 		},
 		id: "toughclaws",

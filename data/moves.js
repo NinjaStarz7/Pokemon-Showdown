@@ -1921,7 +1921,7 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		onHit: function(pokemon) {
-			var noCopycat = {assist:1, bestow:1, chatter:1, circlethrow:1, copycat:1, counter:1, covet:1, destinybond:1, detect:1, dragontail:1, endure:1, feint:1, focuspunch:1, followme:1, helpinghand:1, mefirst:1, metronome:1, mimic:1, mirrorcoat:1, mirrormove:1, naturepower:1, protect:1, ragepowder:1, sketch:1, sleeptalk:1, snatch:1, struggle:1, switcheroo:1, thief:1, transform:1, trick:1};
+			var noCopycat = {assist:1, bestow:1, chatter:1, circlethrow:1, copycat:1, counter:1, covet:1, destinybond:1, detect:1, dragontail:1, endure:1, feint:1, focuspunch:1, followme:1, helpinghand:1, mefirst:1, metronome:1, mimic:1, mirrorcoat:1, mirrormove:1, naturepower:1, protect:1, ragepowder:1, roar:1, sketch:1, sleeptalk:1, snatch:1, struggle:1, switcheroo:1, thief:1, transform:1, trick:1, whirlwind:1};
 			if (!this.lastMove || noCopycat[this.lastMove]) {
 				return false;
 			}
@@ -1987,7 +1987,7 @@ exports.BattleMovedex = {
 			spe: -2
 		},
 		onTryHit: function(target, source) {
-			return !target.hasType('Grass');
+			if (target.hasType('Grass')) return false;
 		},
 		secondary: false,
 		target: "normal",
@@ -3170,6 +3170,7 @@ exports.BattleMovedex = {
 		name: "Egg Bomb",
 		pp: 10,
 		priority: 0,
+		isBombMove: true,
 		secondary: false,
 		target: "normal",
 		type: "Normal"
@@ -3284,6 +3285,7 @@ exports.BattleMovedex = {
 		name: "Electro Ball",
 		pp: 10,
 		priority: 0,
+		isBallMove: true,
 		secondary: false,
 		target: "normal",
 		type: "Electric"
@@ -3486,6 +3488,7 @@ exports.BattleMovedex = {
 		name: "Energy Ball",
 		pp: 10,
 		priority: 0,
+		isBallMove: true,
 		secondary: {
 			chance: 10,
 			boosts: {
@@ -5433,6 +5436,7 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 0,
 		isContact: true,
+		isBallMove: true,
 		secondary: false,
 		target: "normal",
 		type: "Steel"
@@ -6431,6 +6435,7 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		isContact: true,
+		isBallMove: true,
 		effect: {
 			duration: 2,
 			onLockMove: 'iceball',
@@ -7607,6 +7612,7 @@ exports.BattleMovedex = {
 		name: "Magnet Bomb",
 		pp: 20,
 		priority: 0,
+		isBombMove: true,
 		secondary: false,
 		target: "normal",
 		type: "Steel"
@@ -8314,6 +8320,7 @@ exports.BattleMovedex = {
 		name: "Mist Ball",
 		pp: 5,
 		priority: 0,
+		isBallMove: true,
 		secondary: {
 			chance: 50,
 			boosts: {
@@ -8475,6 +8482,7 @@ exports.BattleMovedex = {
 		name: "Mud Bomb",
 		pp: 10,
 		priority: 0,
+		isBombMove: true,
 		secondary: {
 			chance: 30,
 			boosts: {
@@ -9342,7 +9350,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		isPowder: true,
 		onTryHit: function(pokemon) {
-			return !pokemon.hasType('Grass');
+			if (pokemon.hasType('Grass')) return false;
 		},
 		status: 'psn',
 		secondary: false,
@@ -9416,7 +9424,7 @@ exports.BattleMovedex = {
 		priority: 1,
 		isPowder: true,
 		onTryHit: function(pokemon) {
-			return !pokemon.hasType('Grass');
+			if (pokemon.hasType('Grass')) return false;
 		},
 		isBounceable: true,
 		volatileStatus: 'powder',
@@ -11175,6 +11183,7 @@ exports.BattleMovedex = {
 		name: "Seed Bomb",
 		pp: 15,
 		priority: 0,
+		isBombMove: true,
 		secondary: false,
 		target: "normal",
 		type: "Grass"
@@ -11246,6 +11255,7 @@ exports.BattleMovedex = {
 		name: "Shadow Ball",
 		pp: 15,
 		priority: 0,
+		isBallMove: true,
 		secondary: {
 			chance: 20,
 			boosts: {
@@ -11845,7 +11855,7 @@ exports.BattleMovedex = {
 		priority: 0,
 		isPowder: true,
 		onTryHit: function(pokemon) {
-			return !pokemon.hasType('Grass');
+			if (pokemon.hasType('Grass')) return false;
 		},
 		status: 'slp',
 		secondary: false,
@@ -11920,6 +11930,7 @@ exports.BattleMovedex = {
 		name: "Sludge Bomb",
 		pp: 10,
 		priority: 0,
+		isBombMove: true,
 		secondary: {
 			chance: 30,
 			status: 'psn'
@@ -12455,7 +12466,7 @@ exports.BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		onTryHit: function(target, source) {
-			return !target.hasType('Grass');
+			if (target.hasType('Grass')) return false;
 		},
 		status: 'slp',
 		secondary: false,
@@ -12773,7 +12784,7 @@ exports.BattleMovedex = {
 		pp: 30,
 		priority: 0,
 		onTryHit: function(target, source) {
-			return !target.hasType('Grass');
+			if (target.hasType('Grass')) return false;
 		},
 		status: 'par',
 		secondary: false,
@@ -14460,6 +14471,7 @@ exports.BattleMovedex = {
 		name: "Weather Ball",
 		pp: 10,
 		priority: 0,
+		isBallMove: true,
 		onModifyMove: function(move) {
 			switch (this.effectiveWeather()) {
 			case 'sunnyday':
