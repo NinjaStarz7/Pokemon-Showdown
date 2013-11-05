@@ -90,7 +90,7 @@ exports.tour = function (t) {
 			}
 		},
 		maxauth: function (user) {
-			if (user.can('forcewin') || user.userid === 'slayer95') return true;
+			if (user.can('forcewin')) return true;
 			return false;
 		},
 		highauth: function (user) {
