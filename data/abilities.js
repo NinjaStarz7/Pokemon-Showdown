@@ -9,7 +9,7 @@ Ratings and how they work:
 
 -1: Detrimental
 	  An ability that does more harm than good.
-	ex. Defeatist, Klutz
+	ex. Defeatist, Normalize
 
  0: Useless
 	  An ability with no net effect on a Pokemon during a battle.
@@ -18,7 +18,7 @@ Ratings and how they work:
  1: Ineffective
 	  An ability that has a minimal effect. Should never be chosen over
 	  any other ability.
-	ex. Pressure, Damp
+	ex. Damp, Shell Armor
 
  2: Situationally useful
 	  An ability that can be useful in certain situations.
@@ -31,11 +31,11 @@ Ratings and how they work:
  4: Very useful
 	  One of the most popular abilities. The difference between 3 and 4
 	  can be ambiguous.
-	ex. Technician, Intimidate
+	ex. Technician, Protean
 
  5: Essential
 	  The sort of ability that defines metagames.
-	ex. Drizzle, Magnet Pull
+	ex. Drizzle, Shadow Tag
 
 */
 
@@ -156,7 +156,7 @@ exports.BattleAbilities = {
 		shortDesc: "Prevents foes from switching out normally unless they have immunity to Ground.",
 		onFoeModifyPokemon: function(pokemon) {
 			if (pokemon.runImmunity('Ground', false)) {
-				pokemon.trapped = true;
+				pokemon.tryTrap();
 			}
 		},
 		onFoeMaybeTrapPokemon: function(pokemon) {
@@ -172,7 +172,11 @@ exports.BattleAbilities = {
 	"aromaveil": {
 		desc: "Protects allies from attacks that limit their move choices.",
 		shortDesc: "Protects allies from attacks that limit their move choices.",
-		//todo
+		onAllyTryHit: function(target, source, move) {
+			if (move && move.id in {disable:1, encore:1, healblock:1, imprison:1, taunt:1, torment:1}) {
+				return false;
+			}
+		},
 		id: "aromaveil",
 		name: "Aroma Veil",
 		rating: 0,
@@ -183,11 +187,11 @@ exports.BattleAbilities = {
 		desc: "Reverses the effect of Dark Aura and Fairy Aura.",
 		shortDesc: "Reverses the effect of Aura abilities.",
 		onStart: function(pokemon) {
-			this.add('-message', 'The effects of aura abilities are reversed. (placeholder)');
+			this.add('-ability', pokemon, 'Aura Break');
 		},
 		id: "aurabreak",
 		name: "Aura Break",
-		rating: 3,
+		rating: 2,
 		num: -6,
 		gen: 6
 	},
@@ -259,7 +263,7 @@ exports.BattleAbilities = {
 		desc: "This Pokemon is protected from some Ball and Bomb moves.",
 		shortDesc: "This Pokemon is protected from ball and bomb moves.",
 		onTryHit: function(pokemon, target, move) {
-			if (move.isBallMove || move.isBombMove) {
+			if (move.isBullet) {
 				this.add('-immune', pokemon, '[msg]', '[from] Bulletproof');
 				return null;
 			}
@@ -280,7 +284,7 @@ exports.BattleAbilities = {
 		},
 		id: "cheekpouch",
 		name: "Cheek Pouch",
-		rating: 2.5,
+		rating: 2,
 		num: -6,
 		gen: 6
 	},
@@ -772,7 +776,6 @@ exports.BattleAbilities = {
 		desc: "Prevents lowering of ally Grass-type Pokemon's stats.",
 		shortDesc: "Prevents lowering of ally Grass-type Pokemon's stats.",
 		onStart: function(pokemon) {
-			this.add('-ability', pokemon, 'Flower Veil');
 			pokemon.side.addSideCondition('flowerveil');
 		},
 		onSwitchOut: function(pokemon) {
@@ -876,12 +879,13 @@ exports.BattleAbilities = {
 		num: 132
 	},
 	"frisk": {
-		desc: "When this Pokemon enters the field, it identifies the opponent's held item; in double battles, the held item of an unrevealed, randomly selected opponent is identified.",
-		shortDesc: "On switch-in, this Pokemon identifies a random foe's held item.",
+		desc: "When this Pokemon enters the field, it identifies all the opponent's held items.",
+		shortDesc: "On switch-in, this Pokemon identifies the foe's held items.",
 		onStart: function(pokemon) {
 			var foeactive = pokemon.side.foe.active;
 			for (var i=0; i<foeactive.length; i++) {
-				if (foeactive[i] && foeactive[i].item) {
+				if (!foeactive[i] || foeactive[i].fainted) continue;
+				if (foeactive[i].item) {
 					this.add('-item', foeactive[i], foeactive[i].getItem().name, '[from] ability: Frisk', '[of] '+pokemon, '[identify]');
 				}
 			}
@@ -912,7 +916,7 @@ exports.BattleAbilities = {
 		},
 		id: "galewings",
 		name: "Gale Wings",
-		rating: 3.5,
+		rating: 4.5,
 		num: -6,
 		gen: 6
 	},
@@ -921,7 +925,7 @@ exports.BattleAbilities = {
 		shortDesc: "When this Pokemon has 1/2 or less of its max HP, it uses certain Berries early.",
 		id: "gluttony",
 		name: "Gluttony",
-		rating: 0,
+		rating: 1.5,
 		num: 82
 	},
 	"gooey": {
@@ -932,7 +936,7 @@ exports.BattleAbilities = {
 		},
 		id: "gooey",
 		name: "Gooey",
-		rating: 3.5,
+		rating: 3,
 		num: -6,
 		gen: 6
 	},
@@ -1029,7 +1033,7 @@ exports.BattleAbilities = {
 		},
 		id: "heavymetal",
 		name: "Heavy Metal",
-		rating: 0,
+		rating: -1,
 		num: 134
 	},
 	"honeygather": {
@@ -1175,12 +1179,12 @@ exports.BattleAbilities = {
 		num: 150
 	},
 	"infiltrator": {
-		desc: "Ignores Reflect, Light Screen and Safeguard under effect on the target.",
-		shortDesc: "This Pokemon's moves ignore the foe's Reflect, Light Screen, Safeguard, and Mist.",
+		desc: "Ignores Substitute, Reflect, Light Screen, and Safeguard on the target.",
+		shortDesc: "This Pokemon's moves ignore the foe's Substitute, Reflect, Light Screen, Safeguard, and Mist.",
 		// Implemented in the corresponding effects.
 		id: "infiltrator",
 		name: "Infiltrator",
-		rating: 1,
+		rating: 2.5,
 		num: 151
 	},
 	"innerfocus": {
@@ -1226,7 +1230,7 @@ exports.BattleAbilities = {
 		},
 		id: "intimidate",
 		name: "Intimidate",
-		rating: 4,
+		rating: 3.5,
 		num: 22
 	},
 	"ironbarbs": {
@@ -1399,21 +1403,19 @@ exports.BattleAbilities = {
 	"magician": {
 		desc: "If this Pokemon is not holding an item, it steals the held item of a target it hits with a move.",
 		shortDesc: "This Pokemon steals the held item of a target it hits with a move.",
-		onFoeAfterDamage: function(damage, target, source, move) {
-			if (source && source !== target && move) {
-				if (source.item) {
-					return;
-				}
-				var yourItem = target.takeItem(source);
-				if (!yourItem) {
-					return;
-				}
-				if (!source.setItem(yourItem)) {
-					target.item = yourItem.id; // bypass setItem so we don't break choicelock or anything
-					return;
-				}
-				this.add('-item', source, yourItem, '[from] Magician');
+		onHit: function(target, source) {
+			if (source.item) {
+				return;
 			}
+			var yourItem = target.takeItem(source);
+			if (!yourItem) {
+				return;
+			}
+			if (!source.setItem(yourItem)) {
+				target.item = yourItem.id; // bypass setItem so we don't break choicelock or anything
+				return;
+			}
+			this.add('-item', source, yourItem, '[from] ability: Magician', '[of] '+target);
 		},
 		id: "magician",
 		name: "Magician",
@@ -1493,7 +1495,7 @@ exports.BattleAbilities = {
 		shortDesc: "Prevents Steel-type foes from switching out normally.",
 		onFoeModifyPokemon: function(pokemon) {
 			if (pokemon.hasType('Steel')) {
-				pokemon.trapped = true;
+				pokemon.tryTrap();
 			}
 		},
 		onFoeMaybeTrapPokemon: function(pokemon) {
@@ -1503,7 +1505,7 @@ exports.BattleAbilities = {
 		},
 		id: "magnetpull",
 		name: "Magnet Pull",
-		rating: 5,
+		rating: 4.5,
 		num: 42
 	},
 	"marvelscale": {
@@ -1664,7 +1666,7 @@ exports.BattleAbilities = {
 		},
 		id: "multitype",
 		name: "Multitype",
-		rating: 5,
+		rating: 4,
 		num: 121
 	},
 	"mummy": {
@@ -1706,7 +1708,7 @@ exports.BattleAbilities = {
 		},
 		id: "noguard",
 		name: "No Guard",
-		rating: 4.5,
+		rating: 4,
 		num: 99
 	},
 	"normalize": {
@@ -1754,7 +1756,7 @@ exports.BattleAbilities = {
 		num: 12
 	},
 	"overcoat": {
-		desc: "In battle, the Pokemon does not take damage from weather conditions like Sandstorm or Hail. It is also immune to Powder moves.",
+		desc: "In battle, the Pokemon does not take damage from weather conditions like Sandstorm or Hail. It is also immune to powder moves.",
 		shortDesc: "This Pokemon is immune to residual weather damage, and powder moves.",
 		onImmunity: function(type, pokemon) {
 			if (type === 'sandstorm' || type === 'hail') return false;
@@ -1767,7 +1769,7 @@ exports.BattleAbilities = {
 		},
 		id: "overcoat",
 		name: "Overcoat",
-		rating: 1,
+		rating: 2,
 		num: 142
 	},
 	"overgrow": {
@@ -1812,10 +1814,10 @@ exports.BattleAbilities = {
 		num: 20
 	},
 	"parentalbond": {
-		desc: "Allows the Pokemon to hit twice with the same move in one turn. Second hit has 0.5x base power. Does not affect Status, multihit, or spread moves (even in singles).",
+		desc: "Allows the Pokemon to hit twice with the same move in one turn. Second hit has 0.5x base power. Does not affect Status, multihit, or spread moves (in doubles).",
 		shortDesc: "Hits twice in one turn. Second hit has 0.5x base power.",
-		onModifyMove: function(move, pokemon) {
-			if (move.category !== 'Status' && !move.multihit && move.target === "normal") {
+		onModifyMove: function(move, pokemon, target) {
+			if (move.category !== 'Status' && !move.multihit && (target.side.active.length < 2 || move.target in {any:1, normal:1, randomNormal:1})) {
 				move.multihit = 2;
 				pokemon.addVolatile('parentalbond');
 			}
@@ -1833,7 +1835,7 @@ exports.BattleAbilities = {
 		},
 		id: "parentalbond",
 		name: "Parental Bond",
-		rating: 3,
+		rating: 4.5,
 		num: -6,
 		gen: 6
 	},
@@ -1997,7 +1999,7 @@ exports.BattleAbilities = {
 		},
 		id: "pressure",
 		name: "Pressure",
-		rating: 2,
+		rating: 1.5,
 		num: 46
 	},
 	"protean": {
@@ -2013,7 +2015,7 @@ exports.BattleAbilities = {
 		},
 		id: "protean",
 		name: "Protean",
-		rating: 1.5,
+		rating: 4,
 		num: -6,
 		gen: 6
 	},
@@ -2113,7 +2115,7 @@ exports.BattleAbilities = {
 		},
 		id: "regenerator",
 		name: "Regenerator",
-		rating: 4.5,
+		rating: 4,
 		num: 144
 	},
 	"rivalry": {
@@ -2213,7 +2215,7 @@ exports.BattleAbilities = {
 		},
 		id: "sandstream",
 		name: "Sand Stream",
-		rating: 5,
+		rating: 4.5,
 		num: 45
 	},
 	"sandveil": {
@@ -2231,7 +2233,7 @@ exports.BattleAbilities = {
 		},
 		id: "sandveil",
 		name: "Sand Veil",
-		rating: 1,
+		rating: 1.5,
 		num: 8
 	},
 	"sapsipper": {
@@ -2285,7 +2287,7 @@ exports.BattleAbilities = {
 		shortDesc: "Prevents foes from switching out normally unless they also have this Ability.",
 		onFoeModifyPokemon: function(pokemon) {
 			if (pokemon.ability !== 'shadowtag') {
-				pokemon.trapped = true;
+				pokemon.tryTrap();
 			}
 		},
 		onFoeMaybeTrapPokemon: function(pokemon) {
@@ -2421,7 +2423,7 @@ exports.BattleAbilities = {
 	},
 	"sniper": {
 		desc: "When this Pokemon lands a Critical Hit, the damage is increased to another 1.5x.",
-		shortDesc: "If this Pokemon strikes with a critical hit, the damage is 2.25x instead of 1.5x.",
+		shortDesc: "If this Pokemon strikes with a critical hit, the damage is increased by 50%",
 		onModifyDamage: function(damage, source, target, move) {
 			if (move.crit) {
 				this.debug('Sniper boost');
@@ -2448,7 +2450,7 @@ exports.BattleAbilities = {
 		},
 		id: "snowcloak",
 		name: "Snow Cloak",
-		rating: 0.5,
+		rating: 1,
 		num: 81
 	},
 	"snowwarning": {
@@ -2459,7 +2461,7 @@ exports.BattleAbilities = {
 		},
 		id: "snowwarning",
 		name: "Snow Warning",
-		rating: 4.5,
+		rating: 4,
 		num: 117
 	},
 	"solarpower": {
@@ -2720,25 +2722,16 @@ exports.BattleAbilities = {
 		shortDesc: "Prevents allies from being put to Sleep.",
 		id: "sweetveil",
 		name: "Sweet Veil",
-		onStart: function(pokemon) {
-			this.add('-ability', pokemon, 'Sweet Veil');
-			pokemon.side.addSideCondition('sweetveil');
+		onAllySetStatus: function(status, target, source, effect) {
+			if (status.id === 'slp') {
+				this.debug('Sweet Veil interrupts sleep');
+				return false;
+			}
 		},
-		onSwitchOut: function(pokemon) {
-			pokemon.side.removeSideCondition('sweetveil');
-		},
-		effect: {
-			onSetStatus: function(status, target, source, effect) {
-				if (status.id === 'slp') {
-					this.debug('Sweet Veil interrupts sleep');
-					return false;
-				}
-			},
-			onTryHit: function(target, source, move) {
-				if (move && move.id === 'yawn') {
-					this.debug('Sweet Veil blocking yawn');
-					return false;
-				}
+		onAllyTryHit: function(target, source, move) {
+			if (move && move.id === 'yawn') {
+				this.debug('Sweet Veil blocking yawn');
+				return false;
 			}
 		},
 		rating: 0,
@@ -2934,13 +2927,13 @@ exports.BattleAbilities = {
 		gen: 6
 	},
 	"trace": {
-		desc: "When this Pokemon enters the field, it temporarily copies an opponent's ability (except Multitype). This ability remains with this Pokemon until it leaves the field.",
+		desc: "When this Pokemon enters the field, it temporarily copies an opponent's ability. This ability remains with this Pokemon until it leaves the field.",
 		shortDesc: "On switch-in, or when it can, this Pokemon copies a random adjacent foe's Ability.",
 		onUpdate: function(pokemon) {
 			var target = pokemon.side.foe.randomActive();
 			if (!target) return;
 			var ability = this.getAbility(target.ability);
-			var bannedAbilities = {flowergift:1, forecast:1, illusion:1, imposter:1, multitype:1, trace:1, zenmode:1};
+			var bannedAbilities = {flowergift:1, forecast:1, illusion:1, imposter:1, multitype:1, stancechange:1, trace:1, zenmode:1};
 			if (bannedAbilities[target.ability]) {
 				return;
 			}
@@ -3006,7 +2999,7 @@ exports.BattleAbilities = {
 			move.ignoreAccuracy = true;
 			move.ignoreOffensive = true;
 		},
-		rating: 2,
+		rating: 3,
 		num: 109
 	},
 	"unburden": {
@@ -3290,7 +3283,7 @@ exports.BattleAbilities = {
 		effect: {
 			duration: 1
 		},
-		rating: 4.5,
+		rating: 4,
 		num: -3
 	},
 	"persistent": {

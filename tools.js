@@ -181,6 +181,7 @@ module.exports = (function () {
 			if (!template.genderRatio && template.gender === 'F') template.genderRatio = {M:0,F:1};
 			if (!template.genderRatio && template.gender === 'N') template.genderRatio = {M:0,F:0};
 			if (!template.genderRatio) template.genderRatio = {M:0.5,F:0.5};
+			if (!template.tier && template.baseSpecies !== template.species) template.tier = this.data.FormatsData[toId(template.baseSpecies)].tier;
 			if (!template.tier) template.tier = 'Illegal';
 			if (!template.gen) {
 				if (template.forme && template.forme in {'Mega':1,'Mega-X':1,'Mega-Y':1}) {
@@ -472,6 +473,7 @@ module.exports = (function () {
 		var sources = [];
 		// the equivalent of adding "every source at or before this gen" to sources
 		var sourcesBefore = 0;
+		var noPastGen = format.noPokebank || format.requirePentagon;
 
 		do {
 			alreadyChecked[template.speciesid] = true;
@@ -484,18 +486,18 @@ module.exports = (function () {
 					if (!lset || template.speciesid === 'smeargle') {
 						lset = template.learnset['sketch'];
 						sketch = true;
+						// Chatter, Struggle and Magikarp's Revenge cannot be sketched
+						if (move in {'chatter':1, 'struggle':1, 'magikarpsrevenge':1}) return true;
 					}
 					if (typeof lset === 'string') lset = [lset];
 
 					for (var i=0, len=lset.length; i<len; i++) {
 						var learned = lset[i];
-						if (format.noPokebank && learned.charAt(0) !== '6') continue;
+						if (noPastGen && learned.charAt(0) !== '6') continue;
 						if (parseInt(learned.charAt(0),10) > this.gen) continue;
 						if (learned.substr(0,2) in {'4L':1,'5L':1,'6L':1}) {
 							// gen 4-6 level-up moves
 							if (level >= parseInt(learned.substr(2),10)) {
-								// Chatter and Struggle cannot be sketched
-								if (sketch && (move === 'chatter' || move === 'struggle')) return true;
 								// we're past the required level to learn it
 								return false;
 							}
@@ -520,7 +522,11 @@ module.exports = (function () {
 						} else if (learned.charAt(1) in {E:1,S:1,D:1}) {
 							// egg, event, or DW moves:
 							//   only if that was the source
-							if (move === 'extremespeed' && format.noPokebank) continue;
+							if (format.noPokebank) {
+								if (move === 'extremespeed') continue;
+								if (move === 'perishsong' && template.id === 'gastly') continue;
+								if (move === 'stealthrock' && template.id === 'skarmory') continue;
+							}
 							if (learned.charAt(1) === 'E') {
 								// it's an egg move, so we add each pokemon that can be bred with to its sources
 								if (learned.charAt(0) === '6') {
@@ -530,7 +536,7 @@ module.exports = (function () {
 								}
 								var eggGroups = template.eggGroups;
 								if (!eggGroups) continue;
-								if (eggGroups[0] === 'No Eggs') eggGroups = this.getTemplate(template.evos[0]).eggGroups;
+								if (eggGroups[0] === 'Undiscovered') eggGroups = this.getTemplate(template.evos[0]).eggGroups;
 								var atLeastOne = false;
 								var fromSelf = (learned.substr(1) === 'Eany');
 								learned = learned.substr(0,2);
@@ -589,7 +595,10 @@ module.exports = (function () {
 				}
 			}
 			// also check to see if the mon's prevo or freely switchable formes can learn this move
-			if (template.prevo) {
+			if (!template.learnset && template.baseSpecies !== template.species) {
+				// forme takes precedence over prevo only if forme has no learnset
+				template = this.getTemplate(template.baseSpecies);
+			} else if (template.prevo) {
 				template = this.getTemplate(template.prevo);
 			} else if (template.speciesid === 'shaymin') {
 				template = this.getTemplate('shayminsky');
@@ -610,7 +619,7 @@ module.exports = (function () {
 
 		// Now that we have our list of possible sources, intersect it with the current list
 		if (!sourcesBefore && !sources.length) {
-			if (format.noPokebank && sometimesPossible) return {type:'pokebank'};
+			if (noPastGen && sometimesPossible) return {type:'pokebank'};
 			return true;
 		}
 		if (!sources.length) sources = null;
@@ -737,6 +746,7 @@ module.exports = (function () {
 		}
 		var teamHas = {};
 		for (var i=0; i<team.length; i++) {
+			if (!team[i]) return ["You sent invalid team data. If you're not using a custom client, please report this as a bug."];
 			var setProblems = this.validateSet(team[i], format, teamHas);
 			if (setProblems) {
 				problems = problems.concat(setProblems);
@@ -789,7 +799,6 @@ module.exports = (function () {
 		}
 
 		var template = this.getTemplate(string(set.species));
-		if (template.isMega) template = this.getTemplate(template.baseSpecies);
 		if (!template.exists) {
 			return ["The Pokemon '"+set.species+"' does not exist."];
 		}
@@ -853,11 +862,13 @@ module.exports = (function () {
 			clause = typeof banlistTable[check] === 'string' ? " by "+ banlistTable[check] : '';
 			problems.push(name+"'s item "+set.item+" is banned"+clause+".");
 		}
-		if (banlistTable['Unreleased'] && item.isUnreleased) {
+		if (banlistTable['illegal'] && item.isUnreleased) {
 			problems.push(name+"'s item "+set.item+" is unreleased.");
 		}
 		if (banlistTable['Unreleased'] && template.isUnreleased) {
-			problems.push(name+" ("+template.species+") is unreleased.");
+			if (!format.requirePentagon || (template.eggGroups[0] === 'Undiscovered' && !template.evos)) {
+				problems.push(name+" ("+template.species+") is unreleased.");
+			}
 		}
 		setHas[toId(set.ability)] = true;
 		if (banlistTable['illegal']) {
@@ -886,7 +897,7 @@ module.exports = (function () {
 				if (ability.name === template.abilities['H']) {
 					isHidden = true;
 
-					if (template.unreleasedHidden && banlistTable['Unreleased']) {
+					if (template.unreleasedHidden && banlistTable['illegal']) {
 						problems.push(name+"'s hidden ability is unreleased.");
 					} else if (this.gen === 5 && set.level < 10 && (template.maleOnlyHidden || template.gender === 'N')) {
 						problems.push(name+" must be at least level 10 with its hidden ability.");
@@ -977,10 +988,10 @@ module.exports = (function () {
 					isHidden = false;
 				}
 			}
-			if (isHidden && template.gender && lsetData.sourcesBefore < 5) {
+			if (isHidden && lsetData.sourcesBefore < 5) {
 				if (!lsetData.sources) {
 					problems.push(name+" has a hidden ability - it can't have moves only learned before gen 5.");
-				} else {
+				} else if (template.gender) {
 					var compatibleSource = false;
 					for (var i=0,len=lsetData.sources.length; i<len; i++) {
 						if (lsetData.sources[i].charAt(1) === 'E' || (lsetData.sources[i].substr(0,2) === '5D' && set.level >= 10)) {

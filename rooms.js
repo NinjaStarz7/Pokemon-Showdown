@@ -74,13 +74,17 @@ var GlobalRoom = (function() {
 			var lastBattle;	// last lastBattle to be written to file
 			var finishWriting = function() {
 				writing = false;
-				if (lastBattle !== self.lastBattle) {
+				if (lastBattle < self.lastBattle) {
 					self.writeNumRooms();
 				}
 			};
 			return function() {
 				if (writing) return;
-				lastBattle = self.lastBattle;
+
+				// batch writing lastbattle.txt for every 10 battles
+				if (lastBattle >= self.lastBattle) return;
+				lastBattle = self.lastBattle + 10;
+
 				writing = true;
 				fs.writeFile('logs/lastbattle.txt.0', '' + lastBattle, function() {
 					// rename is atomic on POSIX, but will throw an error on Windows
@@ -327,10 +331,7 @@ var GlobalRoom = (function() {
 		if (user) {
 			user.sendTo(this, message);
 		} else {
-			for (var i in this.users) {
-				user = this.users[i];
-				user.sendTo(this, message);
-			}
+			Sockets.channelBroadcast(this.id, message);
 		}
 	};
 	GlobalRoom.prototype.sendAuth = function(message) {
@@ -754,9 +755,7 @@ var BattleRoom = (function() {
 		if (user) {
 			user.sendTo(this, message);
 		} else {
-			for (var i in this.users) {
-				this.users[i].sendTo(this, message);
-			}
+			Sockets.channelBroadcast(this.id, '>'+this.id+'\n'+message);
 		}
 	};
 	BattleRoom.prototype.tryExpire = function() {
@@ -1338,9 +1337,8 @@ var ChatRoom = (function() {
 		if (user) {
 			user.sendTo(this, message);
 		} else {
-			for (var i in this.users) {
-				this.users[i].sendTo(this, message);
-			}
+			if (this.id !== 'lobby') message = '>'+this.id+'\n'+message;
+			Sockets.channelBroadcast(this.id, message);
 		}
 	};
 	ChatRoom.prototype.sendAuth = function(message) {
