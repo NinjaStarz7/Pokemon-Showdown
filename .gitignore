@@ -1,12 +1,11 @@
 start.sh
-/config/avatars/*
+config/avatars/*
 config/money.csv
 
-#/config/*
-/logs/*
-/node_modules
+logs/*
+node_modules
 npm-debug.log
-/config/bannedwords.txt
+config/bannedwords.txt
 
 # boilerplate #
 ###############
