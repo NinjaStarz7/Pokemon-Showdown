@@ -1,5 +1,6 @@
 start.sh
 /config/avatars/*
+/config/money.csv
 
 #/config/*
 /logs/*
