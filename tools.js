@@ -488,6 +488,10 @@ module.exports = (function () {
 						sketch = true;
 						// Chatter, Struggle and Magikarp's Revenge cannot be sketched
 						if (move in {'chatter':1, 'struggle':1, 'magikarpsrevenge':1}) return true;
+						// Signature moves are unavailable in XY pre-Pokebank
+						if (format.noPokebank && move in {'conversion':1,'conversion2':1,'aeroblast':1,'sacredfire':1,'mistball':1,'lusterpurge':1,'doomdesire':1,'psychoboost':1,'roaroftime':1,'spacialrend':1,'magmastorm':1,'crushgrip':1,'shadowforce':1,'lunardance':1,'heartswap':1,'darkvoid':1,'seedflare':1,'judgment':1,'searingshot':1,'vcreate':1,'fusionflare':1,'fusionbolt':1,'blueflare':1,'boltstrike':1,'glaciate':1,'freezeshock':1,'iceburn':1,'secretsword':1,'relicsong':1,'technoblast':1}) {
+							return true;
+						}
 					}
 					if (typeof lset === 'string') lset = [lset];
 
@@ -501,7 +505,7 @@ module.exports = (function () {
 								// we're past the required level to learn it
 								return false;
 							}
-							if (!template.gender || template.gender === 'F' || this.gen >= 6) {
+							if (!template.gender || template.gender === 'F') {
 								// available as egg move
 								learned = learned.charAt(0)+'Eany';
 							} else {
@@ -1008,7 +1012,7 @@ module.exports = (function () {
 				// FIXME: Event pokemon given at a level under what it normally can be attained at gives a false positive
 				problems.push(name+" must be at least level "+template.evoLevel+".");
 			}
-			if (!lsetData.sources && lsetData.sourcesBefore <= 3 && this.getAbility(set.ability).gen === 4 && !template.prevo) {
+			if (!lsetData.sources && lsetData.sourcesBefore <= 3 && this.getAbility(set.ability).gen === 4 && !template.prevo && this.gen <= 5) {
 				problems.push(name+" has a gen 4 ability and isn't evolved - it can't use anything from gen 3.");
 			}
 		}
