@@ -60,7 +60,9 @@ if (cluster.isMaster) {
 				count++;
 			}
 		}
-		worker.kill();
+		try {
+			worker.kill();
+		} catch (e) {}
 		delete workers[worker.id];
 		return count;
 	};
@@ -97,11 +99,6 @@ if (cluster.isMaster) {
 	exports.channelRemove = function(worker, channelid, socketid) {
 		worker.send('-'+channelid+'\n'+socketid);
 	};
-
-	cluster.on('death', function(worker) {
-		console.log('Worker ' + worker.pid + ' died. Restarting again...');
-		spawnWorker();
-	});
 
 } else {
 	// is worker
