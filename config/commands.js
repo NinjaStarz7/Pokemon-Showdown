@@ -798,7 +798,7 @@ var commands = exports.commands = {
 		if (target === 'all' || target === 'autoconfirmed') {
 			matched = true;
 			buffer += 'A user is autoconfirmed when they have won at least one rated battle and has been registered for a week or longer.<br />';
-		}	
+		}
 		if (!matched) {
 			return this.sendReply('The FAQ entry "'+target+'" was not found. Try /faq for general help.');
 		}
@@ -971,7 +971,7 @@ var commands = exports.commands = {
 			this.logModCommand('The Pokemon of the Day was removed by '+user.name+'.');
 		}
 	},
-	
+
 	roll: 'dice',
 	dice: function(target, room, user) {
 		if (!this.canBroadcast()) return;
@@ -1004,7 +1004,7 @@ var commands = exports.commands = {
 	},
 
 	br: 'banredirect',
-	banredirect: function(){ 
+	banredirect: function(){
 		this.sendReply('/banredirect - This command is obsolete and has been removed.');
 	},
 
@@ -1402,7 +1402,7 @@ var commands = exports.commands = {
 			' <a href="http://pokemondb.net">Pokemon Database homepage</a><br>' +
 			' <a href="http://pokemondb.net/pokebase/">Pokebase Q&amp;A</a><br>' +
 			' Twitter: <a href="https://twitter.com/pokemondb">@pokemon</a><br>' +
-            ' Facebook: <a href="https://www.facebook.com/PokemonDb">PokemonDb</a><br>'
+			' Facebook: <a href="https://www.facebook.com/PokemonDb">PokemonDb</a><br>'
 		);
 	},
 
@@ -1700,7 +1700,7 @@ var commands = exports.commands = {
 			'The badge system is in place to keep track of how many badges a user has. ' +
 			'It can easily show whether you have the 8 required badges needed to prgress to the E4. ' +
 			'At the moment, this system is for the DB League but in the fututre we hope to use it fro the arcade. ' +
-		        'Any DB Gym Leader can use the /givebadge command to give a user a badge. ' +
+				'Any DB Gym Leader can use the /givebadge command to give a user a badge. ' +
 			'Users can use /showbadges to view their badges. ' +
 			'Gym leaders can also give multiple badges, a way to implement users onto this new database. ' +
 			'For instance, if a user has 6 badges, someone can do /givebadge [user], 6 to give them 6 badges. ' +
@@ -1714,10 +1714,10 @@ var commands = exports.commands = {
 		this.sendReplyBox(
 			'<b><font size = 3>Introducing DB Server Gym Leaders!</font></b><br>' +
 			'<img src ="http://pokestadium.com/pokemon/sprites/trainers/5/blackwhite2/010.gif"><br>' +
-		        '<b>Leader Flareykinz</b> Gym Leader for OU Monotype!<br>' +
+				'<b>Leader Flareykinz</b> Gym Leader for OU Monotype!<br>' +
 			'<img src ="http://sprites.pokecheck.org/t/032.gif"><br>' +
 			'<b>Leader Flafpert</b> Gym Leader for UU!<br>' +
-			'<img src ="http://sprites.pokecheck.org/t/116.gif"><br>' + 
+			'<img src ="http://sprites.pokecheck.org/t/116.gif"><br>' +
 			'<b>Leader Cakey</b> Gym Leader for OU!<br>' +
 			'<img src ="http://cdn.bulbagarden.net/upload/e/e6/Spr_E_Brendan.png"><br>' +
 			'<b>Leader Fizz</b> Gym Leader for Ubers!<br>' +
@@ -1737,16 +1737,16 @@ var commands = exports.commands = {
 		this.sendReplyBox(
 			'<b><font size = 3>Introducing the DB Server Elite 4!</font></b><br>' +
 			'<img src ="http://sprites.pokecheck.org/t/127.gif"><br>' +
-		        '<b>Elite 4 Ravens!</b> OU Elite 4 member!<br>' +
+				'<b>Elite 4 Ravens!</b> OU Elite 4 member!<br>' +
 			'<img src ="http://sprites.pokecheck.org/t/137.gif"><br>' +
 			'<b>Elite 4 Pokenubz</b> OU Monotype Elite 4 member!<br>' +
-			'<img src ="http://sprites.pokecheck.org/t/112.gif"><br>' + 
+			'<img src ="http://sprites.pokecheck.org/t/112.gif"><br>' +
 			'<b>Elite 4 Hex</b> Ubers Elite 4 memeber!<br>' +
 			'<img src ="http://sprites.pokecheck.org/t/079.gif"><br>' +
 			'<b>Elite 4 Blob</b> UU Elite 4 member!<br>'
 		);
 	},
-	
+
 	champion: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox(
@@ -1755,39 +1755,44 @@ var commands = exports.commands = {
 			'<b>Champion Mew!</b> Skilled in all aspects of comeptitive battling!<br>'
 		);
 	},
-	
+
 	picktier: 'tierpick',
 	tierpick: function(target, room, user){
 		return this.parse('/poll Vote for the next Tournament Tier,randombattle,ou,ubers,uu,ru,nu,lc,cap,cc1v1,oumonotype,1v1,smogondoubles,vgcdoubles');
 	},
-	
+
 	 tourcommands: function(target, room, user) {
-        if (!this.canBroadcast()) return;
-        this.sendReplyBox('<b><font size =2>Tournaments can be run by Voice (+) or higher using the commands below:</font></b><br \>' +
-        '/tour [tier], [size] - Starts a tournament with a competitor limitation<br \>' +
-                '/tour [tier], [x minutes] - Starts a tournament with a sign-up phase timer<br \>' +
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox('<b><font size =2>Tournaments can be run by Voice (+) or higher using the commands below:</font></b><br \>' +
+		'/tour [tier], [size] - Starts a tournament with a competitor limitation<br \>' +
+				'/tour [tier], [x minutes] - Starts a tournament with a sign-up phase timer<br \>' +
 		'/endtour - Ends the current tournament<br \>' +
 		'/fj [username] - Forces a user to join a tournament<br \>' +
 		'/fl [username] - Force a user to leave a tournament<br \>' +
 		'/toursize [size] - Changes the size of a currently running tournament<br \>' +
 		'/tourtime [number] - Changes the timer of a current tournaments sign-up phase<br \>' +
 		'/replace [username], [username] - Replaces user in a tournament with the second user');
-    },
+	},
 
 	impersonate:'imp',
 	imp: function(target, room, user) {
-		if (!user.can('broadcast')) return this.sendReply('/imp - Access denied.');
+		if (!user.can('ban')) return this.sendReply('/imp - Access denied.');
 		if (!this.canTalk()) return;
 		if (!target) return this.parse('/help imp');
+
 		target = this.splitTarget(target);
 		var targetUser = this.targetUser;
 		if (!targetUser || !targetUser.connected) {
 			return this.sendReply('User '+this.targetUsername+' not found.');
 		}
-		if(!target)
+		if (!target)
 			return this.sendReply('You cannot make the user say nothing.');
-		if(target.indexOf('/announce') == 0 || target.indexOf('/warn') == 0 || target.indexOf('/data')==0)
+		if (target.indexOf('/announce') == 0 || target.indexOf('/warn') == 0 || target.indexOf('/data')==0)
 			return this.sendReply('You cannot use this to make a user announce/data/warn in imp.');
+
+		room.add('|c|'+targetUser.getIdentity()+'|'+ target);
+		this.logModCommand(user.name+' impersonated '+targetUser.name+' and said:' + target);
 	},
+
 
 };
