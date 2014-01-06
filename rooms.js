@@ -504,11 +504,13 @@ var BattleRoom = (function() {
 		this.id = roomid;
 		this.title = ""+p1.name+" vs. "+p2.name;
 		this.i = {};
+		this.modchat = (config.battlemodchat || false);
 
 		format = ''+(format||'');
 
 		this.users = {};
 		this.format = format;
+		this.auth = {};
 		//console.log("NEW BATTLE");
 
 		var formatid = toId(format);
@@ -1054,10 +1056,12 @@ var BattleRoom = (function() {
 			} else if (this.rated.p2 === user.userid) {
 				slot = 1;
 			} else {
-				return;
+				user.popup("This is a rated battle; your username must be "+this.rated.p1+" or "+this.rated.p2+" to join.");
+				return false;
 			}
 		}
 
+		this.auth[user.userid] = '\u2605';
 		this.battle.join(user, slot, team);
 		rooms.global.battleCount += (this.battle.active?1:0) - (this.active?1:0);
 		this.active = this.battle.active;
@@ -1079,6 +1083,7 @@ var BattleRoom = (function() {
 		} else {
 			return false;
 		}
+		this.auth[user.userid] = '+';
 		rooms.global.battleCount += (this.battle.active?1:0) - (this.active?1:0);
 		this.active = this.battle.active;
 		this.update();
@@ -1178,6 +1183,7 @@ var ChatRoom = (function() {
 		this.destroyingLog = false;
 		this.bannedUsers = {};
 		this.bannedIps = {};
+		this.modchat = (config.chatmodchat || false);
 
 		// `config.loglobby` is a legacy name
 		if (config.logchat || config.loglobby) {
