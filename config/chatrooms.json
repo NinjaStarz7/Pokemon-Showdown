@@ -11,9 +11,9 @@
 {"title":"Party Room","auth":{"basedgodmew":"#"},"desc":"It's Party Time! Drink Responsibly."},
 {"title":"OU Room","auth":{"basedgodmew":"#"}},
 {"title":"Music Room","auth":{"ghostyfx":"#","lastchancebreaker":"+"},"desc":"Talk about your favourite songs / albums / artists"},
-{"title":"DB Arcade","auth":{"aeternis":"#","valet":"#","trioofdarkness":"+","pimpnubz":"@","jarjar3":"+","jellohamster":"+","puffeh":"+","starsignoftheabyss":"+","cobblewobble":"+","mewter":"+","preciousvoice":"+","tazzie":"@","sempiternus":"@","pikadagreat":"+","goodragoodragoo":"+","alphadraconis":"+","demonsofa":"+","theundesirable":"+"},"desc":"This is SPARTA"},
+{"title":"DB Arcade","auth":{"aeternis":"#","valet":"#","trioofdarkness":"+","pimpnubz":"@","jarjar3":"+","jellohamster":"+","puffeh":"+","starsignoftheabyss":"+","cobblewobble":"+","mewter":"+","preciousvoice":"+","tazzie":"@","sempiternus":"@","pikadagreat":"+","goodragoodragoo":"+","alphadraconis":"+","demonsofa":"+","theundesirable":"+","doctorflame":"@"},"desc":"This is SPARTA"},
 {"title":"X and Y","desc":"Talk about X and Y here!","isOfficial":true,"auth":{"nindzya":"#"}},
 {"title":"Other Games","auth":{"nindzya":"#"},"desc":"Talk about other games than Pokemon."},
 {"title":"Room of Hexagons","desc":"Hex's room :D","auth":{"cobblewobble":"#","pikadagreat":"+"}},
-{"title":" Triada League","auth":{"e4zephyr":"#","e4spasm":"@","gymleadersneak":"@","championyoru":"#","aeternis":"+"}}
+{"title":" Triada League","auth":{"e4zephyr":"#","e4spasm":"@","gymleadersneak":"@","championyoru":"#","aeternis":"+","goodragoodragoo":"@"}}
 ]
