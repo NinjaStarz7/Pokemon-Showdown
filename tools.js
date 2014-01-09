@@ -127,7 +127,11 @@ module.exports = (function () {
 		}
 		return true;
 	};
-	Tools.prototype.getEffectiveness = function(type, target) {
+	Tools.prototype.getEffectiveness = function(source, target, pokemon) {
+		if (source.getEffectiveness) {
+			return source.getEffectiveness.call(this, source, target, pokemon);
+		}
+		var type = source.type || source;
 		var totalTypeMod = 0;
 		for (var i=0; i<target.types.length; i++) {
 			if (!this.data.TypeChart[target.types[i]]) continue;
@@ -837,9 +841,21 @@ module.exports = (function () {
 		var setHas = {};
 
 		if (!template || !template.abilities) {
-			set.species = 'Bulbasaur';
-			template = this.getTemplate('Bulbasaur');
+			set.species = 'Unown';
+			template = this.getTemplate('Unown');
 		}
+
+		if (format.ruleset) {
+			for (var i=0; i<format.ruleset.length; i++) {
+				var subformat = this.getFormat(format.ruleset[i]);
+				if (subformat.validateSet) {
+					problems = problems.concat(subformat.validateSet.call(this, set, format)||[]);
+				}
+			}
+		}
+		template = this.getTemplate(set.species);
+		item = this.getItem(set.item);
+		ability = this.getAbility(set.ability);
 
 		var banlistTable = this.getBanlistTable(format);
 
@@ -1048,14 +1064,6 @@ module.exports = (function () {
 			}
 		}
 
-		if (format.ruleset) {
-			for (var i=0; i<format.ruleset.length; i++) {
-				var subformat = this.getFormat(format.ruleset[i]);
-				if (subformat.validateSet) {
-					problems = problems.concat(subformat.validateSet.call(this, set, format)||[]);
-				}
-			}
-		}
 		if (format.validateSet) {
 			problems = problems.concat(format.validateSet.call(this, set, format)||[]);
 		}
