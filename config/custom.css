@@ -8,65 +8,67 @@
  * your server.
  */
 #header {
-	background: url("http://77.68.104.131/showdown/metal.jpg")
+        background: url("http://www.commentnation.com/backgrounds/images/diagonal_pin_stripes_background_charcoal_gray.gif")
 }
-
+ 
 .message-pm {
-color: #FFFFFF;
+color: #FFF;
 }
 .pm-log {
+color: #000;
 min-height: 100px;
 max-height: 300px;
-background: #000000
-color: #FFFFFF;
+background: #FFFFFF;
 word-wrap: break-word;
-border: 1px solid #FFFFFF;
+border: 1px solid #000;
 border-top: 0;
 border-bottom: 0;
 overflow: auto;
 }
 .pm-window h3 {
-background: #000000;
-color: #FFFFFF;
+background: #C0C0C0;
+color: #000;
 margin: 0;
 padding: 2px 5px;
 font-size: 11pt;
-border: 1px solid #FFFFFF;
+border: 1px solid #000;
 border-top-left-radius: 5px;
 border-top-right-radius: 5px;
 cursor: pointer;
 }
 .pm-log-add {
-border: 1px solid #FFFFFF;
+border: 1px solid #000;
 border-bottom-left-radius: 5px;
 border-bottom-right-radius: 5px;
-background: #000000;
+background: #FFF;
 }
 .pm-window. focused h3 {
-background: #000000;
-color: #FFFFFF;
+background: #C0C0C0;
+color: #000;
 cursor: default;
 }
 .pm-window. focused .pm-log-add {
-background: #000000
+background: #C0C0C0;
+border: #000;
 }
 .pm-window.focused h3, .pm-window.focused h3:hover {
 .pm-window h3 {
-background: #000000;
-color: #FFFFFF;
+background: #FFF;
+color: #000;
 margin: 0;
 padding: 2px 5px;
 font-size: 11pt;
-border: 1px solid #FFFFFF;
+border: 1px solid #000;
 border-top-left-radius: 5px;
 border-top-right-radius: 5px;
 cursor: pointer;
 }
 .pm-window.focused h3, .pm-window.focused .pm-log, .pm-window.focused .pm-log-add {
-border: 1px solid #AAAAAA;
+border: 1px solid #000;
 border-bottom-left-radius: 5px;
 border-bottom-right-radius: 5px;
-background: #000000
+color: #000;
+background: #fff;
 }
  
 .tabbar a.button {
@@ -75,8 +77,8 @@ color: #FFFFFF;
 }
  
 .tabbar a.button.cur,.tabbar a.button.cur:hover {
-color: #FFFFFF;
-background: #000000;
+color: #FFFFFF ;
+background: #000000 ;
 box-shadow: none;
 border-color: #AAAAAA;
 border-bottom: 0;
@@ -85,198 +87,209 @@ padding-top: 3px;
 padding-bottom: 5px;
 top: 0px;
 }
-
+ 
 body {
-	background: #C0C0C0 none;
+        background: #C0C0C0 none;
 }
-
-.mainmenuwrapper {
-	color: #C0C0C0;
-	font-size: 11pt;
-	font-family: Verdana,Helvetica,Arial,sans-serif;
-	background: #3f2646 url("http://77.68.104.131/showdown/bg-scizor.jpg") no-repeat scroll right top;
+ 
+ .mainmenuwrapper {
+        background: url("http://i.imgur.com/Go5daCD.png") no-repeat scroll right middle;
+ 
 }
+ 
+ .mainmenuwrapper {
+        color: #C0C0C0;
+        font-size: 11pt;
+        font-family: Verdana,Helvetica,Arial,sans-serif;
+   /*     background: url("http://i.imgur.com/Go5daCD.png") no-repeat scroll right middle;
+                background-color: #6e6e6e;*/
+                background-image: url("http://www.commentnation.com/backgrounds/images/diagonal_pin_stripes_background_charcoal_gray.gif") repeat scroll right top;
+        background-image: -webkit-linear-gradient(-45deg,#666 0,#666 2px,#6e6e6e 2px,#6e6e6e 8px,#666 8px,#666         10px,#6e6e6e 10px,#6e6e6e 17px);
+background-image: linear-gradient(-45deg,#666 0,#666 2px,#6e6e6e 2px,#6e6e6e 8px,#666 8px,#666 10px,#6e6e6e 10px,#6e6e6e 17px);
+background-size: 12px 12px;
+}
+ 
+ 
 .chat-log {
-	font-size: 12px;
-	background: #bdbdbd url("http://77.68.104.131/showdown/bg-drapion.png") no-repeat scroll right bottom;
-	color: #000;
-	overflow: auto;
+        font-size: 12px;
+        background: #fff url("http://i.imgur.com/eCXVTMk.jpg")  no-repeat scroll right bottom;
+        background: url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTnB7ARmJxL_MN50BhiSCR9fGxVw6b-xSP-2S8Au0Ub78VEXYi-0g")scroll right top;
+        color: #000;
+        overflow: auto;
 }
-
-/*.menugroup .button {
-	opacity: 0.4;
-	font-size: 12pt;
-	font-family: Verdana,Helvetica,Arial,sans-serif;
-	display: inline-block;
-	padding: 1px;
-	width: 200px;
-	text-align: center;
-	text-decoration: none;
-	color: rgb(255, 255, 255);
-	border: 1px solid rgb(170, 170, 170);
-	background: none repeat scroll 0% 0% rgb(152, 46, 221);
-}
+ 
 .menugroup .button:hover {
-	background: none repeat scroll 0% 0% rgb(168,0,0);
-	opacity: 0.8;
+color: #FFF;
+background: #404040;
+ 
 }
-.menugroup .button:hover {
-	background: -moz-linear-gradient(center top , rgb(119, 158, 196), rgb(64, 107, 149)) repeat scroll 0% 0% transparent;
-	border-color: rgb(32, 53, 74);
-}*/
-
+ 
+.menugroup .button {
+color: #FFF;
+background: #000;
+ 
+}
+ 
+.menugroup button.big {
+color: #FFF;
+background: #000;
+width: 230px;
+padding: 6px 7px 6px 7px;
+font-size: 14pt;
+}
+ 
 .ps-room.ps-room-light {
-	color: black;
+        color: black;
 }
-
+ 
 .chat-log-add {
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	min-height: 36px;
-	padding: 3px 4px 0px;
-	border-top: 1px solid rgb(72, 61, 139);
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        min-height: 36px;
+        padding: 3px 4px 0px;
+        border-top: 1px solid rgb(72, 61, 139);
 }
-
+ 
 .mainmenufooter small:after {
-	content: "PokemonDB.net server by PokemasterDb";
-	text-shadow: 0 1px black;
-	position: absolute;
-	left: 0px;
-	top: -40px;
-	width: 200px;
+        content: "PokemonDB.net server by PokemasterDb";
+        text-shadow: 0 1px black;
+        position: absolute;
+        left: 0px;
+        top: -40px;
+        width: 200px;
 }
-
+ 
 .battle-log {
-	position: absolute;
-	text-align: left;
-	border: 1px solid #C0C0C0;
-	background: #686868;
-	color: black;
-	top: 9px;
-	left: 640px;
-	right: -1px;
-	height: 360px;
-	font-family: Verdana,sans-serif;
-	font-size: 10pt;
-	overflow: auto;
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
-	overflow-scrolling: touch;
+        position: absolute;
+        text-align: left;
+        border: 1px solid #686868;
+        background: #C0C0C0;
+        color: black;
+        top: 9px;
+        left: 640px;
+        right: -1px;
+        height: 360px;
+        font-family: Verdana,sans-serif;
+        font-size: 10pt;
+        overflow: auto;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
 }
-
+ 
 .message-pm {
-	color: #383838;
+        color: #383838;
 }
-
+ 
 .setchart input:focus, .setchart-nickname input:focus, .statform input.inputform:focus, .textbox:focus {
-	outline: 0px none;
-	border: 1px solid rgb(0, 68, 136);
-	box-shadow: 0px 1px 2px rgb(210, 210, 210) inset, 0px 0px 5px rgb(34, 102, 170);
-	background: none repeat scroll 0% 0% rgb(255, 255, 255);
+        outline: 0px none;
+        border: 1px solid rgb(0, 68, 136);
+        box-shadow: 0px 1px 2px rgb(210, 210, 210) inset, 0px 0px 5px rgb(34, 102, 170);
+        background: none repeat scroll 0% 0% rgb(255, 255, 255);
 }
-
+ 
 .tabbar {
-	bottom: 0;
+        bottom: 0;
 }
-
+ 
 .userbar {
-	top: 18px;
+        top: 18px;
 }
-
+ 
 .userbar .username {
-	text-shadow: none;
-	text-shadow: 1px 1px black;
+        text-shadow: none;
+        text-shadow: 1px 1px black;
 }
-
+ 
 .userbar:before {
-	display: block;
-	content:"";
-	width:80px;
-	height: 32px;
-	float: right;
-	position: relative;
-	top: -9px;
+        display: block;
+        content:"";
+        width:80px;
+        height: 32px;
+        float: right;
+        position: relative;
+        top: -9px;
 }
-
+ 
 .icon-user {
-	display:none;
+        display:none;
 }
-
+ 
 .maintabbarbottom {
-	background: linear-gradient(to bottom, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 100%);
-	border: none;
-	box-shadow: none;
-	z-index:2;
+        background: linear-gradient(to bottom, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 100%);
+        border: none;
+        box-shadow: none;
+        z-index:2;
 }
-
+ 
 .header {
-	height: 56px;
-	background: #161616;
+        height: 56px;
+        background: #161616;
 }
-
+ 
 .header .logo {
-	float: left;
-	margin: 7px 0px 0 2px;
+        float: left;
+        margin: 7px 0px 0 2px;
 }
-
-
+ 
+ 
 .userlist,
 .userlist li {
-	display: block;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	text-align: left;
+        display: block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: left;
 }
 .userlist {
-	border-left: 1px solid #909090;
-	min-height: 100%;
-	background: #C0C0C0;
+        border-left: 1px solid #909090;
+        min-height: 100%;
+        background: #787878;
 }
 .userlist li {
-	border-bottom: 1px solid #B0B0B0;
-	height: 19px;
-	font: 10pt Verdana, sans-serif;
-	white-space: nowrap;
+        border-bottom: 1px solid #B0B0B0;
+        height: 19px;
+        font: 10pt Verdana, sans-serif;
+        white-space: nowrap;
 }
 .userlist li em.group {
-	font-style: normal;
-	font-size: 8pt;
-	color: #a066aa;
-	display: block;
-	float: left;
-	text-align: center;
-	padding: 1px 0 0 1px;
-	width: 14px;
+        font-style: normal;
+        font-size: 8pt;
+        color: #9AFE2E;
+        display: block;
+        float: left;
+        text-align: center;
+        padding: 1px 0 0 1px;
+        width: 14px;
 }
 .userlist li button {
-	box-sizing: border-box;
-	display: block;
-	height: auto;
-	background: transparent;
-	border: 0;
-	padding: 0;
-	margin: 0;
-	height: 19px;
-	width: 100%;
-	white-space: nowrap;
-	font: 10pt Verdana, sans-serif;
-	text-align: left;
-	cursor: pointer;
+        box-sizing: border-box;
+        display: block;
+        height: auto;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        margin: 0;
+        height: 19px;
+        width: 100%;
+        white-space: nowrap;
+        font: 10pt Verdana, sans-serif;
+        text-align: left;
+        cursor: pointer;
 }
 .userlist li button:hover {
-	background: #C0C0C0;
+        background: #686868;
 }
 .userlist li button:active {
-	background: #C0C0C0;
+        background: #FFFFFF;
 }
 .userlist li.cur {
-	background: #C0C0C0;
+        background: #686868;
 }
 .userlist li.cur button,
 .userlist li.cur button:hover {
-	background: #C0C0C0;
-	margin: 0 0 0 -1px;
+        background: #686868;
+        margin: 0 0 0 -1px;
 }
