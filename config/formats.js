@@ -41,7 +41,7 @@ exports.Formats = [
 		section: "XY Singles",
 
 		ruleset: ['Pokemon', 'Standard', 'Team Preview'],
-		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'OU', 'Kyurem-Black', 'Manaphy', 'Drizzle']
+		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'OU', 'BL', 'Drizzle']
 	},
 	{
 		name: "LC",
@@ -315,7 +315,7 @@ exports.Formats = [
 		debug: true,
 		ruleset: ['Team Preview']
 	},
-	
+
 	// Other Metagames
 	///////////////////////////////////////////////////////////////////
 
@@ -434,6 +434,7 @@ exports.Formats = [
 			'Palkia',
 			'Rayquaza',
 			'Shaymin-Sky',
+			'Soul Dew',
 			'Xerneas',
 			'Yveltal',
 			'Zekrom'
@@ -661,7 +662,7 @@ exports.Formats = [
 		mod: 'gen4',
 		ruleset: ['Pokemon', 'Standard'],
 		banlist: ['Uber'],
-		
+
 		column: 2
 	},
 	{

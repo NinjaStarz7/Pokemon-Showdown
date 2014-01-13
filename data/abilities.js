@@ -959,7 +959,7 @@ exports.BattleAbilities = {
 		num: 62
 	},
 	"harvest": {
-		desc: "When the user uses a held Berry, it is restored at the end of the turn.",
+		desc: "When the user uses a held Berry, it has a 50% chance of having it restored at the end of the turn. This chance becomes 100% during Sunny Day.",
 		shortDesc: "50% chance this Pokemon's Berry is restored at the end of each turn. 100% in Sun.",
 		id: "harvest",
 		name: "Harvest",
@@ -2245,10 +2245,18 @@ exports.BattleAbilities = {
 	"scrappy": {
 		desc: "This Pokemon has the ability to hit Ghost-type Pokemon with Normal-type and Fighting-type moves. Effectiveness of these moves takes into account the Ghost-type Pokemon's other weaknesses and resistances.",
 		shortDesc: "This Pokemon can hit Ghost-types with Normal- and Fighting-type moves.",
-		onFoeModifyPokemon: function(pokemon) {
-			if (pokemon.hasType('Ghost')) {
-				pokemon.negateImmunity['Normal'] = true;
-				pokemon.negateImmunity['Fighting'] = true;
+		onBeforeMove: function(pokemon, target, move) {
+			pokemon.addVolatile('scrappy');
+		},
+		effect: {
+			onAnyModifyPokemon: function(pokemon) {
+				if (pokemon.hasType('Ghost')) {
+					pokemon.negateImmunity['Normal'] = true;
+					pokemon.negateImmunity['Fighting'] = true;
+				}
+			},
+			onAfterMoveSecondarySelf: function(pokemon) {
+				pokemon.removeVolatile('scrappy');
 			}
 		},
 		id: "scrappy",
