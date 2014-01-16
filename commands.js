@@ -852,7 +852,9 @@ var commands = exports.commands = {
 			return this.sendReply("The room '"+target+"' already exists.");
 		}
 		if (Rooms.global.addChatRoom(target)) {
-			return this.sendReply("The room '"+target+"' was created.");
+                        tour.reset(id);
+                        hangman.reset(id);
+                        return this.sendReply("The room '"+target+"' was created.");
 		}
 		return this.sendReply("An error occurred while trying to create the room '"+target+"'.");
 	},
@@ -1744,6 +1746,10 @@ var commands = exports.commands = {
 			try {
 				CommandParser.uncacheTree('./command-parser.js');
 				CommandParser = require('./command-parser.js');
+				CommandParser.uncacheTree('./tour.js');
+                                tour = require('./tour.js').tour(tour);
+                                CommandParser.uncacheTree('./hangman.js');
+                                hangman = require('./hangman.js').hangman(hangman);
 				return this.sendReply('Chat commands have been hot-patched.');
 			} catch (e) {
 				return this.sendReply('Something failed while trying to hotpatch chat: \n' + e.stack);
