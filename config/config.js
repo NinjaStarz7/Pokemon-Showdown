@@ -146,6 +146,11 @@ exports.customavatars = {
 	'desdinova': 'trachy.gif',
 	'catnipz': 'catipz.png',
 	'nindzya': 'ninja.png',
+	'pimpnubz': 'kyron.png',
+	'aeternis': 'aeternis.png',
+	'lustthelascivious': 'lenub.png',
+	'kazemon': 'catnipz2.png',
+	'cobblewobble': 'hex.png',
 	'mrkijani': 'mrkijani.png'
 };
 
