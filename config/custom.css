@@ -8,7 +8,7 @@
  * your server.
  */
 #header {
-        background: url("http://www.commentnation.com/backgrounds/images/diagonal_pin_stripes_background_charcoal_gray.gif")
+        background: url("http://77.68.104.131/showdown/stripes-gray.gif")
 }
  
 .message-pm {
@@ -89,53 +89,50 @@ top: 0px;
 }
  
 body {
-        background: #C0C0C0 none;
+  background: #C0C0C0 none;
 }
  
- .mainmenuwrapper {
-        background: url("http://i.imgur.com/Go5daCD.png") no-repeat scroll right middle;
- 
+.mainmenuwrapper {
+  background: url("http://77.68.104.131/showdown/scizor-drapion.png") no-repeat scroll right middle; 
 }
- 
- .mainmenuwrapper {
-        color: #C0C0C0;
-        font-size: 11pt;
-        font-family: Verdana,Helvetica,Arial,sans-serif;
-   /*     background: url("http://i.imgur.com/Go5daCD.png") no-repeat scroll right middle;
-                background-color: #6e6e6e;*/
-                background-image: url("http://www.commentnation.com/backgrounds/images/diagonal_pin_stripes_background_charcoal_gray.gif") repeat scroll right top;
-        background-image: -webkit-linear-gradient(-45deg,#666 0,#666 2px,#6e6e6e 2px,#6e6e6e 8px,#666 8px,#666         10px,#6e6e6e 10px,#6e6e6e 17px);
-background-image: linear-gradient(-45deg,#666 0,#666 2px,#6e6e6e 2px,#6e6e6e 8px,#666 8px,#666 10px,#6e6e6e 10px,#6e6e6e 17px);
-background-size: 12px 12px;
+
+.mainmenuwrapper {
+  color: #C0C0C0;
+  font-size: 11pt;
+  /*font-family: Verdana,Helvetica,Arial,sans-serif;
+  background-image: url("http://77.68.104.131/showdown/stripes-gray.gif") repeat scroll right top;
+  background-image: -webkit-linear-gradient(-45deg,#666 0,#666 2px,#6e6e6e 2px,#6e6e6e 8px,#666 8px,#666         10px,#6e6e6e 10px,#6e6e6e 17px);
+  background-image: linear-gradient(-45deg,#666 0,#666 2px,#6e6e6e 2px,#6e6e6e 8px,#666 8px,#666 10px,#6e6e6e 10px,#6e6e6e 17px);
+  background-size: 12px 12px;*/
 }
  
  
 .chat-log {
-        font-size: 12px;
-        background: #fff url("http://i.imgur.com/eCXVTMk.jpg")  no-repeat scroll right bottom;
-        background: url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTnB7ARmJxL_MN50BhiSCR9fGxVw6b-xSP-2S8Au0Ub78VEXYi-0g")scroll right top;
-        color: #000;
-        overflow: auto;
+  font-size: 12px;
+  /*background: #fff none scroll right bottom;*/
+  background: #fff url("http://77.68.104.131/showdown/pokeball.jpg") no-repeat scroll right bottom;
+
+  background-repeat: repeat, no-repeat;
+  color: #000;
+  overflow: auto;
 }
  
 .menugroup .button:hover {
-color: #FFF;
-background: #404040;
- 
+  color: #FFF;
+  background: #404040;
 }
  
 .menugroup .button {
-color: #FFF;
-background: #000;
- 
+  color: #FFF;
+  background: #000;
 }
  
 .menugroup button.big {
-color: #FFF;
-background: #000;
-width: 230px;
-padding: 6px 7px 6px 7px;
-font-size: 14pt;
+  color: #FFF;
+  background: #000;
+  width: 230px;
+  padding: 6px 7px 6px 7px;
+  font-size: 14pt;
 }
  
 .ps-room.ps-room-light {
