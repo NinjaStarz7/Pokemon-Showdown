@@ -432,3 +432,4 @@ fs.readFile('./config/ipbans.txt', function (err, data) {
 });
 
 global.tour = require('./tour.js').tour();
+global.spam = require('./spam.js').spam()
