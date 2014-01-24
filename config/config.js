@@ -199,7 +199,7 @@ exports.appealurl = '';
 //     - forcewin: /forcewin command.
 //     - battlemessage: /a command.
 
-exports.groupsranking = [' ', '◈', '+', '✸', '%', '✯', '@', '#', '&', '~', '⎋', '☯'];
+exports.groupsranking = [' ', '+', '%', '@', '#', '&', '~', '⎋', '☯'];
 exports.groups = {
 	
 	'☯': {
@@ -253,7 +253,6 @@ exports.groups = {
 		inherit: '%',
 		jurisdiction: 'u',
 		ban: true,
-		modchat: true,
 		forcerename: true,
 		ip: true,
 		alts: '@u',
@@ -271,7 +270,6 @@ exports.groups = {
 		lock: true,
 		forcerename: true,
 		timer: true,
-		modlog: true,
 		alts: '%u',
 		bypassblocks: 'u%@&~',
 		receiveauthmessages: true,
@@ -291,27 +289,4 @@ exports.groups = {
 		alts: 's',
 		rank: 2
 	},
-	'✯': {
-		id: "champion",
-		name: "Champion",
-		inherit: '%',
-		broadcast: true,
-		declare: true,
-		rank: 1
-	},
-	'✸': {
-		id: "elite4",
-		name: "Elite 4",
-		inherit: '%',
-		broadcast: true,
-		rank: 1
-	},
-	'◈': {
-		id: "gymleader",
-		name: "Gym Leader",
-		inherit: '+',
-		announce: true,
-		timer: true,
-		rank: 0
-	}
 };
