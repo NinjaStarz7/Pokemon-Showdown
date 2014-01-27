@@ -19,5 +19,6 @@
 {"title":"Storytime with Ninja and friends","desc":"Stories of DB history told by yours truly","auth":{"nindzya":"#","testingalt123":"#","psychicx":"#"},"isOfficial":true},
 {"title":"Hangman"},
 {"title":"Sciz's Lab","isPrivate":true},
-{"title":"PokeSchool"}
+{"title":"PokeSchool"},
+{"title":"spamroom","isPrivate":true}
 ]
