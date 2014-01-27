@@ -318,6 +318,10 @@ function canTalk(user, room, connection, message) {
                         return false;
                 }
 
+				if (spamroom[user.userid]) {
+					spamroom[user.userid] = true;
+				}
+
                 // hardcoded low quality website
                 if (/\bnimp\.org\b/i.test(message)) return false;
 
