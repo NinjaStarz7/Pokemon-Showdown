@@ -1765,13 +1765,13 @@ var commands = exports.commands = {
 	},
 	
 	afk: function(target, room, user, connection) {
-           
+            if (!this.can('warn') return false;
             if (!user.isAfk) {
               user.realName = user.name
               var afkName = user.name + ' - afk';
               delete Users.get(afkName);
               user.forceRename(afkName, undefined, true);
-              this.send(user.realName + ' is now AFK beacause of this reason: '+ target);
+              this.send('|html|<b>'+user.realName+'</b> is now Away ('+target+').');
               user.isAfk = true;
               user.blockChallenges = true;
             }
@@ -1794,7 +1794,7 @@ var commands = exports.commands = {
              delete Users.get(newName);
              user.forceRename(newName, undefined, true);
              user.authenticated = true;
-             this.send(newName + ' is back');
+             this.send('|html|<b>'newName + '</b> is back');
              user.isAfk = false;
              user.blockChallenges = false;
            }
