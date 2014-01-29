@@ -1765,7 +1765,8 @@ var commands = exports.commands = {
 	},
 	
 	afk: function(target, room, user, connection) {
-            if (!this.can('warn') return false;
+	    if (!this.canTalk()) return false;
+            if (!this.can('warn')) return false;
             if (!user.isAfk) {
               user.realName = user.name
               var afkName = user.name + ' - afk';
