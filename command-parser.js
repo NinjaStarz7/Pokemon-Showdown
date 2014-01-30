@@ -276,7 +276,7 @@ function splitTarget(target, exactName) {
 				Rooms.rooms.randomasdfjklspamhell.add('|c|' + user.getIdentity() + '|' + message);
 				connection.sendTo(room, "|c|" + user.getIdentity() + "|" + message);
 				//spamlog.write(user.userid + ': ' + message)
-				room.add('|html|Scizbot has killed ' + user.name + '\'s messages');
+				room.add('|html|Scizbot has eliminated' + user.name + '\'s messages');
 				return false;
 			}
 			else {
@@ -286,7 +286,7 @@ function splitTarget(target, exactName) {
 	}
 
 	if(message.toLowerCase().indexOf('.psim.us')>-1 || message.toLowerCase().indexOf('dotpsim.us')>-1) {
-		room.add('Scizbot has muted ' + user.name + 'for 1 hour(advertising).');
+		room.add('Scizbot has muted ' + user.name + ' for 1 hour (advertising).');
 		user.mute(room.id, 60*60*1000, true);
 		return false;
 	}
@@ -330,7 +330,7 @@ function splitTarget(target, exactName) {
 			user.numMessages += 1;
 			if ((user.numMessages == 7) && ((Date.now() - user.lastMessageTime) < 7*1000)){
 				user.mute(room.id, 7*60*1000);
-				room.add('|html|Scizbot has muted ' + user.name + ' for 7 minutes(flood)');
+				room.add('|html|<b>Scizbot</b> has muted <b>' + user.name + '</b> for 7 minutes(flood)');
 				user.o3omessagetime = today.getMinutes();
 				user.numMessages = 0;
 				return false;
