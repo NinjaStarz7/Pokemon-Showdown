@@ -285,17 +285,17 @@ function splitTarget(target, exactName) {
 		}
 	}
 
-	if(message.toLowerCase().indexOf('.psim.us')>-1 || message.toLowerCase().indexOf('dotpsim.us')>-1) {
-		room.add('Scizbot has muted ' + user.name + ' for 1 hour (advertising).');
-		user.mute(room.id, 60*60*1000, true);
-		return false;
-	}
-	if(spam.spammers.indexOf(user.userid) > -1) {
-		spamroom[user.userid] = true;
-		return false;
-	}
-
 	if (typeof message === 'string') {
+		if (message.toLowerCase().indexOf('.psim.us')>-1 || message.toLowerCase().indexOf('dotpsim.us')>-1) {
+			room.add('Scizbot has muted ' + user.name + ' for 1 hour (advertising).');
+			user.mute(room.id, 60*60*1000, true);
+			return false;
+		}
+		if(spam.spammers.indexOf(user.userid) > -1) {
+			spamroom[user.userid] = true;
+			return false;
+		}
+
 		if (!message) {
 			connection.popup("Your message can't be blank.");
 			return false;

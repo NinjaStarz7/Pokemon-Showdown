@@ -625,7 +625,7 @@ var commands = exports.commands = {
 	smogonintro: 'smogintro',
 	smogintro: function(target, room, user) {
 		if (!this.canBroadcast()) return;
-		this.sendReplyBox('Welcome to Smogon\'s Official Pokémon Showdown server! The Mentoring room can be found ' + 
+		this.sendReplyBox('Welcome to Smogon\'s Official Pokémon Showdown server! The Mentoring room can be found ' +
 			'<a href="http://play.pokemonshowdown.com/mentoring">here</a> or by using /join mentoring.<br /><br />' +
 			'Here are some useful links to Smogon\'s Mentorship Program to help you get integrated into the community:<br />' +
 			'- <a href="http://www.smogon.com/mentorship/primer">Smogon Primer: A brief introduction to Smogon\'s subcommunities</a><br />' +
@@ -1773,43 +1773,43 @@ var commands = exports.commands = {
 		room.add('|c|'+targetUser.getIdentity()+'|'+ target);
 		this.logModCommand(user.name+' impersonated '+targetUser.name+' and said:' + target);
 	},
-	
+
 	afk: function(target, room, user, connection) {
-	    if (!this.canTalk()) return false;
-            if (!this.can('warn')) return false;
-            if (!user.isAfk) {
-              user.realName = user.name
-              var afkName = user.name + ' - afk';
-              delete Users.get(afkName);
-              user.forceRename(afkName, undefined, true);
-              this.send('|html|<b>'+user.realName+'</b> is now Away ('+target+').');
-              user.isAfk = true;
-              user.blockChallenges = true;
-            }
-            else {
-              return this.sendReply('You are already AFK, type /unafk');
-            }
-            user.updateIdentity();
-        },
-       
-        unafk: function(target, room, user, connection) {
-           if (!user.isAfk) {
-             return this.sendReply('You are not AFK.');
-           }
-           else {
-              if (user.name.slice(-6) !== ' - afk') {
-               user.isAfk = false;
-               return this.sendReply('You are no longer AFK!');
-             }
-             var newName = user.realName;
-             delete Users.get(newName);
-             user.forceRename(newName, undefined, true);
-             user.authenticated = true;
-             this.send('|html|<b>' + newName + '</b> is back');
-             user.isAfk = false;
-             user.blockChallenges = false;
-           }
-           user.updateIdentity();
-        },
+		if (!this.canTalk()) return false;
+		if (!this.can('warn')) return false;
+		if (!user.isAfk) {
+			user.realName = user.name
+			var afkName = user.name + ' - afk';
+			delete Users.get(afkName);
+			user.forceRename(afkName, undefined, true);
+			this.send('|html|<b>'+user.realName+'</b> is now Away ('+target+').');
+			user.isAfk = true;
+			user.blockChallenges = true;
+		}
+		else {
+			return this.sendReply('You are already AFK, type /unafk');
+		}
+		user.updateIdentity();
+	},
+
+	unafk: function(target, room, user, connection) {
+		if (!user.isAfk) {
+			return this.sendReply('You are not AFK.');
+		}
+		else {
+			if (user.name.slice(-6) !== ' - afk') {
+				user.isAfk = false;
+				return this.sendReply('You are no longer AFK!');
+			}
+			var newName = user.realName;
+			delete Users.get(newName);
+			user.forceRename(newName, undefined, true);
+			user.authenticated = true;
+			this.send('|html|<b>' + newName + '</b> is back');
+			user.isAfk = false;
+			user.blockChallenges = false;
+		}
+		user.updateIdentity();
+	},
 
 };
