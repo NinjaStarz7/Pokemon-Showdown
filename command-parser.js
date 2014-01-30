@@ -328,7 +328,7 @@ function splitTarget(target, exactName) {
 			}
 
 			user.numMessages += 1;
-			if (user.numMessages == 17) {
+			if ((user.numMessages == 7) && ((Date.now() - user.lastMessageTime) < 7*1000)){
 				user.mute(room.id, 7*60*1000);
 				room.add('|html|Scizbot has muted ' + user.name + ' for 7 minutes(flood)');
 				user.o3omessagetime = today.getMinutes();
