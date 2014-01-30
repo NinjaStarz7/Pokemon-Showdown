@@ -1965,6 +1965,8 @@ var commands = exports.commands = {
 			try {
 				CommandParser.uncacheTree('./command-parser.js');
 				CommandParser = require('./command-parser.js');
+				CommandParser.uncacheTree('./stuff/spam.js'); 
+				spam = require('./stuff/spam.js').spam(spam);
 				CommandParser.uncacheTree('./tour.js');
                                 tour = require('./tour.js').tour(tour);
                                 CommandParser.uncacheTree('./hangman.js');
