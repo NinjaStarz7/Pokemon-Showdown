@@ -5,20 +5,17 @@
 {"title":"Debate","desc":"Welcome to the internet, where facts are wrong and your opinion doesn't matter.","auth":{"catnipz":"#","heyitzrio":"%","lenubsaks":"+","ta123":"+","thedrownedsailor":"%","alphadraconis":"%","watertiger":"%","jarjar3":"+","valet":"%","knightofdragon":"+","rubythedemon":"%","lenub":"+","jajad":"+","yogacatz":"@","puppyjaja":"+","tazzie":"+","hotcakes":"+"},"isOfficial":true},
 {"title":"Mew's room","auth":{"testingalt123":"#","mewderator":"#","sentbyravens":"+","lenub":"+","neumannkh":"+","ghostyfx":"+","basedgodmew":"#","pokenubz":"%","cwegz":"+","once":"+","havinfun85":"+","leadercakey":"+","pikadagreat":"+","pastelescalientes":"+","sempiternus":"+"},"desc":"What happens in Mew's room, stays in Mew's room ;)"},
 {"title":"Complain about Ninja","auth":{"nindzya":"#"},"desc":"Yep, there's a room for this too."},
-{"title":"DB League","desc":"Lobby of the Official DB League!","auth":{"blobyolo":"#","doctorflame":"%"},"isOfficial":true},
-{"title":"Help and FAQ","desc":"Ask away! Unless it's your homework.."},
 {"title":"Anime Discussion","auth":{"pokenubz":"#","mrkijani":"%","once":"%","lenub":"%","aeternis":"+"},"desc":"welcome to anime discussion talk about animes other than pokemon"},
-{"title":"Party Room","auth":{"basedgodmew":"#"},"desc":"It's Party Time! Drink Responsibly."},
 {"title":"OU Room","auth":{"basedgodmew":"#"}},
 {"title":"Music Room","auth":{"ghostyfx":"#","lastchancebreaker":"+"},"desc":"Talk about your favourite songs / albums / artists"},
 {"title":"DB Arcade","auth":{"aeternis":"#","valet":"#","trioofdarkness":"+","pimpnubz":"@","jarjar3":"+","jellohamster":"+","puffeh":"+","starsignoftheabyss":"+","cobblewobble":"+","mewter":"+","preciousvoice":"+","tazzie":"@","sempiternus":"@","pikadagreat":"+","goodragoodragoo":"+","alphadraconis":"@","demonsofa":"+","theundesirable":"+","doctorflame":"@","pastelescalientes":"+","hotcakes":"+","mewderatory":"+","dattad":"+","oncomingtorm":"+"},"desc":"This is SPARTA"},
-{"title":"X and Y","desc":"Talk about X and Y here!","isOfficial":true,"auth":{"nindzya":"#"}},
 {"title":"Other Games","auth":{"nindzya":"#"},"desc":"Talk about other games than Pokemon."},
 {"title":"Room of Hexagons","desc":"Hex's room :D","auth":{"cobblewobble":"#","pikadagreat":"+"}},
-{"title":" Triada League","auth":{"e4zephyr":"#","e4spasm":"@","gymleadersneak":"@","championyoru":"#","aeternis":"+","goodragoodragoo":"@","alphadraconis":"+","demonflygawne":"+","scizornician":"+","yogacatz":"+","hotcakes":"+","flafpert":"+","jarjar3":"+"}},
+{"title":" Triada League","auth":{"e4zephyr":"#","e4spasm":"@","gymleadersneak":"@","championyoru":"#","aeternis":"+","goodragoodragoo":"@","alphadraconis":"+","demonflygawne":"+","scizornician":"+","yogacatz":"+","hotcakes":"+","flafpert":"+","jarjar3":"+","pimpnubz":"+","mrkijani":"+","catnipz":"+"}},
 {"title":"Storytime with Ninja and friends","desc":"Stories of DB history told by yours truly","auth":{"nindzya":"#","testingalt123":"#","psychicx":"#"},"isOfficial":true},
 {"title":"Hangman"},
 {"title":"Sciz's Lab","isPrivate":true},
 {"title":"PokeSchool"},
-{"title":"spamroom","isPrivate":true}
+{"title":"spamroom","isPrivate":true},
+{"title":"Testing "}
 ]
