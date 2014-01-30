@@ -1795,7 +1795,7 @@ var commands = exports.commands = {
              delete Users.get(newName);
              user.forceRename(newName, undefined, true);
              user.authenticated = true;
-             this.send('|html|<b>'newName + '</b> is back');
+             this.send('|html|<b>' + newName + '</b> is back');
              user.isAfk = false;
              user.blockChallenges = false;
            }
