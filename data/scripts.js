@@ -9,7 +9,7 @@ exports.BattleScripts = {
 			}
 		}
 		move = this.getMove(move);
-		if (!target) target = this.resolveTarget(pokemon, move);
+		if (!target && target !== false) target = this.resolveTarget(pokemon, move);
 
 		this.setActiveMove(move, pokemon, target);
 
@@ -49,10 +49,9 @@ exports.BattleScripts = {
 	},
 	useMove: function(move, pokemon, target, sourceEffect) {
 		if (!sourceEffect && this.effect.id) sourceEffect = this.effect;
-		move = this.getMove(move);
-		baseMove = move;
 		move = this.getMoveCopy(move);
-		if (!target) target = this.resolveTarget(pokemon, move);
+		var baseTarget = move.target;
+		if (!target && target !== false) target = this.resolveTarget(pokemon, move);
 		if (move.target === 'self' || move.target === 'allies') {
 			target = pokemon;
 		}
@@ -61,13 +60,15 @@ exports.BattleScripts = {
 		this.setActiveMove(move, pokemon, target);
 
 		this.singleEvent('ModifyMove', move, null, pokemon, target, move, move);
-		if (baseMove.target !== move.target) {
-			//Target changed in ModifyMove, so we must adjust it here
+		if (baseTarget !== move.target) {
+			// Target changed in ModifyMove, so we must adjust it here
+			// Adjust before the next event so the correct target is passed to the
+			// event
 			target = this.resolveTarget(pokemon, move);
 		}
-		move = this.runEvent('ModifyMove',pokemon,target,move,move);
-		if (baseMove.target !== move.target) {
-			//check again
+		move = this.runEvent('ModifyMove', pokemon, target, move, move);
+		if (baseTarget !== move.target) {
+			// Adjust again
 			target = this.resolveTarget(pokemon, move);
 		}
 		if (!move) return false;
@@ -86,6 +87,12 @@ exports.BattleScripts = {
 		if (move.id === 'hiddenpower') movename = 'Hidden Power';
 		if (sourceEffect) attrs += '|[from]'+this.getEffect(sourceEffect);
 		this.addMove('move', pokemon, movename, target+attrs);
+
+		if (target === false) {
+			this.attrLastMove('[notarget]');
+			this.add('-notarget');
+			return true;
+		}
 
 		if (!this.singleEvent('Try', move, null, pokemon, target, move)) {
 			return true;
@@ -1588,10 +1595,12 @@ exports.BattleScripts = {
 
 			// CAPs have 20% the normal rate
 			if (tier === 'CAP' && Math.random()*5>1) continue;
-			// Arceus formes have 1/17 the normal rate each (so Arceus as a whole has a normal rate)
-			if (keys[i].substr(0,6) === 'arceus' && Math.random()*17>1) continue;
+			// Arceus formes have 1/18 the normal rate each (so Arceus as a whole has a normal rate)
+			if (keys[i].substr(0,6) === 'arceus' && Math.random()*18>1) continue;
 			// Basculin formes have 1/2 the normal rate each (so Basculin as a whole has a normal rate)
 			if (keys[i].substr(0,8) === 'basculin' && Math.random()*2>1) continue;
+			// Genesect formes have 1/5 the normal rate each (so Genesect as a whole has a normal rate)
+			if (keys[i].substr(0,8) === 'genesect' && Math.random()*5>1) continue;
 			// Not available on XY
 			if (template.species === 'Pichu-Spiky-eared') continue;
 

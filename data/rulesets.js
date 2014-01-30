@@ -43,8 +43,8 @@ exports.BattleFormats = {
 			'Reshiram',
 			'Zekrom',
 			'Kyurem', 'Kyurem-Black', 'Kyurem-White',
-			'Keldeo', 'Keldeo-Resolute',
-			'Meloetta', 'Meloetta-Pirouette',
+			'Keldeo',
+			'Meloetta',
 			'Genesect',
 			'Xerneas',
 			'Yveltal',
@@ -175,7 +175,22 @@ exports.BattleFormats = {
 				set.species = 'Meloetta';
 			}
 			if (template.num === 649) { // Genesect
-				set.species = 'Genesect';
+				switch (item.id) {
+					case 'burndrive':
+						set.species = 'Genesect-Burn';
+						break;
+					case 'chilldrive':
+						set.species = 'Genesect-Chill';
+						break;
+					case 'dousedrive':
+						set.species = 'Genesect-Douse';
+						break;
+					case 'shockdrive':
+						set.species = 'Genesect-Shock';
+						break;
+					default:
+						set.species = 'Genesect';
+				}
 			}
 			if (template.num == 681) { // Aegislash
 				set.species = 'Aegislash';
@@ -241,10 +256,10 @@ exports.BattleFormats = {
 		onStart: function() {
 			this.add('clearpoke');
 			for (var i=0; i<this.sides[0].pokemon.length; i++) {
-				this.add('poke', this.sides[0].pokemon[i].side.id, this.sides[0].pokemon[i].details.replace(/Arceus(\-[a-zA-Z\?]+)?/, 'Arceus-*'));
+				this.add('poke', this.sides[0].pokemon[i].side.id, this.sides[0].pokemon[i].details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo)-[a-zA-Z?]+/g, '$1-*'));
 			}
 			for (var i=0; i<this.sides[1].pokemon.length; i++) {
-				this.add('poke', this.sides[1].pokemon[i].side.id, this.sides[1].pokemon[i].details.replace(/Arceus(\-[a-zA-Z\?]+)?/, 'Arceus-*'));
+				this.add('poke', this.sides[1].pokemon[i].side.id, this.sides[1].pokemon[i].details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo)-[a-zA-Z?]+/g, '$1-*'));
 			}
 		},
 		onTeamPreview: function() {
@@ -256,10 +271,10 @@ exports.BattleFormats = {
 		onStart: function() {
 			this.add('clearpoke');
 			for (var i=0; i<this.sides[0].pokemon.length; i++) {
-				this.add('poke', this.sides[0].pokemon[i].side.id, this.sides[0].pokemon[i].details.replace(/Arceus(\-[a-zA-Z\?]+)?/, 'Arceus-*'));
+				this.add('poke', this.sides[0].pokemon[i].side.id, this.sides[0].pokemon[i].details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo)-[a-zA-Z?]+/g, '$1-*'));
 			}
 			for (var i=0; i<this.sides[1].pokemon.length; i++) {
-				this.add('poke', this.sides[1].pokemon[i].side.id, this.sides[1].pokemon[i].details.replace(/Arceus(\-[a-zA-Z\?]+)?/, 'Arceus-*'));
+				this.add('poke', this.sides[1].pokemon[i].side.id, this.sides[1].pokemon[i].details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo)-[a-zA-Z?]+/g, '$1-*'));
 			}
 		},
 		onTeamPreview: function() {
@@ -271,10 +286,10 @@ exports.BattleFormats = {
 		onStart: function() {
 			this.add('clearpoke');
 			for (var i=0; i<this.sides[0].pokemon.length; i++) {
-				this.add('poke', this.sides[0].pokemon[i].side.id, this.sides[0].pokemon[i].details.replace(/Arceus(\-[a-zA-Z\?]+)?/, 'Arceus-*'));
+				this.add('poke', this.sides[0].pokemon[i].side.id, this.sides[0].pokemon[i].details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo)-[a-zA-Z?]+/g, '$1-*'));
 			}
 			for (var i=0; i<this.sides[1].pokemon.length; i++) {
-				this.add('poke', this.sides[1].pokemon[i].side.id, this.sides[1].pokemon[i].details.replace(/Arceus(\-[a-zA-Z\?]+)?/, 'Arceus-*'));
+				this.add('poke', this.sides[1].pokemon[i].side.id, this.sides[1].pokemon[i].details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo)-[a-zA-Z?]+/g, '$1-*'));
 			}
 		},
 		onTeamPreview: function() {
@@ -286,10 +301,10 @@ exports.BattleFormats = {
 		onStart: function() {
 			this.add('clearpoke');
 			for (var i=0; i<this.sides[0].pokemon.length; i++) {
-				this.add('poke', this.sides[0].pokemon[i].side.id, this.sides[0].pokemon[i].details.replace(/Arceus(\-[a-zA-Z\?]+)?/, 'Arceus-*'));
+				this.add('poke', this.sides[0].pokemon[i].side.id, this.sides[0].pokemon[i].details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo)-[a-zA-Z?]+/g, '$1-*'));
 			}
 			for (var i=0; i<this.sides[1].pokemon.length; i++) {
-				this.add('poke', this.sides[1].pokemon[i].side.id, this.sides[1].pokemon[i].details.replace(/Arceus(\-[a-zA-Z\?]+)?/, 'Arceus-*'));
+				this.add('poke', this.sides[1].pokemon[i].side.id, this.sides[1].pokemon[i].details.replace(/(Arceus|Gourgeist|Genesect|Pumpkaboo)-[a-zA-Z?]+/g, '$1-*'));
 			}
 		},
 		onTeamPreview: function() {
