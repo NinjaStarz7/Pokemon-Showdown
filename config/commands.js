@@ -1811,5 +1811,27 @@ var commands = exports.commands = {
 		}
 		user.updateIdentity();
 	},
+	
+	tournaments: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox(
+			'<b><font size = 3>The Tournament Room</font></b><br>' +
+			'The tournament room is there so that you can join organised tournaments and win points.<br>' +
+			'You can only win points from a tournament in the Tournament Room.<br>' +
+			'This prevents Room Voice / Mods / Owners hosting small tournaments to gain points.<br>' +
+			'You can start tournaments in other rooms but they <b>won\'t</b> reward points.<br>' +
+			'<b>Enjoy!</b>'
+		);
+	},
+	
+	scizornician: 'sciz',
+	sciz: function (target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox('<center><font color="#A80000" size ="3"><b>Scizornician</b></font><br />' +
+                  '<center><b>Rank:</b> Administrator<br />' +
+                  '<center><b>Role:</b> I am one of the Admins on this server, my role being to develop this server.</font><br />' +
+                  '<center><b>Help me out:</b> If you find any bugs just PM me and I\'ll fix it.<br />' +
+                  '<center><img src="http://showdown.pokemondb.net:8000/avatars/scizornician.png">');
+	},
 
 };
