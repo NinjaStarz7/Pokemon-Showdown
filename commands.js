@@ -439,7 +439,7 @@ var commands = exports.commands = {
                 user.money = money;
                 var price = 0;
                 if (target === 'symbol') {
-                        price = 5;
+                        price = 15;
                         if (price <= user.money) {
                                 user.money = user.money - price;
                                 this.sendReply('You have purchased a custom symbol. You will have this until you log off for more than an hour.');
@@ -451,7 +451,7 @@ var commands = exports.commands = {
                         }
                 }
                 if (target === 'custom') {
-                        price = 20;
+                        price = 35;
                         if (price <= user.money) {
                                 user.money = user.money - price;
                                 this.sendReply('You have purchased a custom avatar. You need to message an Admin capable of adding.');
@@ -462,7 +462,7 @@ var commands = exports.commands = {
                         }
                 }
                 if (target === 'animated') {
-                        price = 35;
+                        price = 45;
                         if (price <= user.money) {
                                 user.money = user.money - price;
                                 this.sendReply('You have purchased a custom animated avatar. You need to message an Admin capable of adding.');
@@ -473,7 +473,7 @@ var commands = exports.commands = {
                         }
                 }
                 if (target === 'room') {
-                        price = 100;
+                        price = 150;
                         if (price <= user.money) {
                                 user.money = user.money - price;
                                 this.sendReply('You have purchased a chat room. You need to message an Admin so that the room can be made.');
@@ -484,7 +484,7 @@ var commands = exports.commands = {
                         }
                 }
                 if (target === 'trainer') {
-                        price = 30;
+                        price = 50;
                         if (price <= user.money) {
                                 user.money = user.money - price;
                                 this.sendReply('You have purchased a trainer card. You need to message an Admin capable of adding this.');
@@ -549,11 +549,11 @@ var commands = exports.commands = {
         shop: function(target, room, user) {
                 if (!this.canBroadcast()) return;
                 this.sendReplyBox('<center><h4><b><u>PokemonDb server\'s Mart</u></b></h4><table border="1" cellspacing ="0" cellpadding="3"><tr><th>Command</th><th>Description</th><th>Cost</th></tr>' +
-                        '<tr><td>Symbol</td><td>Buys a custom symbol to go infront of name and puts you at top of userlist (temporary until restart)</td><td>5</td></tr>' +
-                        '<tr><td>Custom</td><td>Buys a custom avatar to be applied to your name (you supply)</td><td>20</td></tr>' +
-                        '<tr><td>Animated</td><td>Buys an animated avatar to be applied to your name (you supply)</td><td>35</td></tr>' +
-                        '<tr><td>Room</td><td>Buys a chatroom for you to own (within reason, can be refused)</td><td>100</td></tr>' +
-                        '<tr><td>Trainer</td><td>Buys a trainer card which shows information through a command (note: third image costs 10 points extra, ask for more details)</td><td>40</td></tr>' +
+                        '<tr><td>Symbol</td><td>Buys a custom symbol to go infront of name and puts you at top of userlist (temporary until restart)</td><td>15</td></tr>' +
+                        '<tr><td>Custom</td><td>Buys a custom avatar to be applied to your name (you supply)</td><td>35</td></tr>' +
+                        '<tr><td>Animated</td><td>Buys an animated avatar to be applied to your name (you supply)</td><td>45</td></tr>' +
+                        '<tr><td>Room</td><td>Buys a chatroom for you to own (within reason, can be refused)</td><td>150</td></tr>' +
+                        '<tr><td>Trainer</td><td>Buys a trainer card which shows information through a command (note: third image costs 10 points extra, ask for more details)</td><td>50</td></tr>' +
                         '<tr><td>Fix</td><td>Buys the ability to alter your current custom avatar or trainer card (don\'t buy if you have neither)!</td><td>10</td></tr>' +
                         '<tr><td>Declare</td><td>You get the ability to get two declares from an Admin in lobby. This can be used for league advertisement (not server)</td><td>25</td></tr>' +
                         '</table><br />To buy an item from the shop, use /buy [command]. <br />Also do /moneycommands to view money based commands.</center>');
