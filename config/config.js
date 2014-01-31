@@ -151,6 +151,8 @@ exports.customavatars = {
 	'lustthelascivious': 'lenub.png',
 	'kazemon': 'catnipz2.png',
 	'cobblewobble': 'hex.png',
+	'sempiternus': 'sempiternus.png',
+	'hotcakes': 'hotcakes.png',
 	'mrkijani': 'mrkijani.png'
 };
 
