@@ -1,41 +1,5 @@
 /**
  * Command parser
- * Pokemon Showdown - http://pokemonshowdown.com/
- *
- * This is the command parser. Call it with CommandParser.parse
- * (scroll down to its definition for details)
- *
- * Individual commands are put in:
- *   commands.js - "core" commands that shouldn't be modified
- *   config/commands.js - other commands that can be safely modified
- *
- * The command API is (mostly) documented in config/commands.js
- *
- * @license MIT license
- */
-
-/*
-
-To reload chat commands:
-
-/hotpatch chat
-
-*/
-
-const MAX_MESSAGE_LENGTH = 300;
-
-const BROADCAST_COOLDOWN = 20*1000;
-
-const MESSAGE_COOLDOWN = 5*60*1000;
-
-const MAX_PARSE_RECURSION = 10;
-
-var crypto = require('crypto');
-
-var modlog = exports.modlog = modlog || {lobby: fs.createWriteStream('logs/modlog/modlog_lobby.txt', {flags:'a+'})};
-
-/**
- * Command parser
  *
  * Usage:
  *   CommandParser.parse(message, room, user, connection)
