@@ -8,14 +8,14 @@
 {"title":"Anime Discussion","auth":{"pokenubz":"#","mrkijani":"%","once":"%","lenub":"%","aeternis":"+"},"desc":"welcome to anime discussion talk about animes other than pokemon"},
 {"title":"OU Room","auth":{"basedgodmew":"#"}},
 {"title":"Music Room","auth":{"ghostyfx":"#","lastchancebreaker":"+"},"desc":"Talk about your favourite songs / albums / artists"},
-{"title":"DB Arcade","auth":{"aeternis":"#","valet":"#","trioofdarkness":"+","pimpnubz":"@","jarjar3":"+","jellohamster":"+","puffeh":"+","starsignoftheabyss":"+","cobblewobble":"+","mewter":"+","preciousvoice":"+","tazzie":"@","sempiternus":"@","pikadagreat":"+","goodragoodragoo":"+","alphadraconis":"@","demonsofa":"+","theundesirable":"+","doctorflame":"@","pastelescalientes":"+","hotcakes":"+","mewderatory":"+","dattad":"+","oncomingtorm":"+"},"desc":"This is SPARTA"},
 {"title":"Other Games","auth":{"nindzya":"#"},"desc":"Talk about other games than Pokemon."},
 {"title":"Room of Hexagons","desc":"Hex's room :D","auth":{"cobblewobble":"#","pikadagreat":"+"}},
 {"title":" Triada League","auth":{"e4zephyr":"#","e4spasm":"@","gymleadersneak":"@","championyoru":"#","aeternis":"+","goodragoodragoo":"@","alphadraconis":"+","demonflygawne":"+","scizornician":"+","yogacatz":"+","hotcakes":"+","flafpert":"+","jarjar3":"+","pimpnubz":"+","mrkijani":"+","catnipz":"+"}},
 {"title":"Storytime with Ninja and friends","desc":"Stories of DB history told by yours truly","auth":{"nindzya":"#","testingalt123":"#","psychicx":"#"},"isOfficial":true},
-{"title":"Hangman"},
+{"title":"Hangman","desc":"Welcome to the Hangman room."},
 {"title":"Sciz's Lab","isPrivate":true},
-{"title":"PokeSchool"},
+{"title":"PokeSchool","desc":"Tutoring will take place here."},
 {"title":"spamroom","isPrivate":true},
-{"title":"Testing "}
+{"title":"randomasdfjkspamhell","isPrivate":true},
+{"title":"Tournaments","desc":"Welcome to the tournament room! All tournaments take place here.","isOfficial":true}
 ]
