@@ -144,13 +144,15 @@ exports.customavatars = {
 	'pokenubz': 'kyron.png',
 	'flareykinz': 'flareykinz.gif',
 	'desdinova': 'trachy.gif',
-	'catnipz': 'catipz.png',
+	'catnipz': 'kazemon.png',
 	'nindzya': 'ninja.png',
 	'pimpnubz': 'kyron.png',
 	'aeternis': 'aeternis.png',
 	'lustthelascivious': 'lenub.png',
-	'kazemon': 'catnipz2.png',
+	'kazemon': 'kazemon.png',
 	'cobblewobble': 'hex.png',
+	'sempiternus': 'sempiternus.png',
+	'hotcakes': 'hotcakes.png',
 	'mrkijani': 'mrkijani.png'
 };
 
