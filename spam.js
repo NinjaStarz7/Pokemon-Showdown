@@ -9,7 +9,7 @@ exports.spam = function(s) {
 	var spammy = {
 		spammers: new Array('gavigator','professorgavin','suk','ilikewangs','nharmoniag','gavgar'),
 		//rated mature
-		words: new Array('nigger','fag','snen','wank','fuck','shit','bastard','cunt','queef','fgt','kike','anal','cock','ann coulter','howard stern','cum','spamspamspam',"t1ts", "c0ck", "p0rn", "n1gger",'faggot','cumshot')
+		words: new Array('nigger','nigga','fag','snen','wank','fuck','shit','bastard','cunt','queef','kike','anal','cock','ann coulter','howard stern','cum','spamspamspam',"t1ts", "c0ck", "p0rn", "n1gger",'faggot','fgt','cumshot', 'n00b', 'noob')
 	}
 
 	global.today = new Date();
