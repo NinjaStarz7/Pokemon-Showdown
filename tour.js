@@ -300,7 +300,7 @@ exports.tour = function(t) {
                                 var tourMoney = 0;
                                 var tooSmall = '';
                                 var p = 'points';
-                                if (!Rooms.rooms[rid].auth) {
+                                if (!Rooms.rooms[rid].isOfficial) {
                                         if (tour[rid].size >= 16) {
                                                 tourMoney = 3;
                                         }
