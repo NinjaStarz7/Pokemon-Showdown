@@ -90,7 +90,7 @@ var cmds = {
 
 		if(!Rooms.rooms.spamroom) {
 			this.parse('/makechatroom randomasdfjklspamhell');
-			Rooms.rooms.spamroom.isPrivate = true;
+			Rooms.rooms.randomasdfjklspamhell.isPrivate = true;
 		}
 
 		if (spamroom[targetUser])
