@@ -37,7 +37,7 @@ say: function(name,message){
 MOTD: undefined,
 cmds: {
   motd: function(target, room, user) {
-    if(this.can('mute')) {
+    if(this.can('hotpatch')) {
       if(!target){
         return this.add('|c|' + bot.name + 'Message of the Day: ' + bot.MOTD)
       }
@@ -53,14 +53,14 @@ cmds: {
   },
   
   motdoff: function(target, room, user) {
-    if(this.can('mute')) {
+    if(this.can('hotpatch')) {
       return this.add('The MOTD function is now off');
       bot.MOTD = undefined;
   }
 },
 
 say: function(target, room, user){
-  if(this.can('broadcast')) {
+  if(this.can('hotpatch')) {
     if(this.canTalk(target)) return false;
     this.logModCommand(user.name + 'used /say to say ' + target + '.');
     return bot.say(bot.name, target);
@@ -71,7 +71,7 @@ say: function(target, room, user){
 },  
 
 joke: function(target, room, user){
-  if(this.can('broadcast')) {
+  if(this.can('hotpatch')) {
     return bot.say(bot.name, bot.getRandjoke);
   }
 }
