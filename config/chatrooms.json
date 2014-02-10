@@ -17,5 +17,6 @@
 {"title":"PokeSchool","desc":"Tutoring will take place here."},
 {"title":"spamroom","isPrivate":true},
 {"title":"randomasdfjkspamhell","isPrivate":true},
-{"title":"Tournaments","desc":"Welcome to the tournament room! All tournaments take place here.","isOfficial":true}
+{"title":"Tournaments","desc":"Welcome to the tournament room! All tournaments take place here.","isOfficial":true},
+{"title":"Trivia"}
 ]
