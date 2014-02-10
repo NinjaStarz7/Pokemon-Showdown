@@ -1,4 +1,4 @@
-start.sh
+runserver.sh
 config/avatars/*
 config/money.csv
 
