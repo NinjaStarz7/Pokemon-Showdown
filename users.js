@@ -289,7 +289,7 @@ var User = (function () {
 
 		if (connection.user) connection.user = this;
 		this.connections = [connection];
-		this.ips = {}
+		this.ips = {};
 		this.ips[connection.ip] = 1;
 		this.bets = 0;
 		this.money = 0;

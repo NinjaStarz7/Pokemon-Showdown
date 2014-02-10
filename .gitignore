@@ -14,6 +14,7 @@ config/bannedwords.txt
 
 # editor temp files
 *~
+.idea/
 
 tmp/**/*
 *.lock

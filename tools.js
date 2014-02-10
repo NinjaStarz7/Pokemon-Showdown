@@ -120,8 +120,9 @@ module.exports = (function () {
 		return this.name;
 	};
 	Tools.prototype.getImmunity = function(type, target) {
-		for (var i=0; i<target.types.length; i++) {
-			if (this.data.TypeChart[target.types[i]] && this.data.TypeChart[target.types[i]].damageTaken && this.data.TypeChart[target.types[i]].damageTaken[type] === 3) {
+		var types = target.getTypes && target.getTypes() || target.types;
+		for (var i=0; i<types.length; i++) {
+			if (this.data.TypeChart[types[i]] && this.data.TypeChart[types[i]].damageTaken && this.data.TypeChart[types[i]].damageTaken[type] === 3) {
 				return false;
 			}
 		}
@@ -133,9 +134,10 @@ module.exports = (function () {
 		}
 		var type = source.type || source;
 		var totalTypeMod = 0;
-		for (var i=0; i<target.types.length; i++) {
-			if (!this.data.TypeChart[target.types[i]]) continue;
-			var typeMod = this.data.TypeChart[target.types[i]].damageTaken[type];
+		var targetTypes = target.getTypes && target.getTypes() || target.types;
+		for (var i=0; i<targetTypes.length; i++) {
+			if (!this.data.TypeChart[targetTypes[i]]) continue;
+			var typeMod = this.data.TypeChart[targetTypes[i]].damageTaken[type];
 			if (typeMod === 1) { // super-effective
 				totalTypeMod++;
 			}
@@ -466,16 +468,17 @@ module.exports = (function () {
 					banlistTable[toId(subformat.banlist[i])] = subformat.name || true;
 
 					var plusPos = subformat.banlist[i].indexOf('+');
+					var complexList;
 					if (plusPos && plusPos > 0) {
 						var plusPlusPos = subformat.banlist[i].indexOf('++');
 						if (plusPlusPos && plusPlusPos > 0) {
-							var complexList = subformat.banlist[i].split('++');
+							complexList = subformat.banlist[i].split('++');
 							for (var j=0; j<complexList.length; j++) {
 								complexList[j] = toId(complexList[j]);
 							}
 							format.teamBanTable.push(complexList);
 						} else {
-							var complexList = subformat.banlist[i].split('+');
+							complexList = subformat.banlist[i].split('+');
 							for (var j=0; j<complexList.length; j++) {
 								complexList[j] = toId(complexList[j]);
 							}
