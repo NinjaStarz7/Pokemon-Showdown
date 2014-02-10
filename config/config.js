@@ -153,6 +153,7 @@ exports.customavatars = {
 	'cobblewobble': 'hex.png',
 	'sempiternus': 'sempiternus.png',
 	'hotcakes': 'hotcakes.png',
+	'valetbro': 'valetbro.gif',
 	'mrkijani': 'mrkijani.png'
 };
 
