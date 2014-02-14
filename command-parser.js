@@ -328,6 +328,7 @@ function canTalk(user, room, connection, message) {
                                                 if(spam.words.indexOf(message)> -1){
                                                 user.mute(room.id, 7*60*1000, true);
                                                 room.add('|html|<b>Scizbot</b> has muted <b>' + user.name + '</b> for 7 minutes (spamword)');
+                                                this.logModCommand('Scizbot muted '+user.name+' for 7 minutes for saying a spam word which was:' + target);
                                                 return false;
                                                 }
        
