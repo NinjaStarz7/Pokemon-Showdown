@@ -1309,7 +1309,7 @@ var commands = exports.commands = {
 		for (var ip in targetUser.ips) {
 			room.bannedIps[ip] = true;
 		}
-		targetUser.popup(user.name+" has banned you from the room " + room.id + "." + (target ? " (" + target + ")" : ""));
+		targetUser.popup(user.name+" has banned you from the room " + room.id + ". To appeal the ban, PM the moderator that banned you or a room owner." + (target ? " (" + target + ")" : ""));
 		this.addModCommand(""+targetUser.name+" was banned from room " + room.id + " by "+user.name+"." + (target ? " (" + target + ")" : ""));
 		var alts = targetUser.getAlts();
 		if (alts.length) {
@@ -1399,6 +1399,7 @@ var commands = exports.commands = {
 
 		this.addModCommand(''+targetUser.name+' was warned by '+user.name+'.' + (target ? " (" + target + ")" : ""));
 		targetUser.send('|c|~|/warn '+target);
+		this.add('|unlink|' + targetUser.userid);
 	},
 
 	redirect: 'redir',
@@ -1421,7 +1422,7 @@ var commands = exports.commands = {
 			return this.sendReply('User '+this.targetUsername+' is not in the room ' + room.id + '.');
 		}
 		if (targetUser.joinRoom(target) === false) return this.sendReply('User "' + targetUser.name + '" could not be joined to room ' + target + '. They could be banned from the room.');
-		var roomName = (targetRoom.isPrivate)? 'a private room' : 'room ' + target;
+		var roomName = (targetRoom.isPrivate)? 'a private room' : 'room ' + targetRoom.title;
 		this.addModCommand(targetUser.name + ' was redirected to ' + roomName + ' by ' + user.name + '.');
 		targetUser.leaveRoom(room);
 	},
