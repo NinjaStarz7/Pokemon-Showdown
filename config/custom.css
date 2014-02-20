@@ -10,6 +10,10 @@
 #header {
 	background: url("http://showdown.pokemondb.net/stripes-gray.gif")
 }
+
+.message-announce {
+background:#3300FF
+}
  
 .message-pm {
 color: #FFF;
@@ -88,17 +92,12 @@ padding-bottom: 5px;
 top: 0px;
 }
  
-body {
-  background: #C0C0C0 none;
-}
- 
 .mainmenuwrapper {
   background: url("http://showdown.pokemondb.net/scizor-drapion.png") no-repeat scroll right middle; 
 }
 
-.mainmenuwrapper {
-  color: #C0C0C0;
-  font-size: 11pt;
+body {
+background:url("http://i.imgur.com/qd8I8BR.jpg");
 }
  
  
