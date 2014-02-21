@@ -16,7 +16,7 @@ var spammy = {
  
 spammers: new Array('gavigator','professorgavin','suk','ilikewangs','nharmoniag','gavgar','gym leader dukeeee','okguy'),
 //rated mature
-words: new Array('nigger','shit','fuck','bastard','fag','nigga','niqqa','snen','wank','cunt','queef','fgt','kike','anal','cock','ann coulter','howard stern','cum','spamspamspam',"t1ts", "c0ck", "p0rn", "n1gger",'faggot','cumshot')
+words: new Array('nigger','shit','qq','sak','phat','00','fuck','bastard','fag','nigga','niqqa','snen','wank','cunt','queef','fgt','kike','anal','cock','ann coulter','howard stern','cum','spamspamspam',"t1ts", "c0ck", "p0rn", "n1gger",'faggot','cumshot')
 }
  
  
