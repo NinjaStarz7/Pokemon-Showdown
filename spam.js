@@ -23,6 +23,7 @@ words: new Array('nigger','shit','fuck','bastard','fag','nigga','niqqa','snen','
 global.today = new Date();
 Users.User.prototype.o3omessagetime = today.getMinutes();
 Users.User.prototype.numMessages = 0;
+Users.User.prototype.countBadWords = 0;
 global.spamroom = new Object();
 Object.merge(spam, spammy);
 return spam
