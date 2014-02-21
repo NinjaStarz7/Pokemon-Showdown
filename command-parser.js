@@ -311,22 +311,22 @@ function canTalk(user, room, connection, message) {
  		message.trim();
 		for(x=0;x<badWords.length;x++){
 		if(message.toLowerCase().indexOf(badWords[x]) > -1) {
-			countBadWords++;
-				if(countBadWords == 1){
+			user.countBadWords++;
+				if(user.countBadWords == 1){
 					user.mute(420000);
-						room.add('|html|<font color="#3644E7"><i><b>' + user.name + ' has been muted for 7 minutes (inappropriate language).</b></i></font>');
+						room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has muted <b>' + user.name + '</b> for 7 minutes (inappropriate language).</i></font>');
 							connection.popup('Your message contained innapropriate language, and you have been muted for 7 minutes.\nIf you are not a spammer and you have good intentions, please contact an auth and ask them to unmute you.\nPlease use appropriate language in the future.');
 								//may cause a crash
-								this.logModCommand(user.name+' has been muted for 7 minutes for swearing. Message was \''+message+'\'');
+								this.logModCommand(user.name+' has been muted by Scizbot for 7 minutes for swearing. Message was \''+message+'\'');
 									return false;
 								}
-				if(countBadWords == 2){
+				if(user.countBadWords == 2){
 					user.lock();
 						connection.popup('You have been locked from talking for continuous inappropriate language.\nPlease show respect!');
 							//may cause a crash
-							this.logModCommand(user.name+' has been locked for continuous swearing. Message was \''+message+'\'');
-								room.add('|html|<font color="#3644E7"><i><b>' + user.name+' has been locked for inappropriate language.</b></i></font>');
-									countBadWords = 0;
+							this.logModCommand('Scizbot has locked '+user.name+'for continuous swearing. Message was \''+message+'\'');
+								room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for inappropriate language.</i></font>');
+									user.countBadWords = 0;
 										return false;
 				}
 			}
