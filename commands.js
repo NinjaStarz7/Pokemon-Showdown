@@ -76,6 +76,26 @@ var commands = exports.commands = {
 		return this.sendReply('You are currently betting ' + user.bets + ' times to ' + target);
 
 	},
+	
+	scizboton: 'boton',
+	filteron: 'boton',
+	boton: function(target, room, user){
+		if(!this.can('declare')){ 
+			return false;
+			}
+		botonz = 1;
+			room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set Scizbot to </b></i></font><b><i><font color="#22B47A">active</b></i></font>');
+	},
+		
+	scizbotoff: 'botoff',
+	filteroff: 'botoff',
+	botoff: function(target, room, user){
+		if(!this.can('declare')){ 
+			return false;
+			}
+		botonz = 0;
+			room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set Scizbot to</b></i></font><b><i><font color="#B1144E"> inactive</b></i></font>');
+	},
 
 	spin: function (target, room, user) {
 
