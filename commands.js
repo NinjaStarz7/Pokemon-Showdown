@@ -931,7 +931,7 @@ var commands = exports.commands = {
                         if(exists){
                                 return connection.sendTo(room, 'Since this file already exists, you cannot do this.');
                         } else {
-                                fs.writeFile('config/money.csv', 'scizornician,ninjastaz7,pokemasterdb', function (err) {
+                                fs.writeFile('config/money.csv', 'scizornician,ninjastarz7,nindzya,pokemasterdb', function (err) {
                                         if (err) throw err;
                                         console.log('config/money.csv created.');
                                         connection.sendTo(room, 'config/money.csv created.');
@@ -1840,7 +1840,7 @@ var commands = exports.commands = {
 	},
 
 	modlog: function(target, room, user, connection) {
-		if (!this.can('modlog')) return false;
+		if (!this.can('hotpatch')) return false;
 		var lines = 0;
 		// Specific case for modlog command. Room can be indicated with a comma, lines go after the comma.
 		// Otherwise, the text is defaulted to text search in current room's modlog.
