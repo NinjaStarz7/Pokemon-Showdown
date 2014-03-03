@@ -346,8 +346,8 @@ function canTalk(user, room, connection, message) {
 		
 		if(botonz !== 0){
 		if (user.numMsg === 6) {
-				user.popup(user.name+' has muted you for 7 minutes. '+ '(spam)');
-				room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for flood.</i></font>');
+				connection.popup('You have been locked for spam.');
+				room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for spam.</i></font>');
 				var alts = user.getAlts();
 				if (alts.length) room.add(""+user.name+"'s alts were also locked: "+alts.join(", "));
 				room.add('|unlink|' + user.userid);
