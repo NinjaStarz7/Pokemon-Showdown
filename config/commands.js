@@ -657,7 +657,6 @@ var commands = exports.commands = {
 			'- <a href="http://www.smogon.com/bw/articles/bw_tiers">What do "OU", "UU", etc mean?</a><br />' +
 			'- <a href="http://www.smogon.com/xyhub/tiers">What are the rules for each format? What is "Sleep Clause"?</a>');
 	},
-
 	mentoring: 'smogintro',
 	smogonintro: 'smogintro',
 	smogintro: function(target, room, user) {
@@ -1000,8 +999,8 @@ var commands = exports.commands = {
 	 * Miscellaneous commands
 	 *********************************************************/
 
-	birkal: function(target, room, user) {
-		this.sendReply("It's not funny anymore.");
+	secret: function(target, room, user) {
+		this.sendReply("Once suxaphones");
 	},
 
 	potd: function(target, room, user) {
@@ -1440,7 +1439,13 @@ var commands = exports.commands = {
 	/*********************************************************
 	 * PokemonDb custom commands
 	 *********************************************************/
-
+	DBUserPSnames: 'dbusernames',
+	dbusernames: function(target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox('Need to know who is who?<br />' +
+			'- <a href="http://pokemondb.net/pokebase/meta/2785/what-is-your-pokemon-online-showdown-username?">Database and DB Server Usernames</a><br />');
+	},
+	
 	dbinfo: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox(
@@ -1506,7 +1511,7 @@ var commands = exports.commands = {
 	},
 
 	smited: function (target, room, user) {
-		if (user.userid != 'scizornician')
+		if (user.userid != 'scizornician,nindzya,cobblewobble')
 			return false;
 
 		target = this.splitTarget(target);
@@ -1823,7 +1828,7 @@ var commands = exports.commands = {
 
 	impersonate:'imp',
 	imp: function(target, room, user) {
-		if (!user.can('ban')) return this.sendReply('/imp - Access denied.');
+		if (!user.can('hide')) return this.sendReply('/imp - Access denied.');
 		if (!this.canTalk()) return;
 		if (!target) return this.parse('/help imp');
 
@@ -1899,6 +1904,16 @@ var commands = exports.commands = {
                   '<center><b>Role:</b> I am one of the Admins on this server, my role being to develop this server.</font><br />' +
                   '<center><b>Help me out:</b> If you find any bugs just PM me and I\'ll fix it.<br />' +
                   '<center><img src="http://showdown.pokemondb.net:8000/avatars/scizornician.png">');
+	},
+	
+		ninja: 'ninja',
+	sciz: function (target, room, user) {
+		if (!this.canBroadcast()) return;
+		this.sendReplyBox('<center><font color="#000052" size ="3"><b>Ninja / Nindzya</b></font><br />' +
+                  '<center><b>Rank:</b> Administrator<br />' +
+                  '<center><b>Role:</b> Oh hey, I\'m kind of running things here! With a few others of course.</font><br />' +
+                  '<center><b>Help me out:</b> If you have any concerns, head over to my wall <a href="http://pokemondb.net/pokebase/meta/user/Ninja">here.</a><br />' +
+                  '<center><img src="http://showdown.pokemondb.net:8000/avatars/ninja.png">');
 	},
 
 };
