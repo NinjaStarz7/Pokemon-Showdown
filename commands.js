@@ -2753,8 +2753,10 @@ var commands = exports.commands = {
 		}
 		user.rename(targetName, targetToken, targetAuth, connection);
 	},
-	
-	//poof functions
+
+};
+
+// poof functions
 function getRandMessage(user){
 	user = escapeHTML(user.name);
 	var numMessages = 32; // numMessages will always be the highest case # + 1 //increasing this will make the default appear more often
@@ -2762,15 +2764,15 @@ function getRandMessage(user){
 	switch(Math.floor(Math.random()*numMessages)){
 		case 0: message = message + user + ' looked at Your Mom\'s face!';
 		break;
-		case 1: message = message + user + used Explosion!';
+		case 1: message = message + user + ' used Explosion!';
 		break;
-		case 2: message = message ' Mewderator used Play Rough on '+ user + '!';
+		case 2: message = message + ' Mewderator used Play Rough on ' + user + '!';
 		break;
 		case 3: message = message + user + ' angered a Crawdaunt!';
 		break;	
 		case 4: message = message + user + ' was sat on by Alpha Draconis!';
 		break;
-		case 5: message = message + user + ' was Bullet Punched by Sciznician!';
+		case 5: message = message + user + ' was Bullet Punched by Scizornician!';
 		break;
 		case 6: message = message + user + ' disagreed with Scizbot!';
 		break;
@@ -2784,9 +2786,9 @@ function getRandMessage(user){
 		break;
 		case 11: message = message + user + ' didn\'t quite make it!';
 		break;
-		case 12: message = message ' Scizbot help up a Red Card on' + user + '!';
+		case 12: message = message + ' Scizbot help up a Red Card on' + user + '!';
 		break;
-		case 13: message = message ' Aeternis used Circle Throw on'+ user + '!';
+		case 13: message = message + ' Aeternis used Circle Throw on' + user + '!';
 		break;
 		case 14: message = message + user + ' disconnected!';
 		break;
@@ -2831,5 +2833,3 @@ function getRandMessage(user){
 	message = message + ' ~~';
 	return message;
 }
-
-};
