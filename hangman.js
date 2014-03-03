@@ -44,7 +44,7 @@ var cmds = {
                                                 '<li>/category [description] OR /topic [description] - Allows the person running hangman to changed the topic.</li>' +
                                                 '<li>/endhangman - Ends the game of hangman in the room. Requires: + % @ & ~</li></ul>' +
                                                 'Due to some recent changes, hangman can now be played in multiple rooms at once (excluding lobby, it\'s a little spammy).<br />' +
-                                                'Have fun, and feel free to PM me if you find any bugs! - piiiikachuuu');
+                                                'Have fun, and feel free to PM me if you find any bugs! - Scizornician');
         },
         
         hangman: function(target, room, user) {
