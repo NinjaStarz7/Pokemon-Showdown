@@ -332,8 +332,8 @@ function canTalk(user, room, connection, message) {
 				if(user.countBadWords == 2){
 					if((!user.locked) && (!user.muted)){
 						user.lock();
-							connection.popup('You have been locked from talking for continuous inappropriate language.\nPlease show respect!');
-								room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for inappropriate language.</i></font>');
+							room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for inappropriate language.</i></font>');
+								connection.popup('You have been locked from talking for continuous inappropriate language.\nPlease show respect!');
 									user.countBadWords = 0;
 										return false;
 						}
