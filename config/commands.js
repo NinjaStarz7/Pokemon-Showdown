@@ -1915,5 +1915,82 @@ var commands = exports.commands = {
                   '<center><b>Help me out:</b> If you have any concerns, head over to my wall <a href="http://pokemondb.net/pokebase/meta/user/Ninja">here.</a><br />' +
                   '<center><img src="http://showdown.pokemondb.net:8000/avatars/ninja.png">');
 	},
+	
+	d: 'poof',
+	cpoof: 'poof',
+	poof: (function () {
+		var messages = [
+			"was sat on by Alpha Draconis!",
+			"visited Sciz's lab and was mutated!",
+			"used Explosion!",
+			"fell into the void.",
+			"was KO'd by Mewderator's Play Rough!",
+			"angered a Crawdaunt!",
+			"was Bullet Punched by Scizornician!",
+			"has left the building.",
+			"was judged by the Amlighty Pokemaster!",
+			"was petrified by Once.",
+			"disagreed with Scizbot!",
+			"was hit by Magikarp's Revenge!",
+			"was sucked into a whirlpool!",
+			"was banned because of COPPA!",
+			"is phat!",
+			"got eaten by a bunch of Igglybuff!",
+			"got lost on the internet!",
+			"A large Galvantula descended from the sky and picked up {{user}}.",
+			"fleed!",
+			"got their sausage smoked by Charmanderp!",
+			"fell into a worm whole!",
+			"took an arrow to the knee... and then one to the face.",
+			"peered through the hole on Shedinja's back",
+			"saw a creep pasta!",
+			"used Final Gambit and missed!",
+			"pissed off a the server!",
+			"got CobbleWobbled!",
+			"was told to leave by Goodragoodragoo!",
+			"Scizbot help up it\s red card to {{user}}.",
+			"was unfortunate and didn't get a cool message.",
+			"Psychic x accidently banned {{user}} from the server!",
+			"was given the look by Once!",
+			"Aeternis showed {{user}} the door!",
+			"was shoved in a Blendtec Blender!",
+			"the community voted to skip {{user}}!",
+			"was bitten by a rabid Wolfie!",
+			"was kicked from server!",
+			"recieved capital punishment!"
+		];
+
+		return function(target, room, user) {
+			if (config.poofOff) return this.sendReply("Poof is currently disabled.");
+			if (target && !this.can('broadcast')) return false;
+			if (room.id !== 'lobby') return false;
+			var message = target || messages[Math.floor(Math.random() * messages.length)];
+			if (message.indexOf('{{user}}') < 0)
+				message = '{{user}} ' + message;
+			message = message.replace(/{{user}}/g, user.name);
+			if (!this.canTalk(message)) return false;
+
+			var colour = '#' + [1, 1, 1].map(function () {
+				var part = Math.floor(Math.random() * 0xaa);
+				return (part < 0x10 ? '0' : '') + part.toString(16);
+			}).join('');
+
+			room.addRaw('<center><strong><font color="' + colour + '">~~ ' + sanitize(message) + ' ~~</font></strong></center>');
+			user.disconnectAll();
+		};
+	})(),
+
+	poofoff: 'nopoof',
+	nopoof: function() {
+		if (!this.can('poofoff')) return false;
+		config.poofOff = true;
+		return this.sendReply("Poof is now disabled.");
+	},
+
+	poofon: function() {
+		if (!this.can('poofoff')) return false;
+		config.poofOff = false;
+		return this.sendReply("Poof is now enabled.");
+	},
 
 };
