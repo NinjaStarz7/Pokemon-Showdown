@@ -152,6 +152,7 @@ exports.customavatars = {
 	'kazemon': 'kazemon.png',
 	'cobblewobble': 'hex.png',
 	'sempiternus': 'sempiternus.png',
+	'knightofdragon': 'sempiternus.png',
 	'hotcakes': 'hotcakes.png',
 	'valetbro': 'valetbro.gif',
 	'mrkijani': 'mrkijani.png'
