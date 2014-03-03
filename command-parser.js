@@ -231,6 +231,7 @@ var parse = exports.parse = function(message, room, user, connection, levelsDeep
 
 	message = canTalk(user, room, connection, message);
 	if (!message) return false;
+	user.numMsg++;
 
 	return message;
 };
