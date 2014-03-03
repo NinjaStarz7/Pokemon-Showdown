@@ -321,7 +321,7 @@ function canTalk(user, room, connection, message) {
 			user.countBadWords++;
 				if(user.countBadWords == 1){
 					if((!user.locked) && (!user.muted)){
-						user.mute(420000);
+						user.mute(room.id, 420000);
 							room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has muted <b>' + user.name + '</b> for 7 minutes (inappropriate language).</i></font>');
 								connection.popup('Your message contained innapropriate language, and you have been muted for 7 minutes.\nIf you are not a spammer and you have good intentions, please contact an auth and ask them to unmute you.\nPlease use appropriate language in the future.');
 									//may cause a crash
@@ -341,6 +341,29 @@ function canTalk(user, room, connection, message) {
 						}
 					}
 				}
+			}
+		}
+		
+		if(botonz !== 0){
+		if (user.numMsg === 6) {
+				user.popup(user.name+' has muted you for 7 minutes. '+ '(spam)');
+				room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for flood.</i></font>');
+				var alts = user.getAlts();
+				if (alts.length) room.add(""+user.name+"'s alts were also locked: "+alts.join(", "));
+				room.add('|unlink|' + user.userid);
+
+				user.lock();
+				user.numMsg=0;
+				return false;
+			} 
+			if (user.connected === false) {
+				user.numMsg = 0;
+				user.warnCounter = 0;
+			}
+			if (user.numMsg != 0){
+				setTimeout(function() {
+					user.numMsg=0;
+				}, 30000);
 			}
 		}
 
