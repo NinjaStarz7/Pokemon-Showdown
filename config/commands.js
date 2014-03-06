@@ -1906,8 +1906,8 @@ var commands = exports.commands = {
                   '<center><img src="http://showdown.pokemondb.net:8000/avatars/scizornician.png">');
 	},
 	
-		ninja: 'ninja',
-	sciz: function (target, room, user) {
+		nindzya: 'ninja',
+	ninja: function (target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox('<center><font color="#000052" size ="3"><b>Ninja / Nindzya</b></font><br />' +
                   '<center><b>Rank:</b> Administrator<br />' +
