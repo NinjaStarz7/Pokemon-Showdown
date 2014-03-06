@@ -258,7 +258,8 @@ var commands = exports.commands = {
 				data += '|c|~|/data-' + newTargets[i].searchType + ' ' + newTargets[i].name + '\n';
 				if (newTargets[i].searchType === 'pokemon') {
 					var template = Tools.getTemplate(newTargets[i].species);
-					data += '|html|<center>Tier: ' + template.tier + '\n</center>';}
+					data += '|html|<center><b>Tier: ' + template.tier + '</b></center>';
+				}
 			}
 		} else {
 			data = "No Pokemon, item, move or ability named '" + target + "' was found. (Check your spelling?)";
