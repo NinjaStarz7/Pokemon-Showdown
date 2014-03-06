@@ -18,9 +18,6 @@ var inShop = ['symbol', 'custom', 'animated', 'room', 'trainer', 'fix', 'declare
 var closeShop = false;
 var closedShop = 0;
 
-//poof
-var poofeh = true;
-
 //gym leaders
 var gymleaders = ['leadercakey','leaderflafpert','leaderflareykinz','leaderfizz','leaderlenub','leaderdemon','leaderenoch','leaderfwame'];
 var admins = ['pokemasterdb','scizornician','ninjastarz7'];
@@ -32,73 +29,6 @@ var commands = exports.commands = {
 	version: function(target, room, user) {
 		if (!this.canBroadcast()) return;
 		this.sendReplyBox('Server version: <b>'+CommandParser.package.version+'</b> <small>(<a href="http://pokemonshowdown.com/versions#' + CommandParser.serverVersion + '">' + CommandParser.serverVersion.substr(0,10) + '</a>)</small>');
-	},
-	
-	//poof
-	poof: 'd',
-	d: function(target, room, user){
-		if(room.id !== 'lobby') return false;
-		muted = Object.keys(user.mutedRooms);
-		for (var u in muted) if (muted[u] == 'lobby') return this.sendReply('You can\'t poof while muted');
-		var btags = '<strong><font color='+hashColor(Math.random().toString())+'" >';
-		var etags = '</font></strong>'
-		var targetid = toUserid(user);
-		if(target){
-			var tar = toUserid(target);
-			var targetUser = Users.get(tar);
-			if(user.can('poof', targetUser)){
-				if(!targetUser){
-					user.emit('console', 'Cannot find user ' + target + '.', socket);	
-				}else{
-					var escapedName = escapeHTML(targetUser.name);
-					var escapedUser = escapeHTML(user.name);
-					if(poofeh)
-						Rooms.rooms.lobby.addRaw(btags + '~~ '+escapedName+' was vanished into nothingness by ' + escapedUser +'! ~~' + etags);
-						targetUser.disconnectAll();
-						return	this.logModCommand(targetUser.name+ ' was poofed by ' + user.name);
-					}
-				} else {
-					return this.sendReply('/poof target - Access denied.');
-				}
-			}
-		if(poofeh && !user.locked){
-			Rooms.rooms.lobby.addRaw(btags + getRandMessage(user)+ etags);
-			user.disconnectAll();	
-		}else{
-			return this.sendReply('poof is currently disabled.');
-		}
-	},
-
-	poofoff: 'nopoof',
-	nopoof: function(target, room, user){
-		if(!user.can('warn')) return this.sendReply('/nopoof - Access denied.');
-		if(!poofeh) return this.sendReply('poof is currently disabled.');
-		poofeh = false;
-		this.logModCommand(user.name + ' disabled poof.');
-		return this.sendReply('poof is now disabled.');
-	},
-
-	poofon: function(target, room, user){
-		if(!user.can('warn')) return this.sendReply('/poofon - Access denied.');
-		if(poofeh) return this.sendReply('poof is currently enabled.');
-		poofeh = true;
-		this.logModCommand(user.name + ' enabled poof');
-		return this.sendReply('poof is now enabled.');
-	},
-
-	cpoof: function(target, room, user){
-		if(!user.can('broadcast')) return this.sendReply('/cpoof - Access Denied');
-		if (!target) return this.sendReply('/cpoof - Please specify a custom poof message to use.');
-		if(poofeh) {
-			var btags = '<strong><font color="'+hashColor(Math.random().toString())+'" >';
-			var etags = '</font></strong>'
-			escapedTarget = escapeHTML(target);
-			Rooms.rooms.lobby.addRaw(btags + '~~ '+user.name+' '+escapedTarget+'! ~~' + etags);
-			this.logModCommand(user.name + ' used a custom poof message: \n "'+target+'"');
-			user.disconnectAll();	
-		}else{
-			return this.sendReply('Poof is currently disabled.');
-		}
 	},
 	
 	//roulette
@@ -2756,80 +2686,3 @@ var commands = exports.commands = {
 
 };
 
-// poof functions
-function getRandMessage(user){
-	user = escapeHTML(user.name);
-	var numMessages = 32; // numMessages will always be the highest case # + 1 //increasing this will make the default appear more often
-	var message = '~~ ';
-	switch(Math.floor(Math.random()*numMessages)){
-		case 0: message = message + user + ' looked at Your Mom\'s face!';
-		break;
-		case 1: message = message + user + ' used Explosion!';
-		break;
-		case 2: message = message + ' Mewderator used Play Rough on ' + user + '!';
-		break;
-		case 3: message = message + user + ' angered a Crawdaunt!';
-		break;	
-		case 4: message = message + user + ' was sat on by Alpha Draconis!';
-		break;
-		case 5: message = message + user + ' was Bullet Punched by Scizornician!';
-		break;
-		case 6: message = message + user + ' disagreed with Scizbot!';
-		break;
-		case 7: message = message + user + ' got lost on the internet!';
-		break;
-		case 8: message = message + user + ' left for their lover (Scizornician)!';
-		break;
-		case 9: message = message + user + ' was hit by Magikarp\'s Revenge!';
-		break;
-		case 10: message = message + user + ' was told to leave by Goodragoodragoo!';
-		break;
-		case 11: message = message + user + ' didn\'t quite make it!';
-		break;
-		case 12: message = message + ' Scizbot help up a Red Card on' + user + '!';
-		break;
-		case 13: message = message + ' Aeternis used Circle Throw on' + user + '!';
-		break;
-		case 14: message = message + user + ' disconnected!';
-		break;
-		case 15: message = message + user + 'felt the wrath of Sunkern!';
-		break;
-		case 16: message = message + user + ' was annoyed by Pika!';
-		break;
-		case 17: message = message + user + ' was CobbleWobble\'d!';
-		break;
-		case 18: message = message + user + ' was forced to give Scizornician all his points!'; 
-		break;
-		case 19: message = message + user + ' was used as Sharpedo bait!';
-		break;
-		case 20: message = message + user + ' peered through the hole on Shedinja\'s back';
-		break;
-		case 21: message = message + user + ' received judgment from the almighty Pokemon!';
-		break;
-		case 22: message = message + user + ' got ninaj\'d by Ninja!';
-		break;
-		case 23: message = message + user + ' went into tall grass without any pokemon!';
-		break;
-		case 24: message = message + user + ' made a Gyarados angry!';
-		break;
-		case 25: message = message + user + ' took a Focus Punch to the face!';
-		break;
-		case 26: message = message + user + ' got lost...';
-		break;
-		case 27: message = message + user + ' ate a bomb!';
-		break;
-		case 28: message = message + 'Mike accidentally kicked ' + user + ' too hard!';
-		break;
-		case 29: message = message + user + ' had to take a timeout!';
-		break;
-		case 30: message = message + user + ' went for an Ice cream!'; 
-		break;
-		case 31: message = message + user + ' got eaten by Igglybuffs!';
-		break;
-		case 32: message = message + user + ' was owned by Scizornician!';
-		break;
-		default: message = message + user + ' drank a poisoned Moo Moo Milk!';
-	};
-	message = message + ' ~~';
-	return message;
-}
