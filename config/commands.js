@@ -421,15 +421,13 @@ var commands = exports.commands = {
 						for (var i in searches[search]) {
 							var move = Tools.getMove(i);
 							if (!move.exists) return this.sendReplyBox('"' + move + '" is not a known move.');
-							var canLearn = (template.learnset.sketch && !(move.id in {'chatter':1,'struggle':1,'magikarpsrevenge':1})) || template.learnset[move.id];
-							if ((!canLearn && searches[search][i]) || (searches[search][i] === false && canLearn)) dex[mon] = false;
+							var prevoTemp = Tools.getTemplate(template.id);
+							while (prevoTemp.prevo && prevoTemp.learnset && !(prevoTemp.learnset[move.id])) {
+								prevoTemp = Tools.getTemplate(prevoTemp.prevo);
+							}
+							var canLearn = (prevoTemp.learnset.sketch && !(move.id in {'chatter':1,'struggle':1,'magikarpsrevenge':1})) || prevoTemp.learnset[move.id];
+							if ((!canLearn && searches[search][i]) || (searches[search][i] === false && canLearn)) delete dex[mon];
 						}
-					}
-					for (var mon in dex) {
-						if (dex[mon] && dex[mon].evos.length) {
-							for (var evo in dex[mon].evos) if (dex[dex[mon].evos[evo]] !== false) dex[dex[mon].evos[evo]] = Tools.getTemplate(dex[mon].evos[evo]);
-						}
-						if (!dex[mon]) delete dex[mon];
 					}
 					break;
 
@@ -757,6 +755,7 @@ var commands = exports.commands = {
 			'- /hourmute OR /hm <em>username</em>: 60 minute mute<br />' +
 			'- /unmute <em>username</em>: unmute<br />' +
 			'- /announce OR /wall <em>message</em>: make an announcement<br />' +
+			'- /modlog <em>username</em>: search the moderator log of the room<br />' +
 			'<br />' +
 			'Room moderators (@) can also use:<br />' +
 			'- /roomban OR /rb <em>username</em>: bans user from the room<br />' +
@@ -841,7 +840,7 @@ var commands = exports.commands = {
 		}
 		if (target === 'all' || target === 'autoconfirmed' || target === 'ac') {
 			matched = true;
-			buffer += 'A user is autoconfirmed when they have won at least one rated battle and has been registered for a week or longer.<br />';
+			buffer += 'A user is autoconfirmed when they have won at least one rated battle and have been registered for a week or longer.<br />';
 		}
 		if (!matched) {
 			return this.sendReply('The FAQ entry "'+target+'" was not found. Try /faq for general help.');
@@ -1266,7 +1265,7 @@ var commands = exports.commands = {
 			this.sendReply('/ignore [user] - Ignores all messages from the user [user].');
 			this.sendReply('Note that staff messages cannot be ignored.');
 		}
-		if (target === '%' || target === 'invite') {
+		if (target === 'all' || target === 'invite') {
 			matched = true;
 			this.sendReply('/invite [username], [roomname] - Invites the player [username] to join the room [roomname].');
 		}
