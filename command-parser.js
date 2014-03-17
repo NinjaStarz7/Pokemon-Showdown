@@ -303,18 +303,25 @@ function canTalk(user, room, connection, message) {
         }
  
         if (typeof message === 'string') {
-                if (!message) {
-                        connection.popup("Your message can't be blank.");
-                        return false;
-                }
-                if (message.length > MAX_MESSAGE_LENGTH && !user.can('ignorelimits')) {
-                        connection.popup("Your message is too long:\n\n"+message);
-                        return false;
-                }
-                
-                //Contains a list of offensive words
-		var badWords = new Array("fuck","bastard","cunt","shit","bitch","nigga","nigger","niggah","coon","nobjockey","sh1t","jizz","fucker","handjob","whore","pornhub", "cum", "dildo", "vagina", "pussy", "cock", "porn", "blowjob", "anal", "c0ck", "clint", "redtube", "420yolo","ahole","anus", "ash0le", "ash0les", "asholes","Ass Monkey", "Assface", "assh0le", "assh0lez", "asshole", "assholes", "assholz", "asswipe", "azzhole", "bassterds", "bastard", "bastards", "bastardz", "basterds", "basterdz","fag","fgt", "jackoff", "jerk off", "jack off", "jerkoff", "jerk-off", "jack-off", "masturbate", "orgasm", "penis", "retard", "semen", "","va1jina", "vag1na", "vagiina", "vaj1na", "vajina", "vullva", "vulva", "wh0re", "ejaculate", "clit", "nutsack", "tits", "wank");
-		
+            if (!message) {
+                connection.popup("Your message can't be blank.");
+                return false;
+            }
+            if (message.length > MAX_MESSAGE_LENGTH && !user.can('ignorelimits')) {
+                connection.popup("Your message is too long:\n\n"+message);
+                return false;
+            }
+
+			// Contains a list of offensive words
+			var badWords = new Array(
+				"fuck", "bastard", "cunt", "shit", "bitch", "nigga", "nigger", "niggah", "coon", "nobjockey", "sh1t", "jizz", "fucker", "handjob",
+				"whore", "pornhub", "cum", "dildo", "vagina", "pussy", "cock", "porn", "blowjob", "anal", "c0ck", "clint", "redtube", "420yolo",
+				"ahole", "anus", "ash0le", "ash0les", "asholes", "Ass Monkey", "Assface", "assh0le", "assh0lez", "asshole", "assholes", "assholz",
+				"asswipe", "azzhole", "bassterds", "bastard", "bastards", "bastardz", "basterds", "basterdz", "fag", "fgt", "jackoff", "jerk off",
+				"jack off", "jerkoff", "jerk-off", "jack-off", "masturbate", "orgasm", "penis", "retard", "semen", "va1jina", "vag1na", "vagiina",
+				"vaj1na", "vajina", "vullva", "vulva", "wh0re", "ejaculate", "clit", "nutsack", "tits", "wank"
+			);
+
 		if(botonz !== 0){
 		if (room && room.id === 'lobby'){
  		message.trim();
