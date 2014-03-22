@@ -948,12 +948,17 @@ exports.BattleFormatsData = {
 		],
 		tier: "LC"
 	},
-	starmie: {
+	starmie: {        
 		viableMoves: {"surf":1,"thunderbolt":1,"icebeam":1,"rapidspin":1,"recover":1,"psychic":1,"psyshock":1,"scald":1,"hydropump":1},
-		eventPokemon: [
-			{"generation":3,"level":41,"moves":["refresh","waterfall","icebeam","recover"]}
-		],
+	 	eventPokemon: [
+        		{"generation":3,"level":41,"moves":["refresh","waterfall","icebeam","recover"]}
+        	],
 		tier: "Limbo A"
+    	},
+	starmiemega: {
+       		requiredItem: "Starmite",
+       		tier: "Mo Megas"
+		}, 
 	},
 	mimejr: {
 		viableMoves: {"substitute":1,"batonpass":1,"psychic":1,"thunderwave":1,"hiddenpowerfighting":1,"healingwish":1,"nastyplot":1,"thunderbolt":1,"encore":1},
