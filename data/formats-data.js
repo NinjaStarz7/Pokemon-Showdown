@@ -957,7 +957,7 @@ exports.BattleFormatsData = {
     	},
 	starmiemega: {
        		requiredItem: "Starmite",
-       		tier: "Mo Megas"
+       		tier: "Custom Game"
 		}, 
 	},
 	mimejr: {
