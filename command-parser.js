@@ -351,7 +351,7 @@ function canTalk(user, room, connection, message) {
 		}
 		
 		if(botonz !== 0){
-		if (user.numMsg === 6) {
+		if (user.numMsg === 7) {
 				connection.popup('You have been locked for spam.');
 				room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for spam.</i></font>');
 				var alts = user.getAlts();
@@ -369,7 +369,7 @@ function canTalk(user, room, connection, message) {
 			if (user.numMsg != 0){
 				setTimeout(function() {
 					user.numMsg=0;
-				}, 30000);
+				}, 37000);
 			}
 		}
 
