@@ -93,11 +93,11 @@ top: 0px;
 }
  
 .mainmenuwrapper {
-  background: url("http://showdown.pokemondb.net/scizor-drapion.png") no-repeat scroll right middle; 
+	background: url("http://showdown.pokemondb.net/scizor-drapion.png") no-repeat scroll right middle; 
 }
 
 body {
-background:url("http://hrdb.ca/wpsite/wp-content/uploads/2013/01/gradient-gray-201.jpg");
+	background: url("http://showdown.pokemondb.net/gradient-gray-201.jpg");
 }
  
  
