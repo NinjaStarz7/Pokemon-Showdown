@@ -1979,15 +1979,34 @@ var commands = exports.commands = {
 			try {
 				CommandParser.uncacheTree('./command-parser.js');
 				CommandParser = require('./command-parser.js');
+
 				CommandParser.uncacheTree('./stuff/spam.js'); 
 				spam = require('./stuff/spam.js').spam(spam);
 				CommandParser.uncacheTree('./tour.js');
-                                tour = require('./tour.js').tour(tour);
-                                CommandParser.uncacheTree('./hangman.js');
-                                hangman = require('./hangman.js').hangman(hangman);
+				tour = require('./tour.js').tour(tour);
+				CommandParser.uncacheTree('./hangman.js');
+				hangman = require('./hangman.js').hangman(hangman);
+
+				var runningTournaments = Tournaments.tournaments;
+				CommandParser.uncacheTree('./tournaments/frontend.js');
+				Tournaments = require('./tournaments/frontend.js');
+				Tournaments.tournaments = runningTournaments;
+
 				return this.sendReply('Chat commands have been hot-patched.');
 			} catch (e) {
 				return this.sendReply('Something failed while trying to hotpatch chat: \n' + e.stack);
+			}
+
+		} else if (target === 'tournaments') {
+
+			try {
+				var runningTournaments = Tournaments.tournaments;
+				CommandParser.uncacheTree('./tournaments/frontend.js');
+				Tournaments = require('./tournaments/frontend.js');
+				Tournaments.tournaments = runningTournaments;
+				return this.sendReply("Tournaments have been hot-patched.");
+			} catch (e) {
+				return this.sendReply('Something failed while trying to hotpatch tournaments: \n' + e.stack);
 			}
 
 		} else if (target === 'battles') {

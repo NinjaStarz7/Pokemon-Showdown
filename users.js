@@ -24,7 +24,9 @@
  */
 var closeShop = true;
 
-var THROTTLE_DELAY = 600;
+const THROTTLE_DELAY = 600;
+const THROTTLE_BUFFER_LIMIT = 6;
+const THROTTLE_MULTILINE_WARN = 4;
 
 var users = {};
 var prevUsers = {};
@@ -187,6 +189,10 @@ function socketReceive(worker, workerid, socketid, message) {
 			return;
 		}
 		lines = lines.split('\n');
+		if (lines.length >= THROTTLE_MULTILINE_WARN) {
+			connection.popup("You're sending too many lines at once. Try using a paste service like [[Pastebin]].");
+			return;
+		}
 		// Emergency logging
 		if (config.emergency) {
 			fs.appendFile('logs/emergency.log', '['+ user + ' (' + connection.ip + ')] ' + message + '\n', function(err){
@@ -1277,7 +1283,7 @@ var User = (function () {
 
 		if (this.chatQueueTimeout) {
 			if (!this.chatQueue) this.chatQueue = []; // this should never happen
-			if (this.chatQueue.length > 6) {
+			if (this.chatQueue.length >= THROTTLE_BUFFER_LIMIT-1) {
 				connection.sendTo(room, '|raw|' +
 					"<strong class=\"message-throttle-notice\">Your message was not sent because you've been typing too quickly.</strong>"
 				);

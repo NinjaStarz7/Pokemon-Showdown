@@ -948,6 +948,7 @@ var BattlePokemon = (function() {
 			this.itemData = {id: '', target: this};
 			this.usedItemThisTurn = true;
 			this.ateBerry = true;
+			this.battle.runEvent('AfterUseItem', this, null, null, item);
 			return true;
 		}
 		return false;
@@ -2400,6 +2401,9 @@ var Battle = (function() {
 		}
 		this.add('switch', pokemon, pokemon.getDetails);
 		if (pokemon.template.isMega) this.add('-formechange', pokemon, pokemon.template.species);
+		if (pokemon.illusion && pokemon.illusion.template.isMega) {
+			this.add('-formechange', pokemon.illusion, pokemon.illusion.template.species);
+		}
 		pokemon.update();
 		this.runEvent('SwitchIn', pokemon);
 		this.addQueue({pokemon: pokemon, choice: 'runSwitch'});
@@ -2458,6 +2462,9 @@ var Battle = (function() {
 		}
 		this.add('drag', pokemon, pokemon.getDetails);
 		if (pokemon.template.isMega) this.add('-formechange', pokemon, pokemon.template.species);
+		if (pokemon.illusion && pokemon.illusion.template.isMega) {
+			this.add('-formechange', pokemon.illusion, pokemon.illusion.template.species);
+		}
 		pokemon.update();
 		this.runEvent('SwitchIn', pokemon);
 		this.addQueue({pokemon: pokemon, choice: 'runSwitch'});
@@ -3859,6 +3866,7 @@ var Battle = (function() {
 					};
 					this.send('log', JSON.stringify(log));
 				}
+				this.send('score', [this.p1.pokemonLeft, this.p2.pokemonLeft]);
 				this.send('winupdate', [this.winner].concat(this.log.slice(logPos)));
 			} else {
 				this.send('update', this.log.slice(logPos));
