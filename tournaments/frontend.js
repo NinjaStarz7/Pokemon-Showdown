@@ -406,7 +406,7 @@ var Tournament = (function () {
 		this.isBracketInvalidated = true;
 		this.isAvailableMatchesInvalidated = true;
 
-		if (isTournamentEnded)
+		if (isTournamentEnded) {
 			this.onTournamentEnd();
 			loser = user;
 			tourSize = this.generator.users.size;
@@ -425,6 +425,7 @@ var Tournament = (function () {
 					}
 				});
 			}
+		}
 		else
 			this.update();
 	};
@@ -588,6 +589,7 @@ var Tournament = (function () {
 					}
 				});
 			}
+		}
 		else
 			this.update();
 	};
