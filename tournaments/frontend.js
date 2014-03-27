@@ -408,6 +408,23 @@ var Tournament = (function () {
 
 		if (isTournamentEnded)
 			this.onTournamentEnd();
+			loser = user;
+			tourSize = this.generator.users.size;
+			if (this.room.isOfficial && tourSize >= 8) {
+				firstMoney = Math.ceil(tourSize/10);
+				secondMoney = Math.ceil(firstMoney/2);
+				firstpoint = 'point';
+				secondpoint = 'point';
+				if (firstMoney > 1) firstPoint = 'points';
+				if (secondMoney > 1) secondPoint = 'points';
+				this.room.add('|raw|<b><font color=#24678d>'+winner.name+'</font> has also won <font color=#24678d>'+firstMoney+'</font> '+firstPoint+' for winning the tournament!</b>');
+				if (firstMoney >= 2) this.room.add('|raw|<b><font color=#3300CC>'+loser.name+'</font> has won <font color=#24678d>'+secondMoney+'</font> '+secondPoint+' for coming in second place!</b>');
+				economy.writeMoney('money', winner.userid, firstMoney, function() {
+					if (firstMoney >= 2) {
+						economy.writeMoney('money', loser.userid, secondMoney);
+					}
+				});
+			}
 		else
 			this.update();
 	};
@@ -553,8 +570,24 @@ var Tournament = (function () {
 		this.isBracketInvalidated = true;
 		this.isAvailableMatchesInvalidated = true;
 
-		if (isTournamentEnded)
+		if (isTournamentEnded) {
 			this.onTournamentEnd();
+			tourSize = this.generator.users.size;
+			if (this.room.isOfficial && tourSize >= 8) {
+				firstMoney = Math.ceil(tourSize/10);
+				secondMoney = Math.ceil(firstMoney/2);
+				firstBuck = 'point';
+				secondBuck = 'point';
+				if (firstMoney > 1) firstPoint = 'points';
+				if (secondMoney > 1) secondPoint = 'points';
+				this.room.add('|raw|<b><font color=#24678d>'+winner.name+'</font> has also won <font color=#24678d>'+firstMoney+'</font> '+firstPoint+' for winning the tournament!</b>');
+				if (firstMoney >= 2) this.room.add('|raw|<b><font color=#24678d>'+loser.name+'</font> has won <font color=#24678d>'+secondMoney+'</font> '+secondPoint+' for coming in second place!</b>');
+				economy.writeMoney('money', winner.userid, firstMoney, function() {
+					if (firstMoney >= 2) {
+						economy.writeMoney('money', loser.userid, secondMoney);
+					}
+				});
+			}
 		else
 			this.update();
 	};
