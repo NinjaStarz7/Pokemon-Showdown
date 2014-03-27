@@ -1105,7 +1105,6 @@ var commands = exports.commands = {
 			return this.sendReply("The room '"+target+"' already exists.");
 		}
 		if (Rooms.global.addChatRoom(target)) {
-                        tour.reset(id);
                         hangman.reset(id);
                         return this.sendReply("The room '"+target+"' was created.");
 		}
@@ -1982,8 +1981,6 @@ var commands = exports.commands = {
 
 				CommandParser.uncacheTree('./stuff/spam.js'); 
 				spam = require('./stuff/spam.js').spam(spam);
-				CommandParser.uncacheTree('./tour.js');
-				tour = require('./tour.js').tour(tour);
 				CommandParser.uncacheTree('./hangman.js');
 				hangman = require('./hangman.js').hangman(hangman);
 
