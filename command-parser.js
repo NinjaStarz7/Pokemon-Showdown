@@ -34,6 +34,12 @@ var crypto = require('crypto');
 
 var modlog = exports.modlog = {lobby: fs.createWriteStream('logs/modlog/modlog_lobby.txt', {flags:'a+'}), battle: fs.createWriteStream('logs/modlog/modlog_battle.txt', {flags:'a+'})};
 
+global.spamBotOn = 1;
+global.badWordsBotOn = 1;
+global.csBotOn = 1;
+global.spamCount = 0;
+var advertisingCount = 0;
+
 /**
  * Command parser
  *
@@ -322,7 +328,7 @@ function canTalk(user, room, connection, message) {
 				"vaj1na", "vajina", "vullva", "vulva", "wh0re", "ejaculate", "clit", "nutsack", "tits", "wank"
 			);
 
-		if(botonz !== 0){
+		if(badWordsBotOn !== 0){
 		if (room && room.id === 'lobby'){
  		message.trim();
 		for(x=0;x<badWords.length;x++){
@@ -331,7 +337,7 @@ function canTalk(user, room, connection, message) {
 				if(user.countBadWords == 1){
 					if((!user.locked) && (!user.muted)){
 						user.mute(room.id, 420000);
-							room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has muted <b>' + user.name + '</b> for 7 minutes (inappropriate language).</i></font>');
+							room.add('|html|<b><font color="#FF0080">'+user.name+'</font><font color="#BF00FF"> has been muted for 7 minutes by ScizbotUltraMega10000 (Inappropriate language).</b></font>');
 								connection.popup('Your message contained innapropriate language, and you have been muted for 7 minutes.\nIf you are not a spammer and you have good intentions, please contact an auth and ask them to unmute you.\nPlease use appropriate language in the future.');
 									return false;
 									}
@@ -339,7 +345,7 @@ function canTalk(user, room, connection, message) {
 				if(user.countBadWords == 2){
 					if((!user.locked) && (!user.muted)){
 						user.lock();
-							room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for inappropriate language.</i></font>');
+							room.add('|html|<b><font color="#FF0080">'+user.name+'</font><font color="#BF00FF"> has been locked by ScizbotUltraMega10000 (Inappropriate language).</b></font>');
 								connection.popup('You have been locked from talking for continuous inappropriate language.\nPlease show respect!');
 									user.countBadWords = 0;
 										return false;
@@ -350,28 +356,27 @@ function canTalk(user, room, connection, message) {
 		}
 		}
 		
-		if(botonz !== 0){
-		if (user.numMsg === 7) {
-				connection.popup('You have been locked for spam.');
-				room.add('|html|<font color="#3644E7"><i><b>Scizbot</b> has locked <b>' +user.name+'</b> from talking for spam.</i></font>');
-				var alts = user.getAlts();
-				if (alts.length) room.add(""+user.name+"'s alts were also locked: "+alts.join(", "));
-				room.add('|unlink|' + user.userid);
-
-				user.lock();
-				user.numMsg=0;
-				return false;
-			} 
-			if (user.connected === false) {
-				user.numMsg = 0;
-				user.warnCounter = 0;
-			}
-			if (user.numMsg != 0){
+		//spam filter
+		if(spamBotOn === 1){
+		if(user.spamCount !== 0){
 				setTimeout(function() {
-					user.numMsg=0;
-				}, 37000);
+					user.spamCount = 0;
+						}, 3500);
 			}
 		}
+
+		if(spamBotOn === 1){
+		if(user.spamCount === 5){
+			user.lock();
+				connection.popup('You have been locked for spam.');
+					room.add('|html|<i><font color="#5E08C1"><b>ScizbotUltraMega100000 has locked</font><font color="#DE154E"></b> <b>'+user.name+' </font><font color="#5E08C1"></b> <b>(spam).</b></font></i>');
+						var alts = user.getAlts();
+							if (alts.length) room.add(""+user.name+"'s alts were also locked: "+alts.join(", "));
+								room.add('|unlink|' + user.userid);
+									user.spamCount = 0;
+										return false;
+							}
+						}
 
  		
                 // hardcoded low quality website
