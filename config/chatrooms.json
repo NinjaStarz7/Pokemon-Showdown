@@ -2,7 +2,7 @@
 {"title":"Lobby","autojoin":true,"desc":"The Official PokemonDB server Lobby!","isOfficial":true,"auth":{}},
 {"title":"Staff","isPrivate":true,"staffRoom":true,"staffAutojoin":true},
 {"title":"Roleplaying","desc":"Roleplay here with other people!"},
-{"title":"Debate","desc":"Welcome to the internet, where facts are wrong and your opinion doesn't matter.","auth":{"catnipz":"#","heyitzrio":"%","lenubsaks":"+","ta123":"+","thedrownedsailor":"%","alphadraconis":"%","watertiger":"%","jarjar3":"+","valet":"%","knightofdragon":"+","rubythedemon":"%","lenub":"+","jajad":"+","yogacatz":"@","puppyjaja":"+","tazzie":"+","hotcakes":"+"},"isOfficial":true},
+{"title":"Debate","desc":"Debate on stupid things and rant about things you hate","auth":{"catnipz":"#","heyitzrio":"%","lenubsaks":"+","ta123":"+","thedrownedsailor":"%","alphadraconis":"%","watertiger":"%","jarjar3":"+","valet":"%","knightofdragon":"+","rubythedemon":"%","lenub":"@","jajad":"+","yogacatz":"@","puppyjaja":"+","tazzie":"+","hotcakes":"+","kazemon":"#"},"isOfficial":true},
 {"title":"Mew's room","auth":{"testingalt123":"#","mewderator":"#","sentbyravens":"+","lenub":"+","neumannkh":"+","ghostyfx":"+","basedgodmew":"#","pokenubz":"%","cwegz":"+","once":"+","havinfun85":"+","leadercakey":"+","pikadagreat":"+","pastelescalientes":"+","sempiternus":"+"},"desc":"What happens in Mew's room, stays in Mew's room ;)"},
 {"title":"Complain about Ninja","auth":{"nindzya":"#"},"desc":"Yep, there's a room for this too."},
 {"title":"Anime Discussion","auth":{"pokenubz":"#","mrkijani":"%","once":"%","lenub":"%","aeternis":"+"},"desc":"welcome to anime discussion talk about animes other than pokemon"},
@@ -11,12 +11,13 @@
 {"title":"Other Games","auth":{"nindzya":"#"},"desc":"Talk about other games than Pokemon."},
 {"title":"Room of Hexagons","desc":"Hex's room :D","auth":{"cobblewobble":"#","pikadagreat":"+"}},
 {"title":"Storytime with Ninja and friends","desc":"Stories of DB history told by yours truly","auth":{"nindzya":"#","testingalt123":"#","psychicx":"#"},"isOfficial":true},
-{"title":"Hangman","desc":"Welcome to the Hangman room. Plz....This.is.SPARTA","auth":{"valetbro":"#","flafpert":"+","aeternis":"#","tazzie":"+","basedlixiaolong":"+","galeforcewinds":"+","goodragoodragoo":"+","pikastarz":"+","pikamastr":"+","sempiternus":"@","crazyclown94":"+","lustthelascivious":"+","cantdodisobamaself":"+","becauseimmad":"+","desokoro":"+","snowthegreat":"+"}},
+{"title":"Hangman","desc":"Welcome to the Hangman room. Plz....This.is.SPARTA","auth":{"valetbro":"#","flafpert":"+","aeternis":"#","tazzie":"+","basedlixiaolong":"+","galeforcewinds":"+","goodragoodragoo":"+","pikastarz":"+","pikamastr":"+","sempiternus":"@","crazyclown94":"+","lustthelascivious":"+","cantdodisobamaself":"+","becauseimmad":"+","desokoro":"+","snowthegreat":"+","livefromnewyork":"+"}},
 {"title":"Sciz's Lab","isPrivate":true},
 {"title":"PokeSchool","desc":"Tutoring will take place here."},
 {"title":"spamroom","isPrivate":true},
 {"title":"randomasdfjkspamhell","isPrivate":true},
 {"title":"Tournaments","desc":"Welcome to the tournament room! All tournaments take place here.","isOfficial":true},
 {"title":"Trivia","auth":{"tazzie":"#","flafman":"@","brotad":"+"},"desc":"google is OP"},
-{"title":"Theorymons"}
+{"title":"Theorymons"},
+{"title":"Peliper Post Office","desc":"The Pokemon Mystery Dungeon fan room","auth":{"pelipperpostoffice":"#","alcani":"+","teamtriplestar":"@","triplestar":"@"}}
 ]
