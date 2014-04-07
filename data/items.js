@@ -4418,21 +4418,7 @@ exports.BattleItems = {
 		gen: 4,
 		desc: "The accuracy of attacks by the holder is 1.2x if it moves after the target."
 	},
-	//Mo Megas
-	
-	"starmite": {
-        id: "starmite",
-        name: "Starmite",
-        megaStone: "Starmie-Mega",
-        megaEvolves: "Starmie",
-  		onTakeItem: function(item, source) {
-           	if (item.megaEvolves === source.baseTemplate.baseSpecies) return false;
-          		return true;
-   		},
-       	num: -7,
-       	gen: 6,
-        desc: "Mega evolves Starmie."
-	}
+
 };
 
 
