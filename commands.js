@@ -80,23 +80,86 @@ var commands = exports.commands = {
 	},
 	
 	scizboton: 'boton',
+	boot: 'boton',
 	filteron: 'boton',
 	boton: function(target, room, user){
-		if(!this.can('declare')){ 
-			return false;
-			}
-		botonz = 1;
-			room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set Scizbot to </b></i></font><b><i><font color="#22B47A">active</b></i></font>');
+		if(!this.can('declare')) return false;
+		if(!target) return this.sendReply('Please specify a bot to turn on: spambot, badwordbot, csbot, or all.');
+			switch(target){
+				case 'spambot':
+					if(spamBotOn === 1){
+						return this.sendReply('The spambot is already turned on.');
+					} else {
+						spamBotOn = 1;
+							room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set Scizbot\'s spam filter to </b></i></font><b><i><font color="#22B47A">active.</b></i></font>');
+					}
+					break;
+				case 'badwordbot':
+					if(badWordsBotOn === 1){
+						return this.sendReply('The bad word bot is already turned on.');
+					} else {
+						badWordsBotOn = 1;
+							room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set ScizbotUltraMega10000\'s bad word  filter to </b></i></font><b><i><font color="#22B47A">active.</b></i></font>');
+					}
+					break;
+				case 'csbot':
+					if(csBotOn === 1){
+						return this.sendReply('The caps/stretching bot is already turned on.');
+					} else {
+						csBotOn = 1;
+							room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set ScizbotUltraMega10000\'s caps/stretching filter to </b></i></font><b><i><font color="#22B47A">active.</b></i></font>');
+					}
+					break;
+				case 'all':
+						badWordsBotOn = 1;
+						csBotOn = 1;
+						spamBotOn = 1;
+							room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set all of ScizbotUltraMega10000\'s filters to </b></i></font><b><i><font color="#22B47A">active.</b></i></font>');
+					break;
+				default:
+					return this.sendReply('The bot you tried to turn on was not recognized. These are the current bots: spambot, badwordbot, csbot and all.');
+		}
 	},
-		
+	
 	scizbotoff: 'botoff',
 	filteroff: 'botoff',
 	botoff: function(target, room, user){
-		if(!this.can('declare')){ 
-			return false;
-			}
-		botonz = 0;
-			room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set Scizbot to</b></i></font><b><i><font color="#B1144E"> inactive</b></i></font>');
+		if(!this.can('declare')) return false;
+		if(!target) return this.sendReply('Please specify a bot to turn off: spambot, badwordbot, csbot, or all.');
+			switch(target){
+				case 'spambot':
+					if(spamBotOn === 0){
+						return this.sendReply('The spambot is already turned off.');
+					} else {
+						spamBotOn = 0;
+							room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set Scizbot\'s spam filter to </b></i></font><b><i><font color="#B1144E">inactive.</b></i></font>');
+					}
+					break;
+				case 'badwordbot':
+					if(badWordsBotOn === 0){
+						return this.sendReply('The bad word bot is already turned off.');
+					} else {
+						badWordsBotOn = 0;
+							room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set ScizbotUltraMega10000\'s bad word  filter to </b></i></font><b><i><font color="#B1144E">inactive.</b></i></font>');
+					}
+					break;
+				case 'csbot':
+					if(csBotOn === 0){
+						return this.sendReply('The caps/stretching bot is already turned off.');
+					} else {
+						csBotOn = 0;
+							room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set ScizbotUltraMega10000\'s caps/stretching filter to </b></i></font><b><i><font color="#B1144E">inactive.</b></i></font>');
+					}
+					break;
+				case 'all':
+						badWordsBotOn = 0;
+						csBotOn = 0;
+						spamBotOn = 0;
+							room.add('|html|<font color="#3644E7"><i><b>'+user.name+' set all of ScizbotUltraMega10000\'s filters to </b></i></font><b><i><font color="#B1144E">inactive.</b></i></font>');
+					break;
+				default:
+					return this.sendReply('The bot you tried to turn off was not recognized. These are the current bots: spambot, badwordbot, csbot and all.');
+		}
 	},
 
 	spin: function (target, room, user) {
