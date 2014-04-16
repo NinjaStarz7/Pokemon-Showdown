@@ -336,7 +336,7 @@ function canTalk(user, room, connection, message) {
 			user.countBadWords++;
 				if(user.countBadWords == 1){
 					if((!user.locked) && (!user.muted)){
-						user.mute(room.id, 6000);
+						user.mute(room.id, 60000);
 							room.add('|html|<b><font color="#FF0080">'+user.name+'</font><font color="#BF00FF"> has been muted for 1 minute by ScizbotUltraMega10000 (Inappropriate language).</b></font>');
 								connection.popup('Your message contained innapropriate language, and you have been muted for 1 minute.\nIf you are not a spammer and you have good intentions, please contact an auth and ask them to unmute you.\nPlease use appropriate language in the future.');
 									return false;
