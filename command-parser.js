@@ -336,9 +336,9 @@ function canTalk(user, room, connection, message) {
 			user.countBadWords++;
 				if(user.countBadWords == 1){
 					if((!user.locked) && (!user.muted)){
-						user.mute(room.id, 420000);
-							room.add('|html|<b><font color="#FF0080">'+user.name+'</font><font color="#BF00FF"> has been muted for 7 minutes by ScizbotUltraMega10000 (Inappropriate language).</b></font>');
-								connection.popup('Your message contained innapropriate language, and you have been muted for 7 minutes.\nIf you are not a spammer and you have good intentions, please contact an auth and ask them to unmute you.\nPlease use appropriate language in the future.');
+						user.mute(room.id, 6000);
+							room.add('|html|<b><font color="#FF0080">'+user.name+'</font><font color="#BF00FF"> has been muted for 1 minute by ScizbotUltraMega10000 (Inappropriate language).</b></font>');
+								connection.popup('Your message contained innapropriate language, and you have been muted for 1 minute.\nIf you are not a spammer and you have good intentions, please contact an auth and ask them to unmute you.\nPlease use appropriate language in the future.');
 									return false;
 									}
 								}
@@ -346,7 +346,7 @@ function canTalk(user, room, connection, message) {
 					if((!user.locked) && (!user.muted)){
 						user.lock();
 							room.add('|html|<b><font color="#FF0080">'+user.name+'</font><font color="#BF00FF"> has been locked by ScizbotUltraMega10000 (Inappropriate language).</b></font>');
-								connection.popup('You have been locked from talking for continuous inappropriate language.\nPlease show respect!');
+								connection.popup('You have been locked from talking for continuous inappropriate language.');
 									user.countBadWords = 0;
 										return false;
 						}
@@ -394,15 +394,15 @@ function canTalk(user, room, connection, message) {
                         }
                         user.numMessages += 1;
                         if(user.numMessages == 15){
-                        user.mute(room.id, 7*60*1000);
-                        room.add('|html|<b>Scizbot</b> has muted <b>' + user.name + '</b> for 7 minutes(Flood)');
+                        user.mute(room.id, 1*60*1000);
+                        room.add('|html|<b>Scizbot</b> has muted <b>' + user.name + '</b> for 1 minute. (Flood)');
                         user.o3omessagetime = today.getMinutes();
                         user.numMessages = 0;
                         return false
                         }
                                                 if(spam.words.indexOf(message)> -1){
-                                                user.mute(room.id, 7*60*1000, true);
-                                                room.add('|html|<b>Scizbot</b> has muted <b>' + user.name + '</b> for 7 minutes (spamword)');
+                                                user.mute(room.id, 1*60*1000, true);
+                                                room.add('|html|<b>Scizbot</b> has muted <b>' + user.name + '</b> for 1 minute. (spamword)');
                                                 this.logModCommand('Scizbot muted '+user.name+' for 7 minutes for saying a spam word which was:' + target);
                                                 return false;
                                                 }
