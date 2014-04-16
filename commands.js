@@ -83,7 +83,7 @@ var commands = exports.commands = {
 	boot: 'boton',
 	filteron: 'boton',
 	boton: function(target, room, user){
-		if(!this.can('declare')) return false;
+		if(!this.can('ban')) return false;
 		if(!target) return this.sendReply('Please specify a bot to turn on: spambot, badwordbot, csbot, or all.');
 			switch(target){
 				case 'spambot':
@@ -124,7 +124,7 @@ var commands = exports.commands = {
 	scizbotoff: 'botoff',
 	filteroff: 'botoff',
 	botoff: function(target, room, user){
-		if(!this.can('declare')) return false;
+		if(!this.can('ban')) return false;
 		if(!target) return this.sendReply('Please specify a bot to turn off: spambot, badwordbot, csbot, or all.');
 			switch(target){
 				case 'spambot':
