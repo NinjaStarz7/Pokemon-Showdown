@@ -320,10 +320,9 @@ function canTalk(user, room, connection, message) {
 
 			// Contains a list of offensive words
 			var badWords = new Array(
-				"fuck", "bastard", "cunt", "shit", "bitch", "nigga", "nigger", "niggah", "coon", "nobjockey", "sh1t", "jizz", "fucker", "handjob",
-				"whore", "pornhub", "cum", "dildo", "vagina", "pussy", "cock", "porn", "blowjob", "anal", "c0ck", "clint", "redtube", "420yolo",
-				"ahole", "anus", "ash0le", "ash0les", "asholes", "Ass Monkey", "Assface", "assh0le", "assh0lez", "asshole", "assholes", "assholz",
-				"asswipe", "azzhole", "bassterds", "bastard", "bastards", "bastardz", "basterds", "basterdz", "fag", "fgt", "jackoff", "jerk off",
+				"fuck", "bastard", "cunt", "shit", "bitch", "nigga", "nigger", "niggah", "nobjockey", "sh1t", "jizz", "fucker", "handjob",
+				"whore", "pornhub", "dildo", "vagina", "pussy", "cock", "porn", "blowjob", "c0ck", "clint", "redtube", "420yolo",
+				"ahole", "anus", "ass", "a$$", "bassterds", "bastard", "bastards", "bastardz", "basterds", "basterdz", "fgt", "jackoff", "jerk off",
 				"jack off", "jerkoff", "jerk-off", "jack-off", "masturbate", "orgasm", "penis", "retard", "va1jina", "vag1na", "vagiina",
 				"vaj1na", "vajina", "vullva", "vulva", "wh0re", "ejaculate", "clit", "nutsack", "tits", "wank"
 			);
